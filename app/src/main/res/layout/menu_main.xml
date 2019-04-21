@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondito"
+    tools:context=".MenuActivity">
+
+    <ImageView
+        android:id="@+id/tareasDivertidas"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/titulo_tareas_divertidas"/>
+
+
+    <ImageView
+        android:id="@+id/botonMiembros"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/tareasDivertidas"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="80dp"
+        app:srcCompat="@drawable/boton_miembros" />
+
+    <ImageView
+        android:id="@+id/botonPremios"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/tareasDivertidas"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="80dp"
+        android:layout_toRightOf="@+id/botonMiembros"
+        app:srcCompat="@drawable/boton_premios" />
+
+    <ImageView
+        android:id="@+id/botonAsignacionTareas"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/botonMiembros"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@drawable/boton_tareas" />
+
+    <ImageView
+        android:id="@+id/evaluacion"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/botonPremios"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@+id/botonMiembros"
+        app:srcCompat="@drawable/boton_evaluacion" />
+
+
+</RelativeLayout>
