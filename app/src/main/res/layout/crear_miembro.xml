@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <ImageView
+        android:id="@+id/volverAtras"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/boton_atras" />
+
+    <ImageView
+        android:id="@+id/hombre"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="90dp"
+        app:srcCompat="@drawable/perfil_hombre_predeterminado" />
+
+    <ImageView
+        android:id="@+id/mujer"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="90dp"
+        android:layout_toRightOf="@+id/hombre"
+        app:srcCompat="@drawable/perfil_mujer_predeterminado" />
+
+    <TextView
+        android:id="@+id/varon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hombre"
+        android:paddingLeft="110dp"
+        android:text="Masculino"
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/dama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mujer"
+        android:layout_toRightOf="@+id/varon"
+        android:paddingLeft="65dp"
+        android:text="Femenino"
+        android:textColor="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/Nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hombre"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textPersonName"
+        android:paddingTop="50dp"
+        android:text="Name" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Nombre"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/boton_nuevo_miembro" />
+
+</RelativeLayout>
