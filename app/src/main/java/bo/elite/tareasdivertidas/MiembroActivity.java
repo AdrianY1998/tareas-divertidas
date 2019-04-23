@@ -18,20 +18,22 @@ public class MiembroActivity extends AppCompatActivity {
     private List<Miembros> miembros = new ArrayList<>();
     private ImageView mNuevoMiembro;
     private ImageView mEliminarMiembro;
-    private Button mIniciarSesionButton;
+    private ImageView mBotonAtras;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.miembros);
+        setContentView(R.layout.miembro_layout);
         mContext = this;
         initViews();
-        //addEvents();
+        //returnMethod();
     }
 
     private void initViews() {
         mNuevoMiembro = findViewById(R.id.nuevoMiembro);
+        mBotonAtras = findViewById(R.id.botonAtras);
+        mEliminarMiembro = findViewById(R.id.eliminar);
         mNuevoMiembro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,17 +41,29 @@ public class MiembroActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mBotonAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+    /*private void returnMethod(){
+        mBotonAtras = findViewById(R.id.botonAtras);
+        mBotonAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+    }*/
 
 
     public void nuevoMiembroClick(View view) {
         Intent intent = new Intent(mContext, CrearMiembro.class);
         startActivityForResult(intent, Constants.KEY_MIEMBRO);
     }
-
-    /*@Override
-    public void onClick(View v) {
-        Intent intent = new Intent(mContext, CrearMiembro.class);
-        startActivity(intent);
-    }*/
 }
