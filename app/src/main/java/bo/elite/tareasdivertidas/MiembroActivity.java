@@ -32,7 +32,7 @@ public class MiembroActivity extends AppCompatActivity {
 
     private void initViews() {
         mNuevoMiembro = findViewById(R.id.nuevoMiembro);
-        mBotonAtras = findViewById(R.id.botonAtras);
+        mBotonAtras = findViewById(R.id.botonHome);
         mEliminarMiembro = findViewById(R.id.eliminar);
         mNuevoMiembro.setOnClickListener(new View.OnClickListener() {
             @Override
