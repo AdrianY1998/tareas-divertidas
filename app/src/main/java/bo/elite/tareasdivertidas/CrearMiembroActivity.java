@@ -186,7 +186,7 @@ public class CrearMiembroActivity extends AppCompatActivity {
         String json = new Gson().toJson(miembro);
 
         Intent intent = new Intent();
-        intent.putExtra(Constants.KEY_REGISTRAR_USUARIO, json);
+        //intent.putExtra(Constants.KEY_REGISTRAR_USUARIO, json);
         setResult(RESULT_OK, intent); //OK: funciono, intent --> retornando el valor
         finish();
     }

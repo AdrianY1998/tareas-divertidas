@@ -17,7 +17,7 @@
             android:id="@+id/botonAtras"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/boton_atras">
+            android:src="@drawable/boton_inicio">
         </ImageView>
 
     </LinearLayout>
