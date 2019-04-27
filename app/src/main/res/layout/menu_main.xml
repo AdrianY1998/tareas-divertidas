@@ -10,56 +10,52 @@
     <ImageView
         android:id="@+id/tareasDivertidas"
         android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerInParent="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
+        android:layout_centerInParent="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/titulo_tareas_divertidas" />
+        app:srcCompat="@drawable/logo" />
 
 
     <ImageView
         android:id="@+id/botonMiembros"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_below="@+id/tareasDivertidas"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="80dp"
+        android:layout_alignLeft="@+id/tareasDivertidas"
+        android:layout_alignStart="@+id/tareasDivertidas"
+        android:layout_alignTop="@+id/botonPremios"
         app:srcCompat="@drawable/boton_miembros" />
 
     <ImageView
         android:id="@+id/botonPremios"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:layout_alignEnd="@+id/tareasDivertidas"
+        android:layout_alignRight="@+id/tareasDivertidas"
         android:layout_below="@+id/tareasDivertidas"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="80dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginTop="8dp"
         app:srcCompat="@drawable/boton_premios" />
 
     <ImageView
         android:id="@+id/botonAsignacionTareas"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:layout_alignLeft="@+id/botonMiembros"
+        android:layout_alignStart="@+id/botonMiembros"
         android:layout_below="@+id/botonMiembros"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="false"
-        android:layout_marginLeft="40dp"
         app:srcCompat="@drawable/boton_tareas" />
 
     <ImageView
         android:id="@+id/evaluacion"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:layout_alignLeft="@+id/botonPremios"
+        android:layout_alignStart="@+id/botonPremios"
         android:layout_below="@+id/botonPremios"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="false"
-        android:layout_marginRight="40dp"
         app:srcCompat="@drawable/boton_evaluacion" />
 
 
