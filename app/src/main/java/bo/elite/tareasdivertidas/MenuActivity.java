@@ -1,13 +1,42 @@
 package bo.elite.tareasdivertidas;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 public class MenuActivity extends AppCompatActivity {
+    private static final String LOG = MiembroActivity.class.getName();
+    private Context mContext;
+    private ImageView mBotonMiembros;
+    private ImageView mBotonAsignacionTareas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_main);
+        mContext = this;
+        initViews();
+    }
+
+    private void initViews() {
+        mBotonMiembros = findViewById(R.id.botonMiembros);
+        mBotonAsignacionTareas= findViewById(R.id.botonAsignacionTareas);
+        mBotonMiembros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MiembroActivity.class);
+                startActivity(intent);
+            }
+        });
+        mBotonAsignacionTareas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, TareasActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
