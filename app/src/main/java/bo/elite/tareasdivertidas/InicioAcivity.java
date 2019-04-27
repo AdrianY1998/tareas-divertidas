@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class InicioAcivity extends AppCompatActivity{
+    private static final String LOG = InicioAcivity.class.getName();
     private Context mContext;
     private ImageView mBotonComenzar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_main);
+        setContentView(R.layout.pantalla_inicio);
         mContext = this;
         initViews();
     }
