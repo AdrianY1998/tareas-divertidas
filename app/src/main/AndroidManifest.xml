@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CrearMiembro"/>
+        <activity android:name=".CrearMiembroActivity"/>
         <activity android:name=".MenuActivity"/>
     </application>
 
