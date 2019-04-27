@@ -21,74 +21,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-public class CrearMiembro extends AppCompatActivity {
+public class CrearMiembroActivity extends AppCompatActivity {
 
-   // private static final String LOG = MiembroActivity.class.getName();
-
-    /*private ImageView mVolverAtras;
-    private ImageView mEnviarDatos;
-    private EditText mNombre;
-    private EditText edad;
-    private EditText mCorreoElectronico;
-    private Context mContext;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.crear_miembro_layout);
-        mContext = this;
-        mNombre = new EditText(mContext);
-        edad = new EditText(mContext);
-        mCorreoElectronico = new EditText(mContext);
-        mCorreoElectronico.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-        mVolverAtras = findViewById(R.id.volverAtras);
-        mEnviarDatos = findViewById(R.id.crearMiembro);
-        initViews();
-    }
-
-    private void initViews(){
-        mVolverAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, MiembroActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        mEnviarDatos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                datosLlenados();
-            }
-        });
-    }
-
-    private void datosLlenados(){
-        if(mNombre.getText().toString().isEmpty()){
-            Toast.makeText(mContext, "Ingrese el usuario por favor", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(edad.getText().toString().isEmpty()){
-            Toast.makeText(mContext, "Ingrese su edad por favor", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(mCorreoElectronico.getText().toString().isEmpty()){
-            Toast.makeText(mContext, "Ingrese su correo electrónico por favor", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        Miembro miembro = new Miembro();
-        miembro.setNombre(mNombre.getText().toString());
-        miembro.setEdad(Integer.parseInt(edad.getText().toString()));
-        miembro.setCorreoElectronico(mCorreoElectronico.getText().toString());
-
-        String json = new Gson().toJson(miembro);
-
-        Intent intent = new Intent();
-        intent.putExtra(Constants.KEY_REGISTRAR_USUARIO, json);
-        setResult(RESULT_OK, intent); //OK: funciono, intent --> retornando el valor
-        finish();
-    }*/
     private LinearLayout padre;
     private Context mContext;
     private LinearLayout imagenes;
@@ -127,12 +61,10 @@ public class CrearMiembro extends AppCompatActivity {
         retornar.setPadding(5, 5, 5, 5);
         imagenes.addView(retornar);
 
-
         fotoPerfil = new ImageView(mContext);
         fotoPerfil.setImageResource(R.drawable.user);
         fotoPerfil.setLayoutParams(new LinearLayout.LayoutParams(360,360));
         imagenes.setGravity(Gravity.CENTER);
-
         imagenes.addView(fotoPerfil);
         padre.addView(imagenes);
         mNombre = new EditText(mContext);
@@ -170,5 +102,56 @@ public class CrearMiembro extends AppCompatActivity {
         botones.addView(limpiar);
         padre.addView(botones);
         setContentView(padre);
+        initViews();
+    }
+    private void initViews(){
+        retornar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MiembroActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        crearMiembro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datosLlenados();
+            }
+        });
+        limpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNombre.setText("");
+                mEdad.setText("");
+                email.setText("");
+            }
+        });
+    }
+
+    private void datosLlenados(){
+        if(mNombre.getText().toString().isEmpty()){
+            Toast.makeText(mContext, "Ingrese el usuario por favor", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(mEdad.getText().toString().isEmpty()){
+            Toast.makeText(mContext, "Ingrese su edad por favor", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(email.getText().toString().isEmpty()){
+            Toast.makeText(mContext, "Ingrese su correo electrónico por favor", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Miembro miembro = new Miembro();
+        miembro.setNombre(mNombre.getText().toString());
+        miembro.setEdad(Integer.parseInt(mEdad.getText().toString()));
+        miembro.setCorreoElectronico(email.getText().toString());
+
+        String json = new Gson().toJson(miembro);
+
+        Intent intent = new Intent();
+        intent.putExtra(Constants.KEY_REGISTRAR_USUARIO, json);
+        setResult(RESULT_OK, intent); //OK: funciono, intent --> retornando el valor
+        finish();
     }
 }
