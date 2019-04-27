@@ -10,6 +10,7 @@ public class TareasDetailsActivity extends AppCompatActivity {
     private ImageView imagenTarea;
     private TextView nombreTarea;
     private TextView puntajeTarea;
+    //d
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

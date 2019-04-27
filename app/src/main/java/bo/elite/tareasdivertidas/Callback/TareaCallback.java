@@ -4,4 +4,5 @@ import bo.elite.tareasdivertidas.models.Tarea;
 
 public interface TareaCallback {
     void onTareaClick(Tarea tarea);
+    //d
 }

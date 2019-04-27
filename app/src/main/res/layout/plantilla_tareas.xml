@@ -59,7 +59,7 @@
                 android:layout_weight="70"
                 android:text="Elije a los miembros para la tarea"
                 android:textSize="23dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"/> //d
 
         </LinearLayout>
 

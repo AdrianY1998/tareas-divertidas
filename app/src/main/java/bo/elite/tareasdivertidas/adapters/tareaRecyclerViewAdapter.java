@@ -17,6 +17,7 @@ public class tareaRecyclerViewAdapter extends RecyclerView.Adapter<TareaViewHold
     private List<Tarea> tareaList;
     private LayoutInflater inflater;
     private TareaCallback tareaCallback;
+    //d
 
     public tareaRecyclerViewAdapter(Context context, List<Tarea> tareaList) {
         this.tareaList = tareaList;

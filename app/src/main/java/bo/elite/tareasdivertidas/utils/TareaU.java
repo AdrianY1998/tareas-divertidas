@@ -9,6 +9,7 @@ import bo.elite.tareasdivertidas.models.Tarea;
 public class TareaU {
     public static List<Tarea> getTareas() {
         List<Tarea> tareas = new ArrayList<>();
+        //d
 
         tareas.add(new Tarea(1,"cocinar", R.drawable.cocinar));
         tareas.add(new Tarea(2,"dar comida a mascota", R.drawable.dar_momida_mascota));

@@ -3,6 +3,7 @@ package bo.elite.tareasdivertidas.models;
 import com.google.gson.annotations.Expose;
 
 public class Tarea {
+    //d
 
     @Expose
     private int pointTarea;

@@ -27,6 +27,7 @@ public class NuevaTarea extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Gson gson = new Gson();
 
+    //d
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

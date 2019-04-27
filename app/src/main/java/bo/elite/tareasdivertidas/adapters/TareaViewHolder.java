@@ -12,6 +12,7 @@ public class TareaViewHolder extends RecyclerView.ViewHolder {
     public ImageView imageView;
     public TextView textViewName;
     public TextView textViewPto;
+    //d
 
     public TareaViewHolder(@NonNull View itemView) {
         super(itemView);
