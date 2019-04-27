@@ -18,13 +18,13 @@
     <RelativeLayout
         android:id="@+id/botones"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="105dp"
         android:layout_alignParentBottom="true">
 
         <ImageView
             android:id="@+id/crear"
             android:layout_width="wrap_content"
-            android:layout_height="90dp"
+            android:layout_height="60dp"
             android:layout_alignParentTop="true"
             android:cropToPadding="false"
             app:srcCompat="@drawable/boton_nuevo_premio" />
@@ -32,7 +32,7 @@
         <ImageView
             android:id="@+id/eliminar"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:baselineAlignBottom="false"
             app:srcCompat="@drawable/boton_eliminar" />
@@ -47,7 +47,7 @@
         android:backgroundTint="@color/colorPrimaryDark">
 
         <ImageView
-            android:id="@+id/botonHome2"
+            android:id="@+id/inicio"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:padding="5dp"
