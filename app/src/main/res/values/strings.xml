@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TareasDivertidas</string>
+    <string name="enviar">Crear Miembro</string>
+    <string name="limpiar">Limpiar</string>
 </resources>

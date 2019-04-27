@@ -3,10 +3,8 @@ package bo.elite.tareasdivertidas;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -15,7 +13,7 @@ import java.util.List;
 public class MiembroActivity extends AppCompatActivity {
     private static final String LOG = MiembroActivity.class.getName();
     private Context mContext;
-    private List<Miembros> miembros = new ArrayList<>();
+    private List<Miembro> miembros = new ArrayList<>();
     private ImageView mNuevoMiembro;
     private ImageView mEliminarMiembro;
     private ImageView mBotonAtras;
