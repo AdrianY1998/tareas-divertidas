@@ -1,9 +1,11 @@
 package bo.elite.tareasdivertidas;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -28,8 +30,11 @@ public class CrearMiembroActivity extends AppCompatActivity {
     private LinearLayout imagenes;
     private ImageView retornar;
     private ImageView fotoPerfil;
+    private TextView nombreTexto;
     private EditText mNombre;
+    private TextView edadTexto;
     private EditText mEdad;
+    private TextView emailTexto;
     private EditText email;
     private LinearLayout botones;
     private Button crearMiembro;
@@ -67,8 +72,17 @@ public class CrearMiembroActivity extends AppCompatActivity {
         imagenes.setGravity(Gravity.CENTER);
         imagenes.addView(fotoPerfil);
         padre.addView(imagenes);
+
+        nombreTexto = new TextView(mContext);
+        nombreTexto.setText("Nombre");
+        padre.addView(nombreTexto);
+
         mNombre = new EditText(mContext);
         padre.addView(mNombre);
+
+        edadTexto = new TextView(mContext);
+        edadTexto.setText("Edad");
+        padre.addView(edadTexto);
 
         mEdad = new EditText(mContext);
         mEdad.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -76,6 +90,10 @@ public class CrearMiembroActivity extends AppCompatActivity {
         mEdad.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         padre.addView(mEdad);
 
+
+        emailTexto = new TextView(mContext);
+        emailTexto.setText("Correo Electrónico");
+        padre.addView(emailTexto);
 
         email = new EditText(mContext);
         email.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
@@ -140,6 +158,24 @@ public class CrearMiembroActivity extends AppCompatActivity {
         }
         if(email.getText().toString().isEmpty()){
             Toast.makeText(mContext, "Ingrese su correo electrónico por favor", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+            //email.setError("Ingrese un email valido por favor");
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(mContext);
+
+            dialogo.setTitle("Email invalido");
+            dialogo.setMessage("Ingrese un email valido por favor");
+            dialogo.setIcon(R.drawable.warning);
+            dialogo.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.e("OK", "Clicked");
+                }
+            });
+            dialogo.show();
+
             return;
         }
         Miembro miembro = new Miembro();

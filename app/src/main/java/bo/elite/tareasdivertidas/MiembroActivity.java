@@ -35,8 +35,9 @@ public class MiembroActivity extends AppCompatActivity {
         mNuevoMiembro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, CrearMiembroActivity.class);
-                startActivity(intent);
+                nuevoMiembroClick(v);
+                /*Intent intent = new Intent(mContext, CrearMiembroActivity.class);
+                startActivity(intent);*/
             }
         });
         mBotonAtras.setOnClickListener(new View.OnClickListener() {

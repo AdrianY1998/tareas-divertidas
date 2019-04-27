@@ -13,15 +13,16 @@
         </activity>
         <activity android:name=".TareasDetailsActivity"/>
         <activity android:name=".NuevaTarea"/>
-        <activity android:name=".MiembroActivity">
+        <activity android:name=".MiembroActivity"/>
+        <activity android:name=".CrearMiembroActivity"/>
+        <activity android:name=".MenuActivity"/>
+        <activity android:name=".InicioActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CrearMiembroActivity"/>
-        <activity android:name=".MenuActivity"/>
     </application>
 
 </manifest>

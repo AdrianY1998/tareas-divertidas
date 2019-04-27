@@ -1,8 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:backgroundTint="@color/colorPrimaryDark">
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/botones"
+        android:layout_below="@+id/tituloEInicio"
+        android:layout_alignParentBottom="false"
+        android:stackFromBottom="false" />
+
+    <RelativeLayout
+        android:id="@+id/botones"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/crear"
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_alignParentTop="true"
+            android:cropToPadding="false"
+            app:srcCompat="@drawable/boton_nuevo_premio" />
+
+        <ImageView
+            android:id="@+id/eliminar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:baselineAlignBottom="false"
+            app:srcCompat="@drawable/boton_eliminar" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tituloEInicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorPrimaryDark">
+
+        <ImageView
+            android:id="@+id/botonHome2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="5dp"
+            android:src="@drawable/boton_inicio"
+            app:srcCompat="@drawable/boton_inicio" />
+
+        <ImageView
+            android:id="@+id/premios"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_centerInParent="false"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/boton_premios" />
+    </RelativeLayout>
 </RelativeLayout>

@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class InicioAcivity extends AppCompatActivity{
-    private static final String LOG = InicioAcivity.class.getName();
+public class InicioActivity extends AppCompatActivity{
+    private static final String LOG = InicioActivity.class.getName();
     private Context mContext;
     private ImageView mBotonComenzar;
 
