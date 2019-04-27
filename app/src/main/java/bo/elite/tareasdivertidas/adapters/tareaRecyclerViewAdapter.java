@@ -36,7 +36,7 @@ public class tareaRecyclerViewAdapter extends RecyclerView.Adapter<TareaViewHold
         final Tarea tarea = this.tareaList.get(position);
         TareaViewHolder.imageView.setImageResource(tarea.getImageTarea());
         TareaViewHolder.textViewName.setText(tarea.getNameTarea());
-        TareaViewHolder.textViewName.setText(String.valueOf(tarea.getPointTarea()));
+        TareaViewHolder.textViewPto.setText(String.valueOf(tarea.getPointTarea()));
         TareaViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
