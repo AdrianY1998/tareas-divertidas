@@ -1,45 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
     <LinearLayout
-        android:id="@+id/layoutBack"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="6dp">
-
-        <ImageView
-            android:id="@+id/botonAtras"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/boton_atras">
-        </ImageView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/info"
-        android:layout_below="@id/layoutBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/nombreTarea"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/layoutBack"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre Tarea"
-            android:textStyle="bold"
-            android:textSize="26dp"
-            android:layout_gravity="center"/>
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/botonAtras"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/boton_atras"></ImageView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Asignacion de tareas"
+                    android:textColor="@color/design_default_color_primary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="Elije a los miembros para la tarea"
+                    android:textColor="@color/design_default_color_primary"
+                    android:textSize="23dp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/descripcion"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -47,54 +59,63 @@
                 android:id="@+id/imagenTarea"
                 android:layout_width="0dp"
                 android:layout_height="110dp"
-                android:layout_weight="30"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/sacar_basura"/>
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="30"
+                android:src="@drawable/sacar_basura" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="70"
-                android:text="Elije a los miembros para la tarea"
-                android:textSize="23dp"
-                android:layout_gravity="center"/> //d
+                android:layout_height="match_parent"
+                android:layout_weight="30"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nombreTarea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="Nombre Tarea"
+                    android:textColor="@color/design_default_color_primary"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/titlePuntaje"
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Puntaje:"
+                        android:textColor="@color/design_default_color_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/puntajeTarea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp"
+                        android:paddingStart="5dp"
+                        android:text="x"
+                        android:textColor="@color/design_default_color_primary"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            //d
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/titlePuntaje"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Puntaje:"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:gravity="end"
-                android:paddingRight="5dp"
-                android:paddingEnd="5dp"/>
-
-            <TextView
-                android:id="@+id/puntajeTarea"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="x"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:paddingLeft="5dp"
-                android:paddingStart="5dp"/>
-
-
-
-        </LinearLayout>
-
 
     </LinearLayout>
 
@@ -102,26 +123,27 @@
         android:id="@+id/botones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/nuevoMiembro"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:src="@drawable/boton_nuevo_miembro"/>
+            android:src="@drawable/boton_nuevo_miembro" />
 
         <ImageView
             android:id="@+id/eliminar"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:src="@drawable/boton_eliminar"/>
+            android:layout_height="50dp"
+            android:src="@drawable/boton_eliminar" />
     </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="180dp"
         android:layout_above="@+id/botones"
-        android:layout_below="@+id/info" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

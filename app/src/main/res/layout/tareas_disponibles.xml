@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:paddingBottom="15dp">
+
+    <ImageView
+        android:id="@+id/crear"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/boton_crear" />
 
     <LinearLayout
         android:id="@+id/layoutBack"
@@ -17,7 +25,19 @@
             android:id="@+id/botonAtras"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/boton_atras"/> //d
+            android:src="@drawable/boton_atras" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nueva Tarea"
+            android:textColor="@color/design_default_color_primary"
+            android:textColorHighlight="@color/design_default_color_primary"
+            android:textSize="40dp" />
+
+        //d
     </LinearLayout>
 
     <LinearLayout
@@ -27,21 +47,36 @@
         android:layout_below="@id/layoutBack"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tareas disponibles"
-            android:textSize="22dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerViewTareas"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/Prefil"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </android.support.v7.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/imagen"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/tarea_predeterminada" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/nombreTarea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Nombre Tarea"
+            android:textColor="@color/design_default_color_primary" />
+
+        <EditText
+            android:id="@+id/Puntaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Puntaje"
+            android:textColor="@color/design_default_color_primary" />
 
     </LinearLayout>
 
