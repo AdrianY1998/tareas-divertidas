@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import bo.elite.tareasdivertidas.adapters.MiembrosAdapter;
 
 public class MiembroActivity extends AppCompatActivity {
     private static final String LOG = MiembroActivity.class.getName();
@@ -21,6 +24,8 @@ public class MiembroActivity extends AppCompatActivity {
     private ImageView mEliminarMiembro;
     private ImageView mBotonAtras;
     private Miembro miembro;
+    private ListView miembrosLista;
+    private MiembrosAdapter miembrosAdapter;
 
 
     @Override
@@ -51,6 +56,19 @@ public class MiembroActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // item demo
+        Miembro miembro = new Miembro();
+        miembro.setNombre("Luciana");
+        miembro.setEdad(19);
+        miembro.setCorreoElectronico("luciananunezl99@gmail.com");
+        miembro.setIcono(R.drawable.user);
+        miembros.add(miembro);
+
+        miembrosLista = findViewById(R.id.miembrosLista);
+
+        miembrosAdapter = new MiembrosAdapter(mContext, miembros);
+        miembrosLista.setAdapter(miembrosAdapter);
     }
 
     /*private void returnMethod(){
