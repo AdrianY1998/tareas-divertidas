@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,7 @@ public class MiembroActivity extends AppCompatActivity {
     private ImageView mNuevoMiembro;
     private ImageView mEliminarMiembro;
     private ImageView mBotonAtras;
+    private Miembro miembro;
 
 
     @Override
@@ -64,5 +68,8 @@ public class MiembroActivity extends AppCompatActivity {
     public void nuevoMiembroClick(View view) {
         Intent intent = new Intent(mContext, CrearMiembroActivity.class);
         startActivityForResult(intent, Constants.KEY_MIEMBRO);
+        /*String miembroJson = intent.getExtras().getString(Constants.KEY_REGISTRAR_USUARIO);
+        miembro = new Gson().fromJson(miembroJson, Miembro.class);
+        Toast.makeText(mContext, miembro.getNombre(), Toast.LENGTH_LONG);*/
     }
 }

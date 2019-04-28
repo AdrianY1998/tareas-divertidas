@@ -23,11 +23,13 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.security.KeyStore;
+
 public class CrearMiembroActivity extends AppCompatActivity {
 
     private LinearLayout padre;
     private Context mContext;
-    private LinearLayout imagenes;
+    private RelativeLayout imagenes;
     private ImageView retornar;
     private ImageView fotoPerfil;
     private TextView nombreTexto;
@@ -55,22 +57,27 @@ public class CrearMiembroActivity extends AppCompatActivity {
         padre.setPadding(25, 25, 25, 25);
         padre.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimaryDark));
 
-        imagenes = new LinearLayout(mContext);
+        imagenes = new RelativeLayout(mContext);
         //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ancho, alto);
-        imagenes.setLayoutParams(new LinearLayout.LayoutParams(
+        imagenes.setLayoutParams(new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, //Width
                 ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(150, 150);
+        relativeParams.addRule(RelativeLayout.ALIGN_PARENT_START);
         retornar = new ImageView(mContext);
         retornar.setImageResource(R.drawable.boton_atras);
-        retornar.setLayoutParams(new RelativeLayout.LayoutParams(120,120));
         retornar.setPadding(5, 5, 5, 5);
-        imagenes.addView(retornar);
+        retornar.setLeft(5);
+        imagenes.addView(retornar, relativeParams);
+
+
+        RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(500, 500);
+        relativeParams2.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 
         fotoPerfil = new ImageView(mContext);
         fotoPerfil.setImageResource(R.drawable.user);
-        fotoPerfil.setLayoutParams(new LinearLayout.LayoutParams(360,360));
-        imagenes.setGravity(Gravity.CENTER);
-        imagenes.addView(fotoPerfil);
+        imagenes.addView(fotoPerfil, relativeParams2);
         padre.addView(imagenes);
 
         nombreTexto = new TextView(mContext);
@@ -187,7 +194,7 @@ public class CrearMiembroActivity extends AppCompatActivity {
 
         Intent intent = new Intent();
         intent.putExtra(Constants.KEY_REGISTRAR_USUARIO, json);
-        setResult(RESULT_OK, intent); //OK: funciono, intent --> retornando el valor
+        setResult(RESULT_OK, intent);
         finish();
     }
 }

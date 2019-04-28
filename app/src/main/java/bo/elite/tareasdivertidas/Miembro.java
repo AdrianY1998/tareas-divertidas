@@ -17,4 +17,7 @@ public class Miembro {
     public void setCorreoElectronico(String correoElectronico){
         this.correoElectronico = correoElectronico;
     }
+    public String getNombre (){
+        return nombre;
+    }
 }
