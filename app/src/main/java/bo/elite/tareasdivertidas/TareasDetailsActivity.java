@@ -49,7 +49,7 @@ public class TareasDetailsActivity extends AppCompatActivity {
         mBotonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, NuevaTarea.class);
+                Intent intent = new Intent(mContext, TareasActivity.class);
                 startActivity(intent);
             }
         });
