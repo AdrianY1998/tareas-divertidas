@@ -167,7 +167,7 @@ public class CrearMiembroActivity extends AppCompatActivity {
 
             dialogo.setTitle("Email invalido");
             dialogo.setMessage("Ingrese un email valido por favor");
-            dialogo.setIcon(R.drawable.warning);
+            //dialogo.setIcon(R.drawable.warning);
             dialogo.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
