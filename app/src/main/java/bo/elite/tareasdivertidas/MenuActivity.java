@@ -33,7 +33,7 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mBotonMiembros.setOnClickListener(new View.OnClickListener() {
+        mBotonPremios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PremiosActivity.class);

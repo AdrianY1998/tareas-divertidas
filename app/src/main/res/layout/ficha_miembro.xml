@@ -235,7 +235,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/Boton_objetivo" />
+                app:srcCompat="@drawable/boton_objetivo" />
 
         </LinearLayout>
 

@@ -22,7 +22,7 @@ public class PremiosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.miembro_layout);
+        setContentView(R.layout.layout_premios);
         mContext = this;
         initViews();
     }
@@ -31,13 +31,13 @@ public class PremiosActivity extends AppCompatActivity {
         mNuevo = findViewById(R.id.crear);
         mBotonInicio = findViewById(R.id.inicio);
         mEliminar = findViewById(R.id.eliminar);
-        mNuevo.setOnClickListener(new View.OnClickListener() {
+        /*mNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(mContext, NuevoPremioActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(mContext, NuevoPremioActivity.class);
+                startActivity(intent);
             }
-        });
+        });*/
         mBotonInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

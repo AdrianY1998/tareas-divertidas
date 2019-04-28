@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,10 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
-
-import java.security.KeyStore;
 
 public class CrearMiembroActivity extends AppCompatActivity {
 
@@ -50,7 +45,6 @@ public class CrearMiembroActivity extends AppCompatActivity {
         //Padre
         padre = new LinearLayout(mContext);
         padre.setOrientation(LinearLayout.VERTICAL);
-        //padre.setBackgroundResource(R.color.colorPrimaryDark);
         padre.setLayoutParams(new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, //Width
                 ViewGroup.LayoutParams.MATCH_PARENT)); //Height
@@ -58,7 +52,6 @@ public class CrearMiembroActivity extends AppCompatActivity {
         padre.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimaryDark));
 
         imagenes = new RelativeLayout(mContext);
-        //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ancho, alto);
         imagenes.setLayoutParams(new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, //Width
                 ViewGroup.LayoutParams.WRAP_CONTENT));
