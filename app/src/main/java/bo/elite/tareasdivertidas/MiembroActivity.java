@@ -99,9 +99,9 @@ public class MiembroActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //Cada vez que retorna a la activity actualizar la lista de miembros
+        //Cada vez que retorna a la activity actualizar la lista de miembros y actualizar el adapter notifyDataSetChanged
         this.miembros = MiembrosSingleton.getInstance().getMiembros();
+        this.miembrosAdapter.notifyDataSetChanged();
         Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembros));
-        //TODO Si se utiliza un adapter llamar adapter.notifyDatasetChanged() o iniciar de nuevo el adapter
     }
 }
