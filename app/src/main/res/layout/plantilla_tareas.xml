@@ -133,7 +133,8 @@
             android:id="@+id/nuevoMiembro"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:src="@drawable/boton_nuevo_miembro" />
+            android:src="@drawable/boton_nuevo_miembro"
+            app:srcCompat="@drawable/boton_asignar" />
 
         <LinearLayout
             android:layout_width="match_parent"
