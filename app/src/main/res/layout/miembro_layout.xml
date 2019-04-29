@@ -57,6 +57,7 @@
     </LinearLayout>
 
     <ListView
+        android:id="@+id/miembrosLista"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/botones"

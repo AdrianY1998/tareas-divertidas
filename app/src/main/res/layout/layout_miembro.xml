@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/icono"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="start"
+        app:srcCompat="@drawable/user" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nombreMiembro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/edadMiembro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"
+            android:text="Edad" />
+
+        <TextView
+            android:id="@+id/emailMiembro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ejemplo@gmail.com"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+</LinearLayout>

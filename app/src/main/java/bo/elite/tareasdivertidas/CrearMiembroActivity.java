@@ -18,7 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.gson.Gson;
+
+import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 
 public class CrearMiembroActivity extends AppCompatActivity {
 
@@ -122,7 +125,8 @@ public class CrearMiembroActivity extends AppCompatActivity {
         setContentView(padre);
         initViews();
     }
-    private void initViews(){
+
+    private void initViews() {
         retornar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,16 +151,16 @@ public class CrearMiembroActivity extends AppCompatActivity {
         });
     }
 
-    private void datosLlenados(){
-        if(mNombre.getText().toString().isEmpty()){
+    private void datosLlenados() {
+        if (mNombre.getText().toString().isEmpty()) {
             Toast.makeText(mContext, "Ingrese el usuario por favor", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(mEdad.getText().toString().isEmpty()){
+        if (mEdad.getText().toString().isEmpty()) {
             Toast.makeText(mContext, "Ingrese su edad por favor", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(email.getText().toString().isEmpty()){
+        if (email.getText().toString().isEmpty()) {
             Toast.makeText(mContext, "Ingrese su correo electrónico por favor", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -183,8 +187,10 @@ public class CrearMiembroActivity extends AppCompatActivity {
         miembro.setEdad(Integer.parseInt(mEdad.getText().toString()));
         miembro.setCorreoElectronico(email.getText().toString());
 
-        String json = new Gson().toJson(miembro);
+        //Adicionar a la clase singleton
+        MiembrosSingleton.getInstance().addMiembro(miembro);
 
+        String json = new Gson().toJson(miembro);
         Intent intent = new Intent();
         intent.putExtra(Constants.KEY_REGISTRAR_USUARIO, json);
         setResult(RESULT_OK, intent);
