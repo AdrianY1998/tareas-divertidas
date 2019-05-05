@@ -7,13 +7,11 @@
     android:background="@color/colorPrimaryDark"
     android:backgroundTint="@color/colorPrimaryDark">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/premios"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_above="@+id/botones"
-        android:layout_below="@+id/tituloEInicio"
-        android:layout_alignParentBottom="false"
-        android:stackFromBottom="false" />
+        android:layout_below="@+id/tituloEInicio" />
 
     <RelativeLayout
         android:id="@+id/botones"

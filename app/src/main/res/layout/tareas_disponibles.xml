@@ -25,6 +25,7 @@
             android:id="@+id/botonAtras"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:padding="5dp"
             android:src="@drawable/boton_atras" />
 
         <TextView
@@ -35,7 +36,8 @@
             android:text="Nueva Tarea"
             android:textColor="@color/design_default_color_primary"
             android:textColorHighlight="@color/design_default_color_primary"
-            android:textSize="40dp" />
+            android:textSize="40dp"
+            android:textStyle="bold" />
 
         //d
     </LinearLayout>

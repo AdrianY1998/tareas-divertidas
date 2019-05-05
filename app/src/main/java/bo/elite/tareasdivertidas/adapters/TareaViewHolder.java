@@ -19,6 +19,6 @@ public class TareaViewHolder extends RecyclerView.ViewHolder {
         this.imageView = itemView.findViewById(R.id.imagenTarea);
         this.textViewName = itemView.findViewById(R.id.nombreTarea);
         this.textViewPto = itemView.findViewById(R.id.puntajeTarea);
-    }
+}
 }
 
