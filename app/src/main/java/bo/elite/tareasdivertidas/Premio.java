@@ -13,10 +13,14 @@ public class Premio {
     @Expose
     private int image;
 
-    public premio(int puntaje, String nombrePremio, int image) {
+    @Expose
+    private int id;
+
+    public premio(int puntaje, String nombrePremio, int image, int id) {
         this.puntaje = puntaje;
         this.nombrePremio = nombrePremio;
         this.image = image;
+        this.id = id;
     }
 
     public int getPuntaje() {
@@ -41,5 +45,9 @@ public class Premio {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public long getId() {
+        return id;
     }
 }
