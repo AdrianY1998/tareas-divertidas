@@ -4,20 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.adapters.premiosAdapter;
-import bo.elite.tareasdivertidas.adapters.tareaRecyclerViewAdapter;
-import bo.elite.tareasdivertidas.models.Tarea;
-import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 import bo.elite.tareasdivertidas.singleton.PremioSingleton;
 
 public class PremiosActivity extends AppCompatActivity {
@@ -30,7 +25,7 @@ public class PremiosActivity extends AppCompatActivity {
     private List<Premio> premios = PremioSingleton.getInstance().getPremios();
     private Premio premio;
     private ListView premiosLista;
-    private premiosAdapter adapter;
+    private premiosAdapter premiosAdapter;
 
     private Gson gson = new Gson();
 
@@ -59,9 +54,9 @@ public class PremiosActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        premiosLista = findViewById(R.id.miembrosLista);
+        premiosLista = findViewById(R.id.premiosVista);
 
-        adapter = new premiosAdapter(mContext, premios);
-        premiosLista.setAdapter(adapter);
+        premiosAdapter = new premiosAdapter(mContext, premios);
+        premiosLista.setAdapter(premiosAdapter);
     }
 }

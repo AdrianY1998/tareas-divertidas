@@ -13,13 +13,14 @@ import android.widget.TextView;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.Premio;
+import bo.elite.tareasdivertidas.R;
 
 
 public class premiosAdapter extends BaseAdapter {
     private Context mContext;
     private List<Premio> premios;
 
-    public premiosAdapter(Context mContext, List<Premio> premios)) {
+    public premiosAdapter(Context mContext, List<Premio> premios) {
         this.mContext = mContext;
         this.premios = premios;
 
@@ -48,17 +49,17 @@ public class premiosAdapter extends BaseAdapter {
 
             //Inflater nos permite usar un layout dentro de un componente
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            vista = inflater.inflate(R.layout.layout_miembro, null); //Cual layout y principal o no.
+            vista = inflater.inflate(R.layout.premio, null); //Cual layout y principal o no.
 
-            viewHolder.image = vista.findViewById(R.id.icono);
-            viewHolder.nombre = vista.findViewById(R.id.nombreMiembro);
+            viewHolder.image = vista.findViewById(R.id.image);
+            viewHolder.nombre = vista.findViewById(R.id.nombrePremio);
             vista.setTag(viewHolder); //Guardar para reciclar
         } else {
             viewHolder = (ViewHolder) vista.getTag(); //Obtener el dato reciclado
         }
 
         Premio premio = premios.get(position);
-        viewHolder.nombre.setText(premio.getNombrePremio()));
+        viewHolder.nombre.setText(premio.getNombrePremio());
         viewHolder.image.setImageResource(premio.getImage());
         return vista;
     }

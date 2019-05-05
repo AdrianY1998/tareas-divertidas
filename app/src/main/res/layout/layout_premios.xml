@@ -7,9 +7,10 @@
     android:background="@color/colorPrimaryDark"
     android:backgroundTint="@color/colorPrimaryDark">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/premios"
+    <ListView
+        android:id="@+id/premiosVista"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/botones"
         android:layout_below="@+id/tituloEInicio" />
 

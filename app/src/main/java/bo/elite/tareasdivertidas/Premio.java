@@ -16,7 +16,7 @@ public class Premio {
     @Expose
     private int id;
 
-    public premio(int puntaje, String nombrePremio, int image, int id) {
+    public Premio(int puntaje, String nombrePremio, int image, int id) {
         this.puntaje = puntaje;
         this.nombrePremio = nombrePremio;
         this.image = image;
