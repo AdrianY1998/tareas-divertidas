@@ -13,6 +13,7 @@ public class MenuActivity extends AppCompatActivity {
     private ImageView mBotonMiembros;
     private ImageView mBotonAsignacionTareas;
     private ImageView mBotonPremios;
+    private ImageView mBotonEvaluacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MenuActivity extends AppCompatActivity {
         mBotonMiembros = findViewById(R.id.botonMiembros);
         mBotonPremios = findViewById(R.id.botonPremios);
         mBotonAsignacionTareas= findViewById(R.id.botonAsignacionTareas);
+        mBotonEvaluacion =findViewById(R.id.evaluacion);
         mBotonMiembros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +46,13 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, TareasActivity.class);
+                startActivity(intent);
+            }
+        });
+        mBotonEvaluacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, EvaluacionActivity.class);
                 startActivity(intent);
             }
         });
