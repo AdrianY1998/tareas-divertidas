@@ -18,11 +18,13 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL("CREATE TABLE miembros (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                 " nombre VARCHAR NOT NULL," +
                 " edad INTEGER," +
                 " email VARCHAR NOT NULL)");
         Log.d("Database", "Created");
+
     }
 
         // Migracion

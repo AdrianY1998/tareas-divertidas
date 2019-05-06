@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.Miembro;
+import bo.elite.tareasdivertidas.db.DatabaseHelper;
 
 /**
  * La clase Miembros singleton nos ayuda a tener una sola instancia para todas las clases de la app
@@ -37,6 +38,7 @@ public class MiembrosSingleton {
      */
     public void addMiembro(Miembro miembro) {
         this.miembros.add(miembro);
+
     }
 
     /**

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import bo.elite.tareasdivertidas.db.DatabaseHelper;
 import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 
 public class CrearMiembroActivity extends AppCompatActivity {
@@ -39,7 +40,7 @@ public class CrearMiembroActivity extends AppCompatActivity {
     private LinearLayout botones;
     private Button crearMiembro;
     private Button limpiar;
-
+    //private DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +128,7 @@ public class CrearMiembroActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        //dbHelper = new DatabaseHelper(mContext);
         retornar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,7 +190,10 @@ public class CrearMiembroActivity extends AppCompatActivity {
         miembro.setCorreoElectronico(email.getText().toString());
 
         //Adicionar a la clase singleton
-        MiembrosSingleton.getInstance().addMiembro(miembro);
+        //MiembrosSingleton.getInstance().addMiembro(miembro);
+        //DatabaseHelper.getInstance().addMiembro(miembro);
+        DatabaseHelper dbHelper = new DatabaseHelper(mContext);
+        dbHelper.addMiembro(miembro);
 
         String json = new Gson().toJson(miembro);
         Intent intent = new Intent();

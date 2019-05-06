@@ -18,12 +18,16 @@ import java.util.List;
 
 import bo.elite.tareasdivertidas.adapters.MiembrosAdapter;
 
+import bo.elite.tareasdivertidas.db.DatabaseHelper;
 import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 
 public class MiembroActivity extends AppCompatActivity {
     private static final String LOG = MiembroActivity.class.getName();
     private Context mContext;
     private List<Miembro> miembros = MiembrosSingleton.getInstance().getMiembros();
+    //private List<Miembro> miembros = DatabaseHelper.getInstance().getMiembros();
+    //private List<Miembro> miembros;
+    //private DatabaseHelper dbHelper;
     private ImageView mNuevoMiembro;
     private ImageView mEliminarMiembro;
     private ImageView mBotonAtras;
@@ -37,6 +41,8 @@ public class MiembroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.miembro_layout);
         mContext = this;
+        //dbHelper = new DatabaseHelper(mContext);
+        //miembros = dbHelper.getMiembros();
         initViews();
         //returnMethod();
     }
@@ -62,12 +68,7 @@ public class MiembroActivity extends AppCompatActivity {
         });
 
         // item demo
-        Miembro miembro = new Miembro();
-        miembro.setNombre("Luciana");
-        miembro.setEdad(19);
-        miembro.setCorreoElectronico("luciananunezl99@gmail.com");
-        miembro.setIcono(R.drawable.user);
-        miembros.add(miembro);
+        //DatabaseHelper.getInstance().addMiembro(miembro);
 
         miembrosLista = findViewById(R.id.miembrosLista);
 
@@ -91,8 +92,7 @@ public class MiembroActivity extends AppCompatActivity {
         Intent intent = new Intent(mContext, CrearMiembroActivity.class);
         startActivityForResult(intent, Constants.KEY_MIEMBRO);
         /*String miembroJson = intent.getExtras().getString(Constants.KEY_REGISTRAR_USUARIO);
-        miembro = new Gson().fromJson(miembroJson, Miembro.class);
-        Toast.makeText(mContext, miembro.getNombre(), Toast.LENGTH_LONG);*/
+        miembro = new Gson().fromJson(miembroJson, Miembro.class);*/
     }
 
     @Override
@@ -100,7 +100,11 @@ public class MiembroActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         //Cada vez que retorna a la activity actualizar la lista de miembros y actualizar el adapter notifyDataSetChanged
-        this.miembros = MiembrosSingleton.getInstance().getMiembros();
+
+        //this.miembros = MiembrosSingleton.getInstance().getMiembros();
+        //this.miembros = DatabaseHelper.getInstance().getMiembros();
+        DatabaseHelper dbHelper = new DatabaseHelper(mContext);
+        this.miembros = dbHelper.getMiembros();
         this.miembrosAdapter.notifyDataSetChanged();
         Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembros));
     }
