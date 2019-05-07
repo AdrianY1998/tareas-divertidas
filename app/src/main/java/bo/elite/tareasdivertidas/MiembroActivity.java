@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,10 +30,7 @@ public class MiembroActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     private List<Miembro> miembros = new ArrayList<>();
 
-    //private List<Miembro> miembros = DatabaseHelper.getInstance().getMiembros();
-    //private List<Miembro> miembros;
     private ImageView mNuevoMiembro;
-    private ImageView mEliminarMiembro;
     private ImageView mBotonAtras;
     private Miembro miembro;
     private ListView miembrosLista;
@@ -48,19 +46,17 @@ public class MiembroActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(mContext);
         this.miembros = dbHelper.getMiembros();
         initViews();
-        //returnMethod();
+
     }
 
     private void initViews() {
         mNuevoMiembro = findViewById(R.id.nuevoMiembro);
         mBotonAtras = findViewById(R.id.botonHome);
-        mEliminarMiembro = findViewById(R.id.eliminar);
+        //mEliminarMiembro = findViewById(R.id.eliminar);
         mNuevoMiembro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nuevoMiembroClick(v);
-                /*Intent intent = new Intent(mContext, CrearMiembroActivity.class);
-                startActivity(intent);*/
             }
         });
         mBotonAtras.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +74,16 @@ public class MiembroActivity extends AppCompatActivity {
 
         this.miembrosAdapter = new MiembrosAdapter(mContext, this.miembros);
         miembrosLista.setAdapter(this.miembrosAdapter);
+        miembrosLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Miembro miembro = miembros.get(position);
+                Intent intent = new Intent(mContext, FichaMiembroActivity.class);
+                intent.putExtra(Constants.KEY_MIEMBRO_SELECCIONADO, new Gson().toJson(miembro));
+                startActivity(intent);
+            }
+        });
+
     }
 
     /*private void returnMethod(){

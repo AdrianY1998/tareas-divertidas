@@ -7,4 +7,6 @@ public class Constants {
 
     public static final String DATABASE_NAME = "tadi1.db";//db, sqlite
     public static final int DATABASE_VERSION = 1;
+
+    public static final String KEY_MIEMBRO_SELECCIONADO = "miembroSeleccionado";
 }
