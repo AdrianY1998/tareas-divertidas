@@ -24,10 +24,13 @@ import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 public class MiembroActivity extends AppCompatActivity {
     private static final String LOG = MiembroActivity.class.getName();
     private Context mContext;
-    private List<Miembro> miembros = MiembrosSingleton.getInstance().getMiembros();
+    //private List<Miembro> miembros = MiembrosSingleton.getInstance().getMiembros();
+
+    private DatabaseHelper dbHelper;
+    private List<Miembro> miembros = new ArrayList<>();
+
     //private List<Miembro> miembros = DatabaseHelper.getInstance().getMiembros();
     //private List<Miembro> miembros;
-    //private DatabaseHelper dbHelper;
     private ImageView mNuevoMiembro;
     private ImageView mEliminarMiembro;
     private ImageView mBotonAtras;
@@ -41,8 +44,9 @@ public class MiembroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.miembro_layout);
         mContext = this;
-        //dbHelper = new DatabaseHelper(mContext);
-        //miembros = dbHelper.getMiembros();
+
+        dbHelper = new DatabaseHelper(mContext);
+        this.miembros = dbHelper.getMiembros();
         initViews();
         //returnMethod();
     }
@@ -72,8 +76,8 @@ public class MiembroActivity extends AppCompatActivity {
 
         miembrosLista = findViewById(R.id.miembrosLista);
 
-        miembrosAdapter = new MiembrosAdapter(mContext, miembros);
-        miembrosLista.setAdapter(miembrosAdapter);
+        this.miembrosAdapter = new MiembrosAdapter(mContext, this.miembros);
+        miembrosLista.setAdapter(this.miembrosAdapter);
     }
 
     /*private void returnMethod(){
@@ -100,11 +104,8 @@ public class MiembroActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         //Cada vez que retorna a la activity actualizar la lista de miembros y actualizar el adapter notifyDataSetChanged
-
-        //this.miembros = MiembrosSingleton.getInstance().getMiembros();
-        //this.miembros = DatabaseHelper.getInstance().getMiembros();
-        DatabaseHelper dbHelper = new DatabaseHelper(mContext);
-        this.miembros = dbHelper.getMiembros();
+        this.miembros.clear();
+        this.miembros.addAll(dbHelper.getMiembros());
         this.miembrosAdapter.notifyDataSetChanged();
         Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembros));
     }

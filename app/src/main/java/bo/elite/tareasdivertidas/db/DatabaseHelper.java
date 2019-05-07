@@ -24,12 +24,12 @@ public class DatabaseHelper {
         //instance = new DatabaseHelper(context);
     }
 
-    public void addMiembro(Miembro miembro){
+    public void addMiembro(Miembro miembro) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nombre", miembro.getNombre());
         contentValues.put("edad", miembro.getEdad());
         contentValues.put("email", miembro.getCorreoElectronico());
-        this.mDatabase.insert("miembros",null, contentValues);
+        this.mDatabase.insert("miembros", null, contentValues);
         this.mDatabase.close();
         //miembros.add(miembro);
 
@@ -40,7 +40,8 @@ public class DatabaseHelper {
         Cursor cursor = this.mDatabase.rawQuery("SELECT " +
                 " nombre," +
                 " edad," +
-                " email" +
+                " email," +
+                "id" +
                 " FROM miembros", null);
 
         if (cursor.moveToFirst()) {
@@ -48,8 +49,10 @@ public class DatabaseHelper {
                 String nombre = cursor.getString(0);
                 int edad = cursor.getInt(1);
                 String email = cursor.getString(2);
+                int id = cursor.getInt(3);
 
                 Miembro miembro = new Miembro();
+                miembro.setId(id);
                 miembro.setNombre(nombre);
                 miembro.setEdad(edad);
                 miembro.setCorreoElectronico(email);
@@ -59,10 +62,10 @@ public class DatabaseHelper {
             } while (cursor.moveToNext());
         }
         return results;
-        }
+    }
 
 
     //public static DatabaseHelper getInstance(){
-        //return instance;
+    //return instance;
     //}
 }
