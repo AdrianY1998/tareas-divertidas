@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 public class FichaMiembroActivity extends AppCompatActivity {
     private Context mContext;
     private ImageView retornar;
@@ -35,6 +37,7 @@ public class FichaMiembroActivity extends AppCompatActivity {
         mContext = this;
         initViews();
         addEvents();
+        receiveData();
     }
 
     private void initViews(){
@@ -64,6 +67,15 @@ public class FichaMiembroActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    private void receiveData(){
+        Intent intent = getIntent();
+        String json = intent.getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO);
+        Miembro miembro = new Gson().fromJson(json, Miembro.class);
+        nombre.setText(miembro.getNombre());
+        edad.setText(""+miembro.getEdad());
 
     }
 }
