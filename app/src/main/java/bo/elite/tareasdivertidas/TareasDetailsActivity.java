@@ -40,7 +40,7 @@ public class TareasDetailsActivity extends AppCompatActivity {
     private void initViews() {
         mBotonAtras = findViewById(R.id.botonAtras);
         this.imagenTarea= findViewById(R.id.imagenTarea);
-        this.nombreTarea = findViewById(R.id.nombreTarea);
+        this.nombreTarea = findViewById(R.id.nombrePremio);
         this.puntajeTarea = findViewById(R.id.puntajeTarea);
 
     }

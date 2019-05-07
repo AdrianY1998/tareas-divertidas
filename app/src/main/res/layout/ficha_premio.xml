@@ -24,9 +24,8 @@
             android:id="@+id/preiosTittle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Premios"
+            android:layout_centerInParent="true"
+            android:text="Premio"
             android:textColor="@color/design_default_color_primary"
             android:textSize="40sp"
             android:textStyle="bold" />
