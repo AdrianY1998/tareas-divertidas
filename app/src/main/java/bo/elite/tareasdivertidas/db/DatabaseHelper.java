@@ -143,7 +143,7 @@ public class DatabaseHelper {
         Cursor cursor = this.mDatabase.rawQuery("SELECT " +
                 " nombre," +
                 " puntaje," +
-                " imagen" +
+                " imagen," +
                 "id" +
                 " FROM premios", null);
 
@@ -154,7 +154,7 @@ public class DatabaseHelper {
                 int imagen = cursor.getInt(2);
                 int id = cursor.getInt(3);
 
-                    Premio premio= new Premio();
+                Premio premio= new Premio();
                 premio.setId(id);
                 premio.setNombrePremio(nombre);
                 premio.setPuntaje(puntaje);
@@ -163,6 +163,7 @@ public class DatabaseHelper {
                 results.add(premio);
             } while (cursor.moveToNext());
         }
+        this.mDatabase.close();
         return results;
     }
 

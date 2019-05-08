@@ -43,6 +43,7 @@ public class Database extends SQLiteOpenHelper {
                 "puntaje INTEGER NOT NULL," +
                 "imagen INTEGER NOT NULL)");
 
+
         //db.execSQL("INSERT INTO tareas (nombre) VALUES ('Dar comida a mascota'), (puntaje) , (250), (imagen) () ");
 
         ContentValues values = new ContentValues();

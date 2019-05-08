@@ -44,10 +44,9 @@ public class premiosAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View vista, ViewGroup parent) {
         ViewHolder viewHolder;
-        if (vista == null) { //No se puede reciclar
+        if (vista == null) {
             viewHolder = new ViewHolder();
 
-            //Inflater nos permite usar un layout dentro de un componente
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             vista = inflater.inflate(R.layout.premio, null); //Cual layout y principal o no.
 

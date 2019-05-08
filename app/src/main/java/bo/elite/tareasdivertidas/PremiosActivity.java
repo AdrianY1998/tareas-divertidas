@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.adapters.premiosAdapter;
@@ -26,7 +27,7 @@ public class PremiosActivity extends AppCompatActivity {
 
     private ImageView mNuevo;
     private ImageView mBotonInicio;
-    private List<Premio> premios = PremioSingleton.getInstance().getPremios();
+    private List<Premio> premios = new ArrayList<>();
     private Premio premio;
     private ListView premiosLista;
     private premiosAdapter premiosAdapter;
@@ -55,7 +56,7 @@ public class PremiosActivity extends AppCompatActivity {
         mNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onCrarPremioClick(v);
+                onCrearPremioClick(v);
             }
         });
 
@@ -82,7 +83,7 @@ public class PremiosActivity extends AppCompatActivity {
         });
     }
 
-    public void onCrarPremioClick(View view) {
+    public void onCrearPremioClick(View view) {
         Intent intent = new Intent(mContext, CrearPremioActivity.class);
         startActivityForResult(intent, Constants.KEY_PREMIO);
     }
