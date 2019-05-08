@@ -56,7 +56,7 @@ public class NuevaTarea extends AppCompatActivity {
 
         initViews();
         addEvents();
-        //options();
+        options();
     }
 
     private void initViews(){
@@ -71,6 +71,43 @@ public class NuevaTarea extends AppCompatActivity {
 
 
     }
+
+    public void options(){
+        /*mCamara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri output = Uri.fromFile(new File(name));
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, output);
+            }
+        });*/
+
+        mGaleria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                code = SELECT_PICTURE;
+                startActivityForResult(intent, code);
+            }
+        });
+
+    }
+
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == TAKE_PICTURE) {
+
+        } else if (requestCode == SELECT_PICTURE){
+            Uri selectedImage = data.getData();
+            InputStream is;
+            try {
+                is = getContentResolver().openInputStream(selectedImage);
+                BufferedInputStream bis = new BufferedInputStream(is);
+                Bitmap bitmap = BitmapFactory.decodeStream(bis);
+                mImagen = (ImageView)findViewById(R.id.imagen);
+                mImagen.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {}
+        }
+    }
+
     private void addEvents(){
         mBotonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +123,7 @@ public class NuevaTarea extends AppCompatActivity {
                 Tarea tarea = new Tarea();
                 tarea.setPointTarea(Integer.parseInt(mPuntaje.getText().toString()));
                 tarea.setNameTarea(mTarea.getText().toString());
-                tarea.setImageTarea(Integer.parseInt(mImagen.toString()));
+                tarea.setImageTarea(R.drawable.tarea_predeterminada);
 
                 DatabaseHelper dbHelper = new DatabaseHelper(mContext);
                 dbHelper.insertTarea(tarea);
