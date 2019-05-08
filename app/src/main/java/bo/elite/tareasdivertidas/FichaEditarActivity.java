@@ -5,19 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-public class FichaMiembroActivity extends AppCompatActivity {
+public class FichaEditarActivity extends AppCompatActivity {
     private Context mContext;
     private ImageView retornar;
     private ImageView fotoPerfil;
     private TextView fichaTitulo;
-    private TextView nombre;
+    private EditText nombre;
     private TextView edadTitle;
-    private TextView edad;
+    private EditText edad;
     private TextView puntajeTitle;
     private TextView puntaje;
     private TextView objetivoTitle;
@@ -26,18 +27,15 @@ public class FichaMiembroActivity extends AppCompatActivity {
     private TextView necesitaTitle;
     private TextView puntajePremio;
     private TextView textoPuntos;
-    private ImageView editarMiembro;
-    private ImageView cambiarObjetivo;
-    private ImageView eliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ficha_miembro);
+        setContentView(R.layout.ficha_editar_miembro);
         mContext = this;
         initViews();
         addEvents();
-        receiveData();
+        //receiveData();
     }
 
     private void initViews(){
@@ -55,9 +53,6 @@ public class FichaMiembroActivity extends AppCompatActivity {
         necesitaTitle = findViewById(R.id.necesitaTittle);
         puntajePremio = findViewById(R.id.puntajePremio);
         textoPuntos = findViewById(R.id.textoPuntos);
-        editarMiembro = findViewById(R.id.editarMiembro);
-        cambiarObjetivo = findViewById(R.id.cambiarObjetivo);
-        eliminar = findViewById(R.id.eliminar);
     }
     private void addEvents(){
         retornar.setOnClickListener(new View.OnClickListener() {
@@ -68,20 +63,7 @@ public class FichaMiembroActivity extends AppCompatActivity {
             }
         });
 
-        editarMiembro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, FichaEditarActivity.class);
-                startActivity(intent);
             }
-        });
-        eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
 
     private void receiveData(){
         Intent intent = getIntent();

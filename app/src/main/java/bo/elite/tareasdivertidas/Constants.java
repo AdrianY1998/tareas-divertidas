@@ -16,4 +16,7 @@ public class Constants {
     public static final String KEY_CREAR_PREMIO = "crear premio";
     public static final int KEY_PREMIO = 220;
     public static final String KEY_PREMIO_SELECTED = "premio Seleccionado";
+
+    public static final int CODIGO_TRANSACCION_FOTO = 401;
+    public static final int CODIGO_TRANSACCION_FOTO_2 = 402;
 }

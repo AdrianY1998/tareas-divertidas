@@ -184,13 +184,19 @@ public class CrearMiembroActivity extends AppCompatActivity {
                 email.setText("");
             }
         });
-        this.fotoPerfil.setOnClickListener(new View.OnClickListener() {
+        elegirFotoGaleria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //cambiarFotoPerfilCamara();
                 abrirGaleria();
             }
         });
+        elegirFotoCamara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cambiarFotoPerfilCamara();
+            }
+        });
+
     }
 
     private void datosLlenados() {

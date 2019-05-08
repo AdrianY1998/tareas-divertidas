@@ -17,6 +17,7 @@
         <activity android:name=".TareasDetailsActivity" />
         <activity android:name=".NuevaTarea" />
         <activity android:name=".MiembroActivity" />
+        <activity android:name=".FichaEditarActivity"/>
         <activity android:name=".CrearMiembroActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".InicioActivity">
