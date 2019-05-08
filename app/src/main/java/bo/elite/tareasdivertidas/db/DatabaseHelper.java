@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.Miembro;
+import bo.elite.tareasdivertidas.Premio;
 import bo.elite.tareasdivertidas.models.Tarea;
 import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 
@@ -114,6 +115,16 @@ public class DatabaseHelper {
             mDatabase.delete("tareas", "id=?", params);
         }
     }
+
+    public void addPremio(Premio premio) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nombre", premio.getNombrePremio());
+        contentValues.put("edad", premio.getPuntaje());
+        this.mDatabase.insert("premios", null, contentValues);
+        this.mDatabase.close();
+
+    }
+
 
 
     //public static DatabaseHelper getInstance(){

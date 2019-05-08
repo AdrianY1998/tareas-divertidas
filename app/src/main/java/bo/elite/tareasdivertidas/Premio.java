@@ -35,7 +35,7 @@ public class Premio {
         return nombrePremio;
     }
 
-    public void setNombreTarea(String nameTarea) {
+    public void setNombrePremio(String nameTarea) {
         this.nombrePremio = nombrePremio;
     }
 
