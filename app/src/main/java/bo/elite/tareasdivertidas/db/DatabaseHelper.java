@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.Miembro;
+import bo.elite.tareasdivertidas.Premio;
 import bo.elite.tareasdivertidas.models.Tarea;
 import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 
@@ -115,18 +116,43 @@ public class DatabaseHelper {
         }
     }
 
-    public void updateT(int id, String nombreT, int puntajeT){
-        if (id>9){
-            String[] params = new String[1];
-            params[0] = String.valueOf(id);
+    public void addPremio(Premio premio) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nombre", premio.getNombrePremio());
+        contentValues.put("edad", premio.getPuntaje());
+        this.mDatabase.insert("premios", null, contentValues);
+        this.mDatabase.close();
 
-            ContentValues cv = new ContentValues();
-            cv.put("tareaN", nombreT);
-            cv.put("puntaje", puntajeT );
-
-            mDatabase.update("tareas", cv, "id=?", params);
-        }
     }
+
+    public List<Premio> getPremios() {
+        List<Premio> results = new ArrayList<>();
+        Cursor cursor = this.mDatabase.rawQuery("SELECT " +
+                " nombre," +
+                " puntaje," +
+                " imagen" +
+                "id" +
+                " FROM premios", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String nombre = cursor.getString(0);
+                int puntaje = cursor.getInt(1);
+                int imagen = cursor.getInt(2);
+                int id = cursor.getInt(3);
+
+                    Premio premio= new Premio();
+                premio.setId(id);
+                premio.setNombrePremio(nombre);
+                premio.setPuntaje(puntaje);
+                premio.setImage(imagen);
+
+                results.add(premio);
+            } while (cursor.moveToNext());
+        }
+        return results;
+    }
+
 
 
     //public static DatabaseHelper getInstance(){

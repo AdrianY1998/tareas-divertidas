@@ -32,6 +32,12 @@ public class Database extends SQLiteOpenHelper {
                 " email VARCHAR NOT NULL)");
         Log.d("Database", "Created");
 
+        db.execSQL("CREATE TABLE premios (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                " nombre VARCHAR NOT NULL," +
+                " puntaje INTEGER NOT NULL," +
+                " image INTEGER)");
+        Log.d("Database", "Created");
+
         db.execSQL("CREATE TABLE tareas (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                 "tareaN VARCHAR NOT NULL," +
                 "puntaje INTEGER NOT NULL," +
@@ -94,6 +100,31 @@ public class Database extends SQLiteOpenHelper {
         values.put("imagen", R.drawable.sacar_basura);
         db.insert("tareas", null, values);
         values.clear();
+
+        values.put("nombre", "Ir al cine");
+        values.put("puntaje", 1000);
+        values.put("image", R.drawable.ir_al_cine);
+        db.insert("premios", null, values);
+        values.clear();
+
+        values.put("nombre", "Nuevo libro");
+        values.put("puntaje", 1000);
+        values.put("image", R.drawable.nuevo_libro);
+        db.insert("premios", null, values);
+        values.clear();
+
+        values.put("nombre", "Regalo");
+        values.put("puntaje", 1000);
+        values.put("image", R.drawable.regalo);
+        db.insert("premios", null, values);
+        values.clear();
+
+        values.put("nombre", "Nuevo videojuegos");
+        values.put("puntaje", 1000);
+        values.put("image", R.drawable.videojuegos);
+        db.insert("premios", null, values);
+        values.clear();
+
     }
 
     // Migracion
