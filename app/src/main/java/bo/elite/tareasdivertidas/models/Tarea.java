@@ -6,6 +6,9 @@ public class Tarea {
     //d
 
     @Expose
+    private int id;
+
+    @Expose
     private int pointTarea;
 
     @Expose
@@ -15,17 +18,26 @@ public class Tarea {
     private int imageTarea;
 
 
-    public Tarea(int pointTarea, String nameTarea, int imageTarea) {
+    /*public Tarea(int id, int pointTarea, String nameTarea, int imageTarea) {
+        this.id = id;
         this.pointTarea = pointTarea;
         this.nameTarea = nameTarea;
         this.imageTarea = imageTarea;
+    }*/
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPointTarea() {
         return pointTarea;
     }
 
-    public void setId(int pointTarea) {
+    public void setPointTarea(int pointTarea) {
         this.pointTarea = pointTarea;
     }
 

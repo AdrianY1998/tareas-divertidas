@@ -39,7 +39,7 @@
             android:layout_marginTop="15dp"
             android:text="¿A quién evaluarás hoy?"
             android:textColor="@color/design_default_color_primary"
-            android:textSize="20dp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
 
@@ -50,8 +50,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/botones"
         android:layout_below="@+id/posicionLogo"
-        android:layout_margin="40dp"/>
+        android:layout_margin="25dp"/>
 
 </RelativeLayout>

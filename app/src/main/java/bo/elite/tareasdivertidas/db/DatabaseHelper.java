@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.Miembro;
+import bo.elite.tareasdivertidas.models.Tarea;
 import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 
 public class DatabaseHelper {
@@ -62,6 +63,69 @@ public class DatabaseHelper {
             } while (cursor.moveToNext());
         }
         return results;
+    }
+
+    public void insertTarea(Tarea tarea){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tareaN", tarea.getNameTarea());
+        contentValues.put("puntaje", tarea.getPointTarea());
+        contentValues.put("imagen", tarea.getImageTarea());
+
+        this.mDatabase.insert("tareas",
+                null,
+                contentValues);
+        this.mDatabase.close();
+    }
+
+
+    public List<Tarea> getTareas(){
+        List<Tarea> results = new ArrayList<>();
+        Cursor cursor = this.mDatabase.rawQuery("SELECT " +
+                " id," +
+                " tareaN," +
+                " puntaje," +
+                " imagen" +
+                " FROM tareas", null);
+
+        if (cursor.moveToFirst()){
+            do{
+                int id = cursor.getInt(0);
+                String tareaN = cursor.getString(1);
+                int puntaje = cursor.getInt(2);
+                int imagen = cursor.getInt(3);
+
+                Tarea tarea = new Tarea();
+                tarea.setId(id);
+                tarea.setNameTarea(tareaN);
+                tarea.setPointTarea(puntaje);
+                tarea.setImageTarea(imagen);
+
+                results.add(tarea);
+            }while (cursor.moveToNext());
+        }
+        return results;
+    }
+
+    public void deleteT(int id) {
+        if (id>9) {
+            String[] params = new String[1];
+            params[0] = String.valueOf(id);
+
+            mDatabase.delete("tareas", "id=?", params);
+        }
+    }
+
+    public void updateT(int id, String nombreT, int puntajeT){
+        if (id>9){
+            String[] params = new String[1];
+            params[0] = String.valueOf(id);
+
+            ContentValues cv = new ContentValues();
+            cv.put("tareaN", nombreT);
+            cv.put("puntaje", puntajeT );
+
+            mDatabase.update("tareas", cv, "id=?", params);
+        }
     }
 
 
