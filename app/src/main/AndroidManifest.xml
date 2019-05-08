@@ -28,6 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PremiosActivity"/>
+        <activity android:name=".fichaPremioActivity"/>
+        <activity android:name=".CrearPremioActivity"/>
         <activity android:name=".FichaMiembroActivity"/>
     </application>
 
