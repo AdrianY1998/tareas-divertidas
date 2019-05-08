@@ -3,7 +3,12 @@ package bo.elite.tareasdivertidas;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
@@ -21,16 +26,22 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
-import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 
 public class CrearMiembroActivity extends AppCompatActivity {
 
     private LinearLayout padre;
     private Context mContext;
     private RelativeLayout imagenes;
+    private RelativeLayout imagenContenedora;
+    private LinearLayout botonesPerfil;
     private ImageView retornar;
     private ImageView fotoPerfil;
+    private ImageView elegirFotoGaleria;
+    private ImageView elegirFotoCamara;
     private TextView nombreTexto;
     private EditText mNombre;
     private TextView edadTexto;
@@ -40,7 +51,11 @@ public class CrearMiembroActivity extends AppCompatActivity {
     private LinearLayout botones;
     private Button crearMiembro;
     private Button limpiar;
-    //private DatabaseHelper dbHelper;
+    private Uri photoURI;
+    private String mCurrentPhotoPath;
+    private Uri imageUri;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +84,32 @@ public class CrearMiembroActivity extends AppCompatActivity {
         imagenes.addView(retornar, relativeParams);
 
 
-        RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(500, 500);
-        relativeParams2.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+        RelativeLayout.LayoutParams relativeParams3 = new RelativeLayout.LayoutParams(500, 500);
+        relativeParams3.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
 
         fotoPerfil = new ImageView(mContext);
         fotoPerfil.setImageResource(R.drawable.user);
-        imagenes.addView(fotoPerfil, relativeParams2);
+
+        imagenes.addView(fotoPerfil, relativeParams3);
+        //padre.addView(imagenes);
+
+        RelativeLayout.LayoutParams relativeParams2 = new RelativeLayout.LayoutParams(200, 200);
+        relativeParams2.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.ALIGN_BOTTOM);
+
+        botonesPerfil = new LinearLayout(mContext);
+        botonesPerfil.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(100, 100);
+        elegirFotoGaleria = new ImageView(mContext);
+        elegirFotoGaleria.setImageResource(R.drawable.galeria);
+        elegirFotoGaleria.setPadding(5, 5, 5, 5);
+        elegirFotoCamara = new ImageView(mContext);
+        elegirFotoCamara.setImageResource(R.drawable.camara);
+        elegirFotoCamara.setPadding(5,5,5,5);
+        botonesPerfil.addView(elegirFotoCamara, linearParams);
+        botonesPerfil.addView(elegirFotoGaleria, linearParams);
+        imagenes.addView(botonesPerfil, relativeParams2);
         padre.addView(imagenes);
+        //padre.addView(botonesPerfil);
 
         nombreTexto = new TextView(mContext);
         nombreTexto.setText("Nombre");
@@ -128,7 +162,6 @@ public class CrearMiembroActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        //dbHelper = new DatabaseHelper(mContext);
         retornar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,6 +182,13 @@ public class CrearMiembroActivity extends AppCompatActivity {
                 mNombre.setText("");
                 mEdad.setText("");
                 email.setText("");
+            }
+        });
+        this.fotoPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //cambiarFotoPerfilCamara();
+                abrirGaleria();
             }
         });
     }
@@ -188,10 +228,9 @@ public class CrearMiembroActivity extends AppCompatActivity {
         miembro.setNombre(mNombre.getText().toString());
         miembro.setEdad(Integer.parseInt(mEdad.getText().toString()));
         miembro.setCorreoElectronico(email.getText().toString());
+        miembro.setIcono(Constants.CODIGO_TRANSACCION_FOTO_2);
 
         //Adicionar a la clase singleton
-        //MiembrosSingleton.getInstance().addMiembro(miembro);
-        //DatabaseHelper.getInstance().addMiembro(miembro);
         DatabaseHelper dbHelper = new DatabaseHelper(mContext);
         dbHelper.addMiembro(miembro);
 
@@ -200,5 +239,38 @@ public class CrearMiembroActivity extends AppCompatActivity {
         intent.putExtra(Constants.KEY_REGISTRAR_USUARIO, json);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    private void cambiarFotoPerfilCamara() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, Constants.CODIGO_TRANSACCION_FOTO);
+
+    }
+
+    private void abrirGaleria(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, Constants.CODIGO_TRANSACCION_FOTO_2);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.CODIGO_TRANSACCION_FOTO) {
+            //Foto
+            if (resultCode == RESULT_OK) {
+                Log.e("Foto", "Valida");
+                Bitmap thumbnail = data.getParcelableExtra("data"); // Obtenemos el Bitmap (imagen) capturada
+                fotoPerfil.setImageBitmap(thumbnail);
+            } else {
+                Log.e("Foto cancelada", "Canceled");
+            }
+        } else if (requestCode == Constants.CODIGO_TRANSACCION_FOTO_2){
+            if (resultCode == RESULT_OK){
+            imageUri = data.getData();
+            fotoPerfil.setImageURI(imageUri);
+        } else {
+            Log.e("Foto cancelada", "Canceled");
+            }
+        }
     }
 }

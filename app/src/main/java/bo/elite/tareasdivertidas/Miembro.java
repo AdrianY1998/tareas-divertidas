@@ -17,7 +17,16 @@ public class Miembro {
     private String correoElectronico;
     @Expose
     private int id;
+    @Expose
+    private int puntaje = 0;
 
+    public int getPuntaje(){
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje){
+        this.puntaje += puntaje;
+    }
 
     public void setNombre (String nombre){
         this.nombre = nombre;

@@ -17,7 +17,7 @@ public class DatabaseHelper {
     private SQLiteDatabase mDatabase;
     //private List<Miembro> miembros = new ArrayList<>();
     private static Database instancia;
-    private static DatabaseHelper instance;
+    //private static DatabaseHelper instance;
 
     public DatabaseHelper(Context context) {
         instancia = new Database(context);

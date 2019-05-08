@@ -86,23 +86,10 @@ public class MiembroActivity extends AppCompatActivity {
 
     }
 
-    /*private void returnMethod(){
-        mBotonAtras = findViewById(R.id.botonAtras);
-        mBotonAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, MenuActivity.class);
-                startActivity(intent);
-            }
-        });
-    }*/
-
 
     public void nuevoMiembroClick(View view) {
         Intent intent = new Intent(mContext, CrearMiembroActivity.class);
         startActivityForResult(intent, Constants.KEY_MIEMBRO);
-        /*String miembroJson = intent.getExtras().getString(Constants.KEY_REGISTRAR_USUARIO);
-        miembro = new Gson().fromJson(miembroJson, Miembro.class);*/
     }
 
     @Override
