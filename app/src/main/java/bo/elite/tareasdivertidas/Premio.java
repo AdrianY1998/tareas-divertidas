@@ -16,12 +16,6 @@ public class Premio {
     @Expose
     private int id;
 
-    public Premio(int puntaje, String nombrePremio, int image, int id) {
-        this.puntaje = puntaje;
-        this.nombrePremio = nombrePremio;
-        this.image = image;
-        this.id = id;
-    }
 
     public int getPuntaje() {
         return puntaje;
@@ -49,5 +43,8 @@ public class Premio {
 
     public long getId() {
         return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 }

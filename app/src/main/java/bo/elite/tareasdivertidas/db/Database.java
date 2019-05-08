@@ -35,7 +35,7 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE premios (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                 " nombre VARCHAR NOT NULL," +
                 " puntaje INTEGER NOT NULL," +
-                " image INTEGER NOT NULL)");
+                " image INTEGER)");
         Log.d("Database", "Created");
 
         db.execSQL("CREATE TABLE tareas (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +

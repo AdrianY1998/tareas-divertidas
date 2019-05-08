@@ -73,11 +73,12 @@ public class CrearPremioActivity extends AppCompatActivity{
         Premio premio = new Premio();
         premio.setNombrePremio(mNombre.getText().toString());
         premio.setPuntaje(Integer.parseInt(mPuntaje.getText().toString()));
+        //premio.setImage(mImage);
 
         DatabaseHelper dbHelper = new DatabaseHelper(mContext);
         dbHelper.addPremio(premio);
 
-        String json = new Gson().toJson(Premio);
+        String json = new Gson().toJson(premio);
         Intent intent = new Intent();
         intent.putExtra(Constants.KEY_CREAR_PREMIO, json);
         setResult(RESULT_OK, intent);

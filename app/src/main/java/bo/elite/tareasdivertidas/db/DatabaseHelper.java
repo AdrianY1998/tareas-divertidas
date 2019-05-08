@@ -125,6 +125,34 @@ public class DatabaseHelper {
 
     }
 
+    public List<Premio> getPremios() {
+        List<Premio> results = new ArrayList<>();
+        Cursor cursor = this.mDatabase.rawQuery("SELECT " +
+                " nombre," +
+                " puntaje," +
+                " imagen" +
+                "id" +
+                " FROM premios", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String nombre = cursor.getString(0);
+                int puntaje = cursor.getInt(1);
+                int imagen = cursor.getInt(2);
+                int id = cursor.getInt(3);
+
+                    Premio premio= new Premio();
+                premio.setId(id);
+                premio.setNombrePremio(nombre);
+                premio.setPuntaje(puntaje);
+                premio.setImage(imagen);
+
+                results.add(premio);
+            } while (cursor.moveToNext());
+        }
+        return results;
+    }
+
 
 
     //public static DatabaseHelper getInstance(){

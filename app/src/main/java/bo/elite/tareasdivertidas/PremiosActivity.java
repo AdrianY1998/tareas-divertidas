@@ -3,8 +3,11 @@ package bo.elite.tareasdivertidas;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -13,6 +16,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.adapters.premiosAdapter;
+import bo.elite.tareasdivertidas.db.DatabaseHelper;
 import bo.elite.tareasdivertidas.singleton.PremioSingleton;
 
 public class PremiosActivity extends AppCompatActivity {
@@ -27,6 +31,8 @@ public class PremiosActivity extends AppCompatActivity {
     private ListView premiosLista;
     private premiosAdapter premiosAdapter;
 
+    private DatabaseHelper dbHelper;
+
     private Gson gson = new Gson();
 
 
@@ -36,16 +42,22 @@ public class PremiosActivity extends AppCompatActivity {
         setContentView(R.layout.layout_premios);
         mContext = this;
 
-        initViews();
+        dbHelper = new DatabaseHelper(mContext);
+        this.premios = dbHelper.getPremios();
 
-        premios.add(new Premio(150,"Ir al cine", R.drawable.ir_al_cine, premios.size() + 1));
-        premios.add(new Premio(150,"Nuevo Videojuego", R.drawable.nuevo_libro, premios.size() + 1));
+        initViews();
 
     }
 
     private void initViews() {
         mNuevo = findViewById(R.id.crear);
         mBotonInicio = findViewById(R.id.inicio);
+        mNuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCrarPremioClick(v);
+            }
+        });
 
         mBotonInicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,5 +70,29 @@ public class PremiosActivity extends AppCompatActivity {
 
         premiosAdapter = new premiosAdapter(mContext, premios);
         premiosLista.setAdapter(premiosAdapter);
+
+        premiosLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Premio premio = premios.get(position);
+                Intent intent = new Intent(mContext, fichaPremioActivity.class);
+                intent.putExtra(Constants.KEY_PREMIO_SELECTED, new Gson().toJson(premio));
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void onCrarPremioClick(View view) {
+        Intent intent = new Intent(mContext, CrearPremioActivity.class);
+        startActivityForResult(intent, Constants.KEY_PREMIO);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        this.premios.clear();
+        this.premios.addAll(dbHelper.getPremios());
+        this.premiosAdapter.notifyDataSetChanged();
+        Log.e("MIEMBROS", ": " + new Gson().toJson(this.premios));
     }
 }
