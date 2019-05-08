@@ -115,6 +115,19 @@ public class DatabaseHelper {
         }
     }
 
+    public void updateT(int id, String nombreT, int puntajeT){
+        if (id>9){
+            String[] params = new String[1];
+            params[0] = String.valueOf(id);
+
+            ContentValues cv = new ContentValues();
+            cv.put("tareaN", nombreT);
+            cv.put("puntaje", puntajeT );
+
+            mDatabase.update("tareas", cv, "id=?", params);
+        }
+    }
+
 
     //public static DatabaseHelper getInstance(){
     //return instance;

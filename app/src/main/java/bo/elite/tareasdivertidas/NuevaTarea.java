@@ -19,6 +19,7 @@ public class NuevaTarea extends AppCompatActivity {
 
     private ImageView mBotonAtras;
     private ImageView mCrear;
+    private ImageView mLimpiar;
 
     private EditText mTarea;
     private EditText mPuntaje;
@@ -38,9 +39,11 @@ public class NuevaTarea extends AppCompatActivity {
     private void initViews(){
         mBotonAtras = findViewById(R.id.botonAtras);
         mCrear = findViewById(R.id.crear);
+        mLimpiar = findViewById(R.id.Limpiar);
         mTarea = findViewById(R.id.nombreTarea);
         mPuntaje = findViewById(R.id.Puntaje);
         mImagen = findViewById(R.id.imagen);
+
     }
 
     private void addEvents(){
@@ -68,6 +71,14 @@ public class NuevaTarea extends AppCompatActivity {
                 intent.putExtra(Constants.TAREA_NUEVA, json);
                 setResult(RESULT_OK, intent);
                 finish();
+            }
+        });
+
+        mLimpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTarea.setText("");
+                mPuntaje.setText("");
             }
         });
     }
