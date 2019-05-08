@@ -143,7 +143,7 @@ public class DatabaseHelper {
         Cursor cursor = this.mDatabase.rawQuery("SELECT " +
                 " nombre," +
                 " puntaje," +
-                " imagen," +
+                " image," +
                 "id" +
                 " FROM premios", null);
 
