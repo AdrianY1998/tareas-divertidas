@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Nombre Tarea"
+            android:hint="Nombre Tarea"
             android:textColor="@color/design_default_color_primary" />
 
         <EditText
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="Puntaje"
+            android:hint="Puntaje"
             android:textColor="@color/design_default_color_primary" />
 
     </LinearLayout>

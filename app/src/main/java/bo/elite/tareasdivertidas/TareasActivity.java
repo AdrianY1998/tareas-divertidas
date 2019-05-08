@@ -3,6 +3,7 @@ package bo.elite.tareasdivertidas;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -11,10 +12,12 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.Callback.TareaCallback;
 import bo.elite.tareasdivertidas.adapters.tareaRecyclerViewAdapter;
+import bo.elite.tareasdivertidas.db.DatabaseHelper;
 import bo.elite.tareasdivertidas.models.Tarea;
 import bo.elite.tareasdivertidas.utils.TareaU;
 
@@ -22,11 +25,14 @@ public class TareasActivity extends AppCompatActivity {
 
     private Context mContext;
 
+    private List<Tarea> tarea = new ArrayList<>();
+    private DatabaseHelper dbHelper;
+
     private ImageView mBotonAtras;
     private ImageView mNuevaTarea;
-    private ImageView mEditarTarea;
 
     private RecyclerView recyclerView;
+    private tareaRecyclerViewAdapter tareaAdapter;
     private Gson gson = new Gson();
     //d
 
@@ -37,21 +43,24 @@ public class TareasActivity extends AppCompatActivity {
         setContentView(R.layout.asignacion_tareas);
         mContext =this;
 
+        dbHelper = new DatabaseHelper(mContext);
+        this.tarea = dbHelper.getTareas();
+
         initViews();
         addEveents();
 
-        List<Tarea> tareaList = TareaU.getTareas();
-        tareaRecyclerViewAdapter adapter = new tareaRecyclerViewAdapter(this, tareaList);
-        adapter.setTareaCallback(new TareaCallback() {
+        List<Tarea> tareaList = tarea;
+        tareaAdapter = new tareaRecyclerViewAdapter(this, tareaList);
+        tareaAdapter.setTareaCallback(new TareaCallback() {
             @Override
             public void onTareaClick(Tarea tarea) {
                 Intent intent = new Intent(TareasActivity.this, TareasDetailsActivity.class);
                 intent.putExtra(Constants.TAREA_SELECTED, gson.toJson(tarea));
-                startActivity(intent);
+                startActivityForResult(intent,111);
             }
         });
 
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(tareaAdapter);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
     }
@@ -59,7 +68,6 @@ public class TareasActivity extends AppCompatActivity {
     private void initViews(){
         mBotonAtras = findViewById(R.id.botonAtras);
         mNuevaTarea = findViewById(R.id.nuevaTarea);
-        mEditarTarea= findViewById(R.id.editar);
         recyclerView = findViewById(R.id.recyclerViewTareas);
     }
 
@@ -76,21 +84,17 @@ public class TareasActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, NuevaTarea.class);
-                startActivity(intent);
+                startActivityForResult(intent,999);
             }
         });
-
-        /*mEditarTarea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, //);
-                startActivity(intent);
-            }
-        });*/
     }
 
-    /*public void nuevaTareaClick (View view){
-        Intent intent = new Intent(mContext, NuevaTarea.class);
-        startActivity(intent);
-    }*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        this.tarea.clear();
+        this.tarea.addAll(dbHelper.getTareas());
+        this.tareaAdapter.notifyDataSetChanged();
+    }
 }
