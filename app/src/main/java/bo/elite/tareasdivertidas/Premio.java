@@ -21,7 +21,7 @@ public class Premio {
         return puntaje;
     }
 
-    public void setPuntaje(int pointTarea) {
+    public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
 
@@ -29,7 +29,7 @@ public class Premio {
         return nombrePremio;
     }
 
-    public void setNombrePremio(String nameTarea) {
+    public void setNombrePremio(String nombrePremio) {
         this.nombrePremio = nombrePremio;
     }
 
