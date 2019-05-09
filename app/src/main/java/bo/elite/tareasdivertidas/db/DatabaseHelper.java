@@ -132,7 +132,7 @@ public class DatabaseHelper {
     public void addPremio(Premio premio) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nombre", premio.getNombrePremio());
-        contentValues.put("edad", premio.getPuntaje());
+        contentValues.put("puntaje", premio.getPuntaje());
         this.mDatabase.insert("premios", null, contentValues);
         this.mDatabase.close();
 
@@ -163,8 +163,15 @@ public class DatabaseHelper {
                 results.add(premio);
             } while (cursor.moveToNext());
         }
-        this.mDatabase.close();
+
         return results;
+    }
+
+    public void EliminarP(int id) {
+            String[] params = new String[1];
+            params[0] = String.valueOf(id);
+
+            mDatabase.delete("premios", "id=?", params);
     }
 
 

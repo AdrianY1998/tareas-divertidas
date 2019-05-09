@@ -35,17 +35,17 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/eliminarButton"
+                android:id="@+id/eliminar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/cancelarButton"
-                android:layout_alignLeft="@id/cancelarButton"
+                android:layout_alignStart="@id/cancelar"
+                android:layout_alignLeft="@id/cancelar"
                 android:layout_marginStart="-100dp"
                 android:layout_marginLeft="-100dp"
                 android:text="Eliminar" />
 
             <Button
-                android:id="@+id/cancelarButton"
+                android:id="@+id/cancelar"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"

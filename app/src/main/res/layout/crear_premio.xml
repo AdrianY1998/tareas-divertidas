@@ -90,7 +90,7 @@
             app:srcCompat="@drawable/boton_crear" />
 
         <ImageView
-            android:id="@+id/Limpiar"
+            android:id="@+id/limpiar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:srcCompat="@drawable/boton_limpiar" />

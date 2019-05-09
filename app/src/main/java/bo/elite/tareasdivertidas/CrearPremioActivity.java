@@ -3,6 +3,7 @@ package bo.elite.tareasdivertidas;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +38,10 @@ public class CrearPremioActivity extends AppCompatActivity{
         initViews();
     }
     private void initViews() {
-        //dbHelper = new DatabaseHelper(mContext);
+        mImage = findViewById(R.id.imagenPremio);
+        mNombre = findViewById(R.id.nombrePremio);
+        mPuntaje = findViewById(R.id.Puntaje);
+        mAtras = findViewById(R.id.botonAtras);
         mAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,16 +49,20 @@ public class CrearPremioActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-
+        mCrear = findViewById(R.id.crear);
         mCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 datosLlenados();
             }
         });
+
+        mLimpiar = findViewById(R.id.limpiar);
         mLimpiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Drawable imagen = getResources().getDrawable(R.drawable.premio_predeterminado);
+                mImage.setImageDrawable(imagen);
                 mNombre.setText("");
                 mPuntaje.setText("");
             }
@@ -73,7 +81,8 @@ public class CrearPremioActivity extends AppCompatActivity{
         Premio premio = new Premio();
         premio.setNombrePremio(mNombre.getText().toString());
         premio.setPuntaje(Integer.parseInt(mPuntaje.getText().toString()));
-        //premio.setImage(mImage);
+        //int image = this.getResources().getIdentifier("mImage", mImage, this.getPackageName());
+        //premio.setImage(image);
 
         DatabaseHelper dbHelper = new DatabaseHelper(mContext);
         dbHelper.addPremio(premio);

@@ -78,7 +78,7 @@ public class TareasDetailsActivity extends AppCompatActivity {
                 final EditText mNuevoPuntajeT = dialogo.findViewById(R.id.nuevoPuntajeT);
 
                 Button aceptar = dialogo.findViewById(R.id.aceptarButton);
-                Button cancelar = dialogo.findViewById(R.id.cancelarButton);
+                Button cancelar = dialogo.findViewById(R.id.cancelar);
 
                 aceptar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -119,8 +119,8 @@ public class TareasDetailsActivity extends AppCompatActivity {
         final Dialog dialogo = new Dialog(mContext);
         dialogo.setContentView(R.layout.layout_confirmacion_borrar);
 
-        Button eliminar = dialogo.findViewById(R.id.eliminarButton);
-        Button cancelar = dialogo.findViewById(R.id.cancelarButton);
+        Button eliminar = dialogo.findViewById(R.id.eliminar);
+        Button cancelar = dialogo.findViewById(R.id.cancelar);
 
         eliminar.setOnClickListener(new View.OnClickListener() {
             @Override

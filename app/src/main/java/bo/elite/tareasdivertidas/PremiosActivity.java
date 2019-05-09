@@ -94,6 +94,6 @@ public class PremiosActivity extends AppCompatActivity {
         this.premios.clear();
         this.premios.addAll(dbHelper.getPremios());
         this.premiosAdapter.notifyDataSetChanged();
-        Log.e("MIEMBROS", ": " + new Gson().toJson(this.premios));
+        Log.e("Permios", ": " + new Gson().toJson(this.premios));
     }
 }

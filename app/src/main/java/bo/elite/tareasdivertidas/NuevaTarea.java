@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import com.google.gson.Gson;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -62,7 +61,7 @@ public class NuevaTarea extends AppCompatActivity {
     private void initViews(){
         mBotonAtras = findViewById(R.id.botonAtras);
         mCrear = findViewById(R.id.crear);
-        mLimpiar = findViewById(R.id.Limpiar);
+        mLimpiar = findViewById(R.id.limpiar);
         mTarea = findViewById(R.id.nombreTarea);
         mPuntaje = findViewById(R.id.Puntaje);
         //mImagen = findViewById(R.id.imagen);

@@ -11,7 +11,7 @@ public class Premio {
     private String nombrePremio;
 
     @Expose
-    private int image;
+    private int image = R.drawable.premio_predeterminado;
 
     @Expose
     private int id;
@@ -41,7 +41,7 @@ public class Premio {
         this.image = image;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
     public void setId(int id) {
