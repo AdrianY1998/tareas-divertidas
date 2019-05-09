@@ -83,7 +83,7 @@ public class fichaPremioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DatabaseHelper db = new DatabaseHelper(mContext);
-                db.EliminarP(premio.getId());
+                db.eliminarP(premio.getId());
                 Intent intent2 = new Intent(mContext, PremiosActivity.class);
                startActivity(intent2);
                finish();

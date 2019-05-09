@@ -97,31 +97,40 @@ public class FichaMiembroActivity extends AppCompatActivity {
         eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialogo = new Dialog(mContext);
-                dialogo.setContentView(R.layout.borrar_miembros);
-
-                Button eliminar = dialogo.findViewById(R.id.eliminarButton);
-                Button cancelar = dialogo.findViewById(R.id.cancelarButton);
-
-                eliminar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DatabaseHelper dbHelper = new DatabaseHelper(mContext);
-                        dbHelper.eliminarMiembro(miembro.getId());
-                        finish();
-                    }
-                });
-
-                cancelar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialogo.dismiss();
-                    }
-                });
-                dialogo.setCancelable(false);
-                dialogo.show();
+                Intent intent = getIntent();
+                String json = intent.getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO);
+                Miembro miembro = new Gson().fromJson(json, Miembro.class);
+                confirmarEliminar(miembro);
             }
         });
+    }
+
+    private void confirmarEliminar(final Miembro miembro){
+        final Dialog dialogo = new Dialog(mContext);
+        dialogo.setContentView(R.layout.borrar_miembros);
+
+        Button eliminar = dialogo.findViewById(R.id.eliminarButton);
+        Button cancelar = dialogo.findViewById(R.id.cancelarButton);
+
+        eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseHelper db = new DatabaseHelper(mContext);
+                db.eliminarMiembro(miembro.getId());
+                Intent intent2 = new Intent(mContext, MiembroActivity.class);
+                startActivity(intent2);
+                finish();
+            }
+        });
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogo.dismiss();
+            }
+        });
+        dialogo.setCancelable(false);
+        dialogo.show();
     }
 
 
