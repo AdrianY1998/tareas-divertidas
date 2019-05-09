@@ -19,9 +19,9 @@ public class EvaluacionAdapter extends BaseAdapter {
     private Context mContext;
     private List<Miembro> items;
 
-    public EvaluacionAdapter(Context mContext, List<Miembro> miembrosAEvaluar) {
+    public EvaluacionAdapter(Context mContext, List<Miembro> miembros) {
         this.mContext=mContext;
-        this.items = miembrosAEvaluar;
+        this.items = miembros;
     }
 
     @Override
@@ -54,9 +54,9 @@ public class EvaluacionAdapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) vista.getTag(); //Obtener el dato reciclado
         }
-        Miembro miembrosAEvaluar = items.get(position);
-        viewHolder.nombre.setText(miembrosAEvaluar.getNombre());
-        viewHolder.icono.setImageResource(miembrosAEvaluar.getIcono());
+        Miembro miembro = items.get(position);
+        viewHolder.nombre.setText(miembro.getNombre());
+        viewHolder.icono.setImageResource(miembro.getIcono());
 
 
         return vista;
