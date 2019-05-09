@@ -71,7 +71,6 @@ public class fichaPremioActivity extends AppCompatActivity {
 
     }
     private void datos(Premio premio){
-        Intent intent = getIntent();
         mNombre.setText(premio.getNombrePremio());
         mPuntaje.setText(""+premio.getPuntaje());
         Drawable image = getResources().getDrawable(premio.getImage());
@@ -97,7 +96,8 @@ public class fichaPremioActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             verificarEdicion(mNuevoN, mNuevoP, premio);
                             dialogo.dismiss();
-
+                            Intent intent = new Intent(mContext, PremiosActivity.class);
+                            startActivity(intent);
                     }
                 });
 
