@@ -74,7 +74,7 @@ public class FichaMiembroActivity extends AppCompatActivity {
 
                 final EditText newName = dialogo.findViewById(R.id.nombre);
                 final EditText newEdad = dialogo.findViewById(R.id.edad);
-                ImageView modificar = dialogo.findViewById(R.id.Modificar);
+                ImageView modificar = dialogo.findViewById(R.id.modificar);
                 ImageView cancelar = dialogo.findViewById(R.id.cancelar);
                 modificar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -147,7 +147,7 @@ public class FichaMiembroActivity extends AppCompatActivity {
 
     private void receiveData() {
         Intent intent = getIntent();
-        if(intent.hasExtra(Constants.KEY_MIEMBRO_SELECCIONADO)){
+        if (intent.hasExtra(Constants.KEY_MIEMBRO_SELECCIONADO)) {
             String json = intent.getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO);
             miembro = new Gson().fromJson(json, Miembro.class);
             nombre.setText(miembro.getNombre());
@@ -155,19 +155,21 @@ public class FichaMiembroActivity extends AppCompatActivity {
             puntaje = miembro.getPuntaje();
             Log.e("Database", "" + puntaje);
             puntajeMostrado.setText("" + miembro.getPuntaje());
-            nombrePremio.setText(miembro.getPremioObjetivo());
+            nombrePremio.setText(miembro.getPremio().getNombrePremio());
+            puntajePremio.setText(String.valueOf(miembro.getPremio().getPuntaje()));
+
         }
-
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
         Premio premio = new Gson().fromJson(data.getStringExtra(Constants.KEY_PREMIO_SELECTED), Premio.class);
-        miembro.setPremioObjetivo(nombrePremio.toString());
         nombrePremio.setText(premio.getNombrePremio());
         puntajePremio.setText(""+premio.getPuntaje());
+        miembro.setPremio(premio);
         DatabaseHelper dbHelper = new DatabaseHelper(mContext);
-        dbHelper.añadirTareaMiembro(miembro.getId(), premio.getNombrePremio());
+        dbHelper.añadirTareaMiembro(miembro.getId(), miembro.getPremio().getId());
+        }
     }
 }

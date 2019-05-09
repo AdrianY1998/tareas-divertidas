@@ -42,11 +42,9 @@ public class MiembroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.miembro_layout);
         mContext = this;
-
         dbHelper = new DatabaseHelper(mContext);
         this.miembros = dbHelper.getMiembros();
         initViews();
-
     }
 
     private void initViews() {

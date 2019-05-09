@@ -52,8 +52,11 @@ public class PremiosModificarActivity extends AppCompatActivity {
         mBotonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, FichaMiembroActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(mContext, FichaMiembroActivity.class);
+                //startActivity(intent);
+                Intent intent = getIntent();
+                setResult(RESULT_CANCELED, intent);
+                finish();
             }
         });
         premiosLista = findViewById(R.id.premiosVista);

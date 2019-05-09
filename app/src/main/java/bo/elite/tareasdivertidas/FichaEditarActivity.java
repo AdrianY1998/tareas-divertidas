@@ -49,7 +49,7 @@ public class FichaEditarActivity extends AppCompatActivity {
         nombrePremio = findViewById(R.id.nombreMiembro);
         puntajePremio = findViewById(R.id.puntajePremio);
         textoPuntos = findViewById(R.id.textoPuntos);
-        modificar = findViewById(R.id.Modificar);
+        modificar = findViewById(R.id.modificar);
     }
     private void addEvents(){
         retornar.setOnClickListener(new View.OnClickListener() {

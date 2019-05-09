@@ -39,7 +39,7 @@ public class DatabaseHelper {
 
     public void modifyMiembro(int id, String nombre, int edad){
         String[] params = new String[1];
-        params[0] = String.valueOf(id+1);
+        params[0] = String.valueOf(id);
         ContentValues contentValues = new ContentValues();
         contentValues.put("nombre", nombre);
         contentValues.put("edad", edad);
@@ -49,16 +49,16 @@ public class DatabaseHelper {
 
     public void eliminarMiembro(int id){
         String[] params = new String[1];
-        params[0] = String.valueOf(id+1);
+        params[0] = String.valueOf(id);
 
         mDatabase.delete("miembros", "id=?", params);
     }
 
-    public void añadirTareaMiembro(int id, String nombre){
+    public void añadirTareaMiembro(int idMiembro, int idTarea){
         String[] params = new String[1];
-        params[0] = String.valueOf(id);
+        params[0] = String.valueOf(idMiembro);
         ContentValues contentValues = new ContentValues();
-        contentValues.put("objetivo", nombre);
+        contentValues.put("premioID", idTarea);
         int updated = mDatabase.update("miembros", contentValues, "id=?", params);
         Log.d("Registros actualizados",""+updated);
         mDatabase.close();
@@ -66,31 +66,53 @@ public class DatabaseHelper {
     public List<Miembro> getMiembros() {
         List<Miembro> results = new ArrayList<>();
         Cursor cursor = this.mDatabase.rawQuery("SELECT " +
+                " id," +
                 " nombre," +
                 " edad," +
                 " email," +
-                "id" +
+                " premioID" +
                 " FROM miembros", null);
 
         if (cursor.moveToFirst()) {
             do {
-                String nombre = cursor.getString(0);
-                int edad = cursor.getInt(1);
-                String email = cursor.getString(2);
-                int id = cursor.getInt(3);
-
+                int id = cursor.getInt(0);
+                String nombre = cursor.getString(1);
+                int edad = cursor.getInt(2);
+                String email = cursor.getString(3);
+                int premioId = cursor.getInt(4);
                 Miembro miembro = new Miembro();
                 miembro.setId(id);
                 miembro.setNombre(nombre);
                 miembro.setEdad(edad);
                 miembro.setCorreoElectronico(email);
-
+                miembro.setPremio(getPremio(premioId));
                 //Adicionar a la lista
                 results.add(miembro);
             } while (cursor.moveToNext());
         }
         return results;
     }
+
+    public Premio getPremio(int idPremio) {
+            String[] params2 = new String[1];
+            params2[0] = String.valueOf(idPremio);
+            Cursor cursor = this.mDatabase.rawQuery("SELECT " +
+                    " id," +
+                    " nombre," +
+                    " puntaje," +
+                    " image" +
+                    " FROM premios", params2);
+            int id = cursor.getInt(0);
+            String nombre = cursor.getString(1);
+            int puntaje = cursor.getInt(2);
+            int image = cursor.getInt(3);
+            Premio premio = new Premio();
+            premio.setId(id);
+            premio.setNombrePremio(nombre);
+            premio.setPuntaje(puntaje);
+            premio.setImage(image);
+            return premio;
+        }
 
     public void insertTarea(Tarea tarea){
         ContentValues contentValues = new ContentValues();

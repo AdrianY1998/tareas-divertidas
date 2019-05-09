@@ -30,7 +30,7 @@ public class Database extends SQLiteOpenHelper {
                 " nombre VARCHAR NOT NULL," +
                 " edad INTEGER," +
                 " email VARCHAR NOT NULL,"+
-                "objetivo VARCHAR)");
+                "premioID INTEGER)");
         Log.d("Database", "Created");
 
         db.execSQL("CREATE TABLE premios (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +

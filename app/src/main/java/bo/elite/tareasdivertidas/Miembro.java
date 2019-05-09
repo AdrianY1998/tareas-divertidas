@@ -4,6 +4,8 @@ import android.widget.ImageView;
 
 import com.google.gson.annotations.Expose;
 
+import bo.elite.tareasdivertidas.models.Tarea;
+
 public class Miembro {
     @Expose
     private int icono;
@@ -20,11 +22,11 @@ public class Miembro {
     @Expose
     private int puntaje = 0;
     @Expose
-    private String premioObjetivo = "X";
+    private Premio premio = new Premio();
 
-    public String getPremioObjetivo(){ return premioObjetivo;}
-    public void setPremioObjetivo(String premioObjetivo){
-        this.premioObjetivo = premioObjetivo;
+    public Premio getPremio(){ return premio;}
+    public void setPremio(Premio premio){
+        this.premio = premio;
     }
     public int getPuntaje(){
         return puntaje;
