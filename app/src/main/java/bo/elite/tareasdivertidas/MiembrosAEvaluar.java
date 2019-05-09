@@ -7,6 +7,8 @@ public class MiembrosAEvaluar {
     private int icono;
     @Expose
     private String nombre;
+    @Expose
+    private int id;
 
     public void setNombre (String nombre){
         this.nombre = nombre;
@@ -18,5 +20,11 @@ public class MiembrosAEvaluar {
         return nombre;
     }
     public int getIcono() {return icono;}
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }

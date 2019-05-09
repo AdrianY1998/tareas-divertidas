@@ -9,32 +9,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import bo.elite.tareasdivertidas.Miembro;
 import bo.elite.tareasdivertidas.MiembrosAEvaluar;
 import bo.elite.tareasdivertidas.R;
 
 public class EvaluacionAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<MiembrosAEvaluar> items;
+    private List<Miembro> items;
 
-    public EvaluacionAdapter(Context context, List<MiembrosAEvaluar> items){
-        this.mContext = context;
-        this.items = items;
+    public EvaluacionAdapter(Context mContext, List<Miembro> miembrosAEvaluar) {
+        this.mContext=mContext;
+        this.items = miembrosAEvaluar;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return items.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return items.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return items.get(position).getId();
     }
 
     @Override
@@ -52,9 +54,9 @@ public class EvaluacionAdapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) vista.getTag(); //Obtener el dato reciclado
         }
-        MiembrosAEvaluar miembro = items.get(position);
-        viewHolder.nombre.setText(miembro.getNombre());
-        viewHolder.icono.setImageResource(miembro.getIcono());
+        Miembro miembrosAEvaluar = items.get(position);
+        viewHolder.nombre.setText(miembrosAEvaluar.getNombre());
+        viewHolder.icono.setImageResource(miembrosAEvaluar.getIcono());
 
 
         return vista;

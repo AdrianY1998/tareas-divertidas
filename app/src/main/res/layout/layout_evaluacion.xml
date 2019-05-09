@@ -13,20 +13,15 @@
         android:layout_gravity="start"
         app:srcCompat="@drawable/user" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/nombreMiembro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/fotoUser"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:text="Nombre"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/nombreMiembro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nombre"
-            android:gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"/>
-
-    </LinearLayout>
 </LinearLayout>
