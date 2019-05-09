@@ -44,6 +44,11 @@ public class Database extends SQLiteOpenHelper {
                 "puntaje INTEGER NOT NULL," +
                 "imagen INTEGER NOT NULL)");
 
+        db.execSQL("CREATE TABLE relaciontm (idTarea INTEGER NOT NULL," +
+                "idMiembro INTEGER NOT NULL," +
+                " nombre VARCHAR NOT NULL," +
+                " edad INTEGER," +
+                " email VARCHAR NOT NULL)");
 
         //db.execSQL("INSERT INTO tareas (nombre) VALUES ('Dar comida a mascota'), (puntaje) , (250), (imagen) () ");
 

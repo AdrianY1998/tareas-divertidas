@@ -159,6 +159,7 @@
     </LinearLayout>
 
     <ListView
+        android:id="@+id/listaMiembros"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_above="@+id/botones"

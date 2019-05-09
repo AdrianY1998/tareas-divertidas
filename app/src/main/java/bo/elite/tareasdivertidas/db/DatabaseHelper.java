@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.List;
 import bo.elite.tareasdivertidas.Miembro;
 import bo.elite.tareasdivertidas.Premio;
 import bo.elite.tareasdivertidas.models.Tarea;
-import bo.elite.tareasdivertidas.singleton.MiembrosSingleton;
 
 public class DatabaseHelper {
     private SQLiteDatabase mDatabase;
@@ -56,10 +56,11 @@ public class DatabaseHelper {
 
     public void añadirTareaMiembro(int id, String nombre){
         String[] params = new String[1];
-        params[0] = String.valueOf(id+1);
+        params[0] = String.valueOf(id);
         ContentValues contentValues = new ContentValues();
         contentValues.put("objetivo", nombre);
-        mDatabase.update("miembros", contentValues, "id=?", params);
+        int updated = mDatabase.update("miembros", contentValues, "id=?", params);
+        Log.d("Registros actualizados",""+updated);
         mDatabase.close();
     }
     public List<Miembro> getMiembros() {
@@ -152,6 +153,20 @@ public class DatabaseHelper {
 
             mDatabase.update("tareas", cv, "id=?", params);
         }
+    }
+
+    public void insertTareaMiembro(Tarea tarea, Miembro miembro){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("idTarea", tarea.getId());
+        contentValues.put("idMiembro", miembro.getId());
+        contentValues.put("nombre", miembro.getNombre());
+        contentValues.put("edad", miembro.getEdad());
+        contentValues.put("email", miembro.getCorreoElectronico());
+
+        this.mDatabase.insert("relaciontm",
+                null,
+                contentValues);
+        this.mDatabase.close();
     }
 
     public void addPremio(Premio premio) {

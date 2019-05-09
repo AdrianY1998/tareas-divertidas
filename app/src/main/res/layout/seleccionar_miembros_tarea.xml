@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/miembros"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <RelativeLayout
+        android:id="@+id/posicionLogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp">
+
+        <ImageView
+            android:id="@+id/botonAtras"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/boton_atras"
+            android:src="@drawable/boton_atras"
+            android:padding="5dp"/>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/boton_miembros"
+            app:srcCompat="@drawable/boton_miembros" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/miembrosListaA"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/botones"
+        android:layout_below="@+id/posicionLogo"
+        android:paddingBottom="15dp"
+        android:paddingTop="20dp"/>
+
+
+</RelativeLayout>

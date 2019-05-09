@@ -16,6 +16,7 @@
         <activity android:name=".TareasActivity"></activity>
         <activity android:name=".TareasDetailsActivity" />
         <activity android:name=".NuevaTarea" />
+        <activity android:name=".AsignarMiembrosTareas"/>
         <activity android:name=".MiembroActivity" />
         <activity android:name=".FichaEditarActivity"/>
         <activity android:name=".CrearMiembroActivity" />

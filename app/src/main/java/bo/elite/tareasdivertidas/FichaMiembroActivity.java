@@ -147,14 +147,17 @@ public class FichaMiembroActivity extends AppCompatActivity {
 
     private void receiveData() {
         Intent intent = getIntent();
-        String json = intent.getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO);
-        miembro = new Gson().fromJson(json, Miembro.class);
-        nombre.setText(miembro.getNombre());
-        edad.setText("" + miembro.getEdad());
-        puntaje = miembro.getPuntaje();
-        Log.e("Database", "" + puntaje);
-        puntajeMostrado.setText("" + miembro.getPuntaje());
-        nombrePremio.setText(miembro.getPremioObjetivo());
+        if(intent.hasExtra(Constants.KEY_MIEMBRO_SELECCIONADO)){
+            String json = intent.getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO);
+            miembro = new Gson().fromJson(json, Miembro.class);
+            nombre.setText(miembro.getNombre());
+            edad.setText("" + miembro.getEdad());
+            puntaje = miembro.getPuntaje();
+            Log.e("Database", "" + puntaje);
+            puntajeMostrado.setText("" + miembro.getPuntaje());
+            nombrePremio.setText(miembro.getPremioObjetivo());
+        }
+
     }
 
     @Override
@@ -165,6 +168,6 @@ public class FichaMiembroActivity extends AppCompatActivity {
         nombrePremio.setText(premio.getNombrePremio());
         puntajePremio.setText(""+premio.getPuntaje());
         DatabaseHelper dbHelper = new DatabaseHelper(mContext);
-        dbHelper.añadirTareaMiembro(premio.getId(), premio.getNombrePremio());
+        dbHelper.añadirTareaMiembro(miembro.getId(), premio.getNombrePremio());
     }
 }

@@ -77,7 +77,6 @@ public class MiembroActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Miembro miembro = miembros.get(position);
-                miembro.setId(position);
                 Intent intent = new Intent(mContext, FichaMiembroActivity.class);
                 intent.putExtra(Constants.KEY_MIEMBRO_SELECCIONADO, new Gson().toJson(miembro));
                 startActivity(intent);
