@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tareasAsignadas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark">
+
+    <ImageView
+        android:id="@+id/evaluar"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:baselineAlignBottom="false"
+        app:srcCompat="@drawable/boton_evaluar" />
 
     <RelativeLayout
 
@@ -20,68 +29,69 @@
 
         <TextView
             android:id="@+id/evaluacionTitulo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:text="Evaluación"
             android:textColor="@color/design_default_color_primary"
             android:textSize="40sp"
-            android:textStyle="bold"
-            android:layout_margin="20dp"/>
+            android:textStyle="bold" />
 
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/fotoUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titulo">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/user" />
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/preguntaYnombre"
-        android:layout_width="match_parent"
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/fotoUser">
+        android:layout_below="@id/titulo"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/user" />
 
         <TextView
             android:id="@+id/nombreUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:gravity="center_horizontal"
             android:text="Nombre"
             android:textColor="@color/design_default_color_primary"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"/>
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
 
         <TextView
             android:id="@+id/pregunta"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:gravity="center_horizontal"
             android:text="¿Qué tareas completó?"
             android:textColor="@color/design_default_color_primary"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"/>
+            android:textSize="23sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/preguntaYnombre"
-        android:layout_margin="25dp"/>
+        android:id="@+id/tareas"
+        android:layout_width="wrap_content"
+        android:layout_height="277dp"
+        android:layout_above="@+id/evaluar"
+        android:layout_below="@+id/info"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="2dp" />
 
 </RelativeLayout>
