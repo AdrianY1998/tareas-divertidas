@@ -21,5 +21,7 @@ public class Constants {
     public static final int CODIGO_TRANSACCION_FOTO = 401;
     public static final int CODIGO_TRANSACCION_FOTO_2 = 402;
 
+    public static final int PREMIO_SELECCIONADO = 500;
+
     public static final int EDITAR_INFORMACION = 403;
 }

@@ -20,6 +20,7 @@
         <activity android:name=".FichaEditarActivity"/>
         <activity android:name=".CrearMiembroActivity" />
         <activity android:name=".MenuActivity" />
+        <activity android:name=".PremiosModificarActivity"/>
         <activity android:name=".InicioActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

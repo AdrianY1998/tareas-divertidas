@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -55,6 +56,7 @@ public class FichaMiembroActivity extends AppCompatActivity {
         cambiarObjetivo = findViewById(R.id.cambiarObjetivo);
         eliminar = findViewById(R.id.eliminar);
     }
+
     private void addEvents() {
         retornar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +105,18 @@ public class FichaMiembroActivity extends AppCompatActivity {
                 confirmarEliminar(miembro);
             }
         });
+
+        cambiarObjetivo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PremiosModificarActivity.class);
+                startActivityForResult(intent, Constants.PREMIO_SELECCIONADO);
+            }
+        });
+
     }
 
-    private void confirmarEliminar(final Miembro miembro){
+    private void confirmarEliminar(final Miembro miembro) {
         final Dialog dialogo = new Dialog(mContext);
         dialogo.setContentView(R.layout.borrar_miembros);
 
@@ -134,14 +145,26 @@ public class FichaMiembroActivity extends AppCompatActivity {
     }
 
 
-    private void receiveData(){
+    private void receiveData() {
         Intent intent = getIntent();
         String json = intent.getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO);
         miembro = new Gson().fromJson(json, Miembro.class);
         nombre.setText(miembro.getNombre());
-        edad.setText(""+miembro.getEdad());
+        edad.setText("" + miembro.getEdad());
         puntaje = miembro.getPuntaje();
         Log.e("Database", "" + puntaje);
-        puntajeMostrado.setText(""+ miembro.getPuntaje());
+        puntajeMostrado.setText("" + miembro.getPuntaje());
+        nombrePremio.setText(miembro.getPremioObjetivo());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Premio premio = new Gson().fromJson(data.getStringExtra(Constants.KEY_PREMIO_SELECTED), Premio.class);
+        miembro.setPremioObjetivo(nombrePremio.toString());
+        nombrePremio.setText(premio.getNombrePremio());
+        puntajePremio.setText(""+premio.getPuntaje());
+        DatabaseHelper dbHelper = new DatabaseHelper(mContext);
+        dbHelper.añadirTareaMiembro(premio.getId(), premio.getNombrePremio());
     }
 }

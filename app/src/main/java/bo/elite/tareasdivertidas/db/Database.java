@@ -29,7 +29,8 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE miembros (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                 " nombre VARCHAR NOT NULL," +
                 " edad INTEGER," +
-                " email VARCHAR NOT NULL)");
+                " email VARCHAR NOT NULL,"+
+                "objetivo VARCHAR)");
         Log.d("Database", "Created");
 
         db.execSQL("CREATE TABLE premios (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +

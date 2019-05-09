@@ -19,15 +19,19 @@ public class Miembro {
     private int id;
     @Expose
     private int puntaje = 0;
+    @Expose
+    private String premioObjetivo = "X";
 
+    public String getPremioObjetivo(){ return premioObjetivo;}
+    public void setPremioObjetivo(String premioObjetivo){
+        this.premioObjetivo = premioObjetivo;
+    }
     public int getPuntaje(){
         return puntaje;
     }
-
     public void setPuntaje(int puntaje){
         this.puntaje += puntaje;
     }
-
     public void setNombre (String nombre){
         this.nombre = nombre;
     }

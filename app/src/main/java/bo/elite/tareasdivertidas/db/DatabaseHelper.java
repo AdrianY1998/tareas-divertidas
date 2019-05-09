@@ -53,6 +53,15 @@ public class DatabaseHelper {
 
         mDatabase.delete("miembros", "id=?", params);
     }
+
+    public void añadirTareaMiembro(int id, String nombre){
+        String[] params = new String[1];
+        params[0] = String.valueOf(id+1);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("objetivo", nombre);
+        mDatabase.update("miembros", contentValues, "id=?", params);
+        mDatabase.close();
+    }
     public List<Miembro> getMiembros() {
         List<Miembro> results = new ArrayList<>();
         Cursor cursor = this.mDatabase.rawQuery("SELECT " +
