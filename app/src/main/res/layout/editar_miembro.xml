@@ -14,16 +14,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Editar premio"
             android:textSize="22dp"
-            android:text="Editar tarea"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/nuevoN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de la tarea"
+            android:hint="Nombre Premio"
             android:inputType="textPersonName" />
 
         <EditText
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Puntaje"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
 
     </LinearLayout>
 
@@ -52,7 +52,7 @@
                 android:layout_alignLeft="@id/cancelar"
                 android:layout_marginStart="-100dp"
                 android:layout_marginLeft="-100dp"
-                android:text="Aceptar" />
+                android:text="Guardar" />
 
             <Button
                 android:id="@+id/cancelar"

@@ -104,10 +104,10 @@ public class TareasDetailsActivity extends AppCompatActivity {
                 final Dialog dialogo = new Dialog(mContext);
                 dialogo.setContentView(R.layout.layout_editar_tarea);
 
-                final EditText mNuevoNombreT = dialogo.findViewById(R.id.nuevoNombreT);
-                final EditText mNuevoPuntajeT = dialogo.findViewById(R.id.nuevoPuntajeT);
+                final EditText mNuevoNombreT = dialogo.findViewById(R.id.nuevoN);
+                final EditText mNuevoPuntajeT = dialogo.findViewById(R.id.nuevoP);
 
-                Button aceptar = dialogo.findViewById(R.id.aceptarButton);
+                Button aceptar = dialogo.findViewById(R.id.guardar);
                 Button cancelar = dialogo.findViewById(R.id.cancelar);
 
                 aceptar.setOnClickListener(new View.OnClickListener() {
