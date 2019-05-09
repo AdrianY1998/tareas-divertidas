@@ -17,15 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.adapters.EvaluacionAdapter;
-import bo.elite.tareasdivertidas.adapters.MiembrosAdapter;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
 
 public class EvaluacionActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
-    private List<Miembro> miembrosAEvaluar = new ArrayList<>();
+    private List<Miembro> miembro = new ArrayList<>();
     private Context mContext;
     private ImageView mBotonAtras;
-    private ListView miembrosAEvaluarLista;
+    private ListView miembrosLista;
     private EvaluacionAdapter evaluacionAdapter;
 
     @Override
@@ -35,7 +34,7 @@ public class EvaluacionActivity extends AppCompatActivity {
         mContext = this;
 
         dbHelper = new DatabaseHelper(mContext);
-        this.miembrosAEvaluar = dbHelper.getMiembros();
+        this.miembro = dbHelper.getMiembros();
         initViews();
     }
 
@@ -48,14 +47,14 @@ public class EvaluacionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        miembrosAEvaluarLista=findViewById(R.id.miembrosAEvaluarLista);
+        miembrosLista =findViewById(R.id.miembrosAEvaluarLista);
 
-        this.evaluacionAdapter= new EvaluacionAdapter(mContext,this.miembrosAEvaluar);
-        miembrosAEvaluarLista.setAdapter(this.evaluacionAdapter);
-        miembrosAEvaluarLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.evaluacionAdapter= new EvaluacionAdapter(mContext,this.miembro);
+        miembrosLista.setAdapter(this.evaluacionAdapter);
+        miembrosLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Miembro miembro = miembrosAEvaluar.get(position);
+                Miembro miembro = EvaluacionActivity.this.miembro.get(position);
                 miembro.setId(position);
                 Intent intent = new Intent(mContext, FichaMiembroActivity.class);
                 intent.putExtra(Constants.KEY_MIEMBRO_SELECCIONADO, new Gson().toJson(miembro));
@@ -68,9 +67,9 @@ public class EvaluacionActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         //Cada vez que retorna a la activity actualizar la lista de miembros y actualizar el adapter notifyDataSetChanged
-        this.miembrosAEvaluar.clear();
-        this.miembrosAEvaluar.addAll(dbHelper.getMiembros());
+        this.miembro.clear();
+        this.miembro.addAll(dbHelper.getMiembros());
         this.evaluacionAdapter.notifyDataSetChanged();
-        Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembrosAEvaluar));
+        Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembro));
     }
 }
