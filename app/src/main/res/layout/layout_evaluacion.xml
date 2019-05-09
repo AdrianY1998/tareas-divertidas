@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp">
 
-    <ImageView
-        android:id="@+id/icono"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="start"
-        app:srcCompat="@drawable/user" />
-
-    <TextView
-        android:id="@+id/nombreMiembro"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/fotoUser"
-        android:layout_gravity="center"
+        android:background="@color/colorPrimaryDark"
         android:gravity="center_horizontal"
-        android:text="Nombre"
-        android:textColor="@color/design_default_color_primary_dark"
-        android:textSize="24sp" />
+        android:orientation="vertical"
+        android:padding="15dp">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerInside"
+            tools:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/nombrePremio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/design_default_color_primary"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            tools:text="Nombre" />
+
+    </LinearLayout>
+
+</FrameLayout>

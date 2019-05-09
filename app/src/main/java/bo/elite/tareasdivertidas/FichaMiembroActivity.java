@@ -50,7 +50,7 @@ public class FichaMiembroActivity extends AppCompatActivity {
         edad = findViewById(R.id.edad);
         puntajeMostrado = findViewById(R.id.puntaje);
         imagenPremio = findViewById(R.id.imagenPremio);
-        nombrePremio = findViewById(R.id.nombrePremio);
+        nombrePremio = findViewById(R.id.nombreMiembro);
         puntajePremio = findViewById(R.id.puntajePremio);
         editarMiembro = findViewById(R.id.editarMiembro);
         cambiarObjetivo = findViewById(R.id.cambiarObjetivo);

@@ -1,13 +1,9 @@
 package bo.elite.tareasdivertidas;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,7 +35,7 @@ public class CrearPremioActivity extends AppCompatActivity{
     }
     private void initViews() {
         mImage = findViewById(R.id.imagenPremio);
-        mNombre = findViewById(R.id.nombrePremio);
+        mNombre = findViewById(R.id.nombreMiembro);
         mPuntaje = findViewById(R.id.Puntaje);
         mAtras = findViewById(R.id.botonAtras);
         mAtras.setOnClickListener(new View.OnClickListener() {

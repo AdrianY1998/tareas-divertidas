@@ -3,7 +3,6 @@ package bo.elite.tareasdivertidas;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -47,7 +46,7 @@ public class FichaEditarActivity extends AppCompatActivity {
         edad = findViewById(R.id.edad);
         puntaje = findViewById(R.id.puntaje);
         imagenPremio = findViewById(R.id.imagenPremio);
-        nombrePremio = findViewById(R.id.nombrePremio);
+        nombrePremio = findViewById(R.id.nombreMiembro);
         puntajePremio = findViewById(R.id.puntajePremio);
         textoPuntos = findViewById(R.id.textoPuntos);
         modificar = findViewById(R.id.Modificar);
