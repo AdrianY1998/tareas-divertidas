@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -66,7 +67,7 @@ public class TareasDetailsActivity extends AppCompatActivity {
     private void initViews() {
         this.mBotonAtras = findViewById(R.id.botonAtras);
         this.imagenTarea= findViewById(R.id.imagenTarea);
-        this.nombreTarea = findViewById(R.id.nombrePremio);
+        this.nombreTarea = findViewById(R.id.nombreTarea);
         this.puntajeTarea = findViewById(R.id.puntajeTarea);
         this.mEliminar = findViewById(R.id.eliminar);
         this.mEditar = findViewById(R.id.editar);
@@ -104,16 +105,25 @@ public class TareasDetailsActivity extends AppCompatActivity {
                 final Dialog dialogo = new Dialog(mContext);
                 dialogo.setContentView(R.layout.layout_editar_tarea);
 
-                final EditText mNuevoNombreT = dialogo.findViewById(R.id.nuevoNombreT);
-                final EditText mNuevoPuntajeT = dialogo.findViewById(R.id.nuevoPuntajeT);
+                final EditText mNuevoNombreT = dialogo.findViewById(R.id.nuevoN);
+                final EditText mNuevoPuntajeT = dialogo.findViewById(R.id.nuevoP);
 
-                Button aceptar = dialogo.findViewById(R.id.aceptarButton);
+                Button aceptar = dialogo.findViewById(R.id.guardar);
                 Button cancelar = dialogo.findViewById(R.id.cancelar);
 
                 aceptar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DatabaseHelper dbHelper = new DatabaseHelper(mContext);
+                        if (mNuevoNombreT.getText().toString().isEmpty()) {
+                            Toast.makeText(mContext, "Ingrese el nuevo nombre por favor", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (mNuevoPuntajeT.getText().toString().isEmpty()) {
+                            Toast.makeText(mContext, "Ingrese el puntaje por favor", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         dbHelper.updateT(tarea.getId(), mNuevoNombreT.getText().toString(), Integer.parseInt(mNuevoPuntajeT.getText().toString()));
                         finish();
                     }

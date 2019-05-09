@@ -61,8 +61,6 @@ public class CrearPremioActivity extends AppCompatActivity{
         mLimpiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable imagen = getResources().getDrawable(R.drawable.premio_predeterminado);
-                mImage.setImageDrawable(imagen);
                 mNombre.setText("");
                 mPuntaje.setText("");
             }
@@ -78,11 +76,11 @@ public class CrearPremioActivity extends AppCompatActivity{
             Toast.makeText(mContext, "Ingrese el Puntaje por favor", Toast.LENGTH_SHORT).show();
             return;
         }
+
         Premio premio = new Premio();
         premio.setNombrePremio(mNombre.getText().toString());
         premio.setPuntaje(Integer.parseInt(mPuntaje.getText().toString()));
-        //int image = this.getResources().getIdentifier("mImage", mImage, this.getPackageName());
-        //premio.setImage(image);
+        premio.setImage(R.drawable.premio_predeterminado);
 
         DatabaseHelper dbHelper = new DatabaseHelper(mContext);
         dbHelper.addPremio(premio);

@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Nombre Premio"
+            android:hint="Nombre Premio"
             android:textColor="@color/design_default_color_primary" />
 
         <EditText
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="Puntaje para ganar el premio"
+            android:hint="Puntaje para ganar el premio"
             android:textColor="@color/design_default_color_primary" />
 
     </LinearLayout>

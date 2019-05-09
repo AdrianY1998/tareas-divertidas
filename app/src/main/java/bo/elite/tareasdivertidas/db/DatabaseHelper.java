@@ -173,6 +173,7 @@ public class DatabaseHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nombre", premio.getNombrePremio());
         contentValues.put("puntaje", premio.getPuntaje());
+        contentValues.put("image", premio.getImage());
         this.mDatabase.insert("premios", null, contentValues);
         this.mDatabase.close();
 
@@ -212,6 +213,17 @@ public class DatabaseHelper {
             params[0] = String.valueOf(id);
 
             mDatabase.delete("premios", "id=?", params);
+    }
+
+    public void editarP (int id, String nuevoN , int nuevoP){
+        String[] params = new String[1];
+        params[0] = String.valueOf(id);
+
+        ContentValues cv = new ContentValues();
+        cv.put("nombre", nuevoN);
+        cv.put("puntaje", nuevoP);
+
+        mDatabase.update("premios", cv , "id=?", params);
     }
 
 

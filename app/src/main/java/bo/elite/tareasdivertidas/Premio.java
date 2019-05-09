@@ -11,12 +11,14 @@ public class Premio {
     private String nombrePremio;
 
     @Expose
-    private int image = R.drawable.premio_predeterminado;
+    private int image;
 
     @Expose
     private int id;
 
-
+    public Premio(){
+        image = R.drawable.premio_predeterminado;
+    }
     public int getPuntaje() {
         return puntaje;
     }
