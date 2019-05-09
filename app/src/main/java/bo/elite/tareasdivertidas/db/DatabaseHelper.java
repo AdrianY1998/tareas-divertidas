@@ -37,6 +37,22 @@ public class DatabaseHelper {
 
     }
 
+    public void modifyMiembro(int id, String nombre, int edad){
+        String[] params = new String[1];
+        params[0] = String.valueOf(id+1);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nombre", nombre);
+        contentValues.put("edad", edad);
+        mDatabase.update("miembros", contentValues, "id=?", params);
+        mDatabase.close();
+    }
+
+    public void eliminarMiembro(int id){
+        String[] params = new String[1];
+        params[0] = String.valueOf(id);
+
+        mDatabase.delete("miembros", "id=?", params);
+    }
     public List<Miembro> getMiembros() {
         List<Miembro> results = new ArrayList<>();
         Cursor cursor = this.mDatabase.rawQuery("SELECT " +
@@ -132,7 +148,7 @@ public class DatabaseHelper {
     public void addPremio(Premio premio) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nombre", premio.getNombrePremio());
-        contentValues.put("puntaje", premio.getPuntaje());
+        contentValues.put("edad", premio.getPuntaje());
         this.mDatabase.insert("premios", null, contentValues);
         this.mDatabase.close();
 
@@ -163,20 +179,8 @@ public class DatabaseHelper {
                 results.add(premio);
             } while (cursor.moveToNext());
         }
-
+        this.mDatabase.close();
         return results;
     }
 
-    public void EliminarP(int id) {
-            String[] params = new String[1];
-            params[0] = String.valueOf(id);
-
-            mDatabase.delete("premios", "id=?", params);
-    }
-
-
-
-    //public static DatabaseHelper getInstance(){
-    //return instance;
-    //}
 }

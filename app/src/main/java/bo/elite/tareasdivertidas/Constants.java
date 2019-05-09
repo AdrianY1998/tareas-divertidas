@@ -3,6 +3,7 @@ package bo.elite.tareasdivertidas;
 public class Constants {
     public static final int KEY_MIEMBRO = 200;
     public static final String KEY_REGISTRAR_USUARIO = "registrarUsuario";
+    public static final String MIEMBRO_ELIMINADO = "miembroEliminado";
 
     public static final String TAREA_SELECTED = "tareaSelected"; //d
     public static final String TAREA_NUEVA = "tareaNueva";
@@ -19,4 +20,6 @@ public class Constants {
 
     public static final int CODIGO_TRANSACCION_FOTO = 401;
     public static final int CODIGO_TRANSACCION_FOTO_2 = 402;
+
+    public static final int EDITAR_INFORMACION = 403;
 }

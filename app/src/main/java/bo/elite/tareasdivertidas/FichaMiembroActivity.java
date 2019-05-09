@@ -1,34 +1,36 @@
 package bo.elite.tareasdivertidas;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import bo.elite.tareasdivertidas.db.DatabaseHelper;
+
 public class FichaMiembroActivity extends AppCompatActivity {
     private Context mContext;
     private ImageView retornar;
     private ImageView fotoPerfil;
-    private TextView fichaTitulo;
     private TextView nombre;
-    private TextView edadTitle;
     private TextView edad;
-    private TextView puntajeTitle;
-    private TextView puntaje;
-    private TextView objetivoTitle;
+    private int puntaje;
+    private TextView puntajeMostrado;
     private ImageView imagenPremio;
     private TextView nombrePremio;
-    private TextView necesitaTitle;
     private TextView puntajePremio;
-    private TextView textoPuntos;
     private ImageView editarMiembro;
     private ImageView cambiarObjetivo;
     private ImageView eliminar;
+    private Miembro miembro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,30 +38,24 @@ public class FichaMiembroActivity extends AppCompatActivity {
         setContentView(R.layout.ficha_miembro);
         mContext = this;
         initViews();
-        addEvents();
         receiveData();
+        addEvents();
     }
 
-    private void initViews(){
+    private void initViews() {
         retornar = findViewById(R.id.botonAtras);
         fotoPerfil = findViewById(R.id.fotoPerfil);
-        fichaTitulo = findViewById(R.id.fichaTitulo);
         nombre = findViewById(R.id.nombre);
-        edadTitle = findViewById(R.id.edadTittle);
         edad = findViewById(R.id.edad);
-        puntajeTitle = findViewById(R.id.puntajeTittle);
-        puntaje = findViewById(R.id.puntaje);
-        objetivoTitle = findViewById(R.id.objetivoTittle);
+        puntajeMostrado = findViewById(R.id.puntaje);
         imagenPremio = findViewById(R.id.imagenPremio);
         nombrePremio = findViewById(R.id.nombrePremio);
-        necesitaTitle = findViewById(R.id.necesitaTittle);
         puntajePremio = findViewById(R.id.puntajePremio);
-        textoPuntos = findViewById(R.id.textoPuntos);
         editarMiembro = findViewById(R.id.editarMiembro);
         cambiarObjetivo = findViewById(R.id.cambiarObjetivo);
         eliminar = findViewById(R.id.eliminar);
     }
-    private void addEvents(){
+    private void addEvents() {
         retornar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,24 +67,72 @@ public class FichaMiembroActivity extends AppCompatActivity {
         editarMiembro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, FichaEditarActivity.class);
-                startActivity(intent);
+                final Dialog dialogo = new Dialog(mContext);
+                dialogo.setContentView(R.layout.ficha_editar_miembro);
+
+                final EditText newName = dialogo.findViewById(R.id.nombre);
+                final EditText newEdad = dialogo.findViewById(R.id.edad);
+                ImageView modificar = dialogo.findViewById(R.id.Modificar);
+                ImageView cancelar = dialogo.findViewById(R.id.cancelar);
+                modificar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, MiembroActivity.class);
+                        DatabaseHelper dbHelper = new DatabaseHelper(mContext);
+                        dbHelper.modifyMiembro(miembro.getId(), newName.getText().toString(), Integer.parseInt(newEdad.getText().toString()));
+                        dialogo.dismiss();
+                        startActivity(intent);
+                    }
+                });
+                cancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogo.dismiss();
+                    }
+                });
+                dialogo.setCancelable(false);
+                dialogo.show();
             }
         });
         eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Dialog dialogo = new Dialog(mContext);
+                dialogo.setContentView(R.layout.borrar_miembros);
 
+                Button eliminar = dialogo.findViewById(R.id.eliminarButton);
+                Button cancelar = dialogo.findViewById(R.id.cancelarButton);
+
+                eliminar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatabaseHelper dbHelper = new DatabaseHelper(mContext);
+                        dbHelper.eliminarMiembro(miembro.getId());
+                        finish();
+                    }
+                });
+
+                cancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogo.dismiss();
+                    }
+                });
+                dialogo.setCancelable(false);
+                dialogo.show();
             }
         });
     }
 
+
     private void receiveData(){
         Intent intent = getIntent();
         String json = intent.getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO);
-        Miembro miembro = new Gson().fromJson(json, Miembro.class);
+        miembro = new Gson().fromJson(json, Miembro.class);
         nombre.setText(miembro.getNombre());
         edad.setText(""+miembro.getEdad());
-
+        puntaje = miembro.getPuntaje();
+        Log.e("Database", "" + puntaje);
+        puntajeMostrado.setText(""+ miembro.getPuntaje());
     }
 }

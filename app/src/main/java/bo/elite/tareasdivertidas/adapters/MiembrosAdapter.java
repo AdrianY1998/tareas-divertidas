@@ -53,7 +53,8 @@ public class MiembrosAdapter extends BaseAdapter {
             viewHolder.icono = vista.findViewById(R.id.icono);
             viewHolder.nombre = vista.findViewById(R.id.nombreMiembro);
             viewHolder.edad = vista.findViewById(R.id.edadMiembro);
-            viewHolder.email = vista.findViewById(R.id.emailMiembro);
+            viewHolder.puntaje = vista.findViewById(R.id.puntaje);
+            //viewHolder.email = vista.findViewById(R.id.emailMiembro);
             vista.setTag(viewHolder); //Guardar para reciclar
         } else {
             viewHolder = (ViewHolder) vista.getTag(); //Obtener el dato reciclado
@@ -62,8 +63,10 @@ public class MiembrosAdapter extends BaseAdapter {
         Miembro miembro = items.get(position);
         viewHolder.nombre.setText(miembro.getNombre());
         viewHolder.edad.setText(toString().valueOf(miembro.getEdad()));
-        viewHolder.icono.setImageResource(miembro.getIcono());
-        viewHolder.email.setText(miembro.getCorreoElectronico());
+        //viewHolder.icono.setImageResource(miembro.getIcono());
+        viewHolder.icono.setImageResource(R.drawable.perfil_mujer_predeterminado);
+        viewHolder.puntaje.setText(miembro.getPuntaje() + " punto(s)");
+        //viewHolder.email.setText(miembro.getCorreoElectronico());
         return vista;
     }
 
@@ -71,6 +74,7 @@ public class MiembrosAdapter extends BaseAdapter {
         ImageView icono;
         TextView nombre;
         TextView edad;
-        TextView email;
+        //TextView email;
+        TextView puntaje;
     }
 }

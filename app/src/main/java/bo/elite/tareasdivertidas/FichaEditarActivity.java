@@ -3,6 +3,7 @@ package bo.elite.tareasdivertidas;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -11,22 +12,23 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import bo.elite.tareasdivertidas.db.DatabaseHelper;
+
 public class FichaEditarActivity extends AppCompatActivity {
     private Context mContext;
     private ImageView retornar;
     private ImageView fotoPerfil;
-    private TextView fichaTitulo;
     private EditText nombre;
-    private TextView edadTitle;
     private EditText edad;
-    private TextView puntajeTitle;
-    private TextView puntaje;
-    private TextView objetivoTitle;
+    private TextView puntaje;;
     private ImageView imagenPremio;
     private TextView nombrePremio;
-    private TextView necesitaTitle;
     private TextView puntajePremio;
     private TextView textoPuntos;
+    private ImageView modificar;
+    private Miembro miembro;
+    private int id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,42 +37,52 @@ public class FichaEditarActivity extends AppCompatActivity {
         mContext = this;
         initViews();
         addEvents();
-        //receiveData();
+        receiveData();
     }
 
     private void initViews(){
         retornar = findViewById(R.id.botonAtras);
         fotoPerfil = findViewById(R.id.fotoPerfil);
-        fichaTitulo = findViewById(R.id.fichaTitulo);
         nombre = findViewById(R.id.nombre);
-        edadTitle = findViewById(R.id.edadTittle);
         edad = findViewById(R.id.edad);
-        puntajeTitle = findViewById(R.id.puntajeTittle);
         puntaje = findViewById(R.id.puntaje);
-        objetivoTitle = findViewById(R.id.objetivoTittle);
         imagenPremio = findViewById(R.id.imagenPremio);
         nombrePremio = findViewById(R.id.nombrePremio);
-        necesitaTitle = findViewById(R.id.necesitaTittle);
         puntajePremio = findViewById(R.id.puntajePremio);
         textoPuntos = findViewById(R.id.textoPuntos);
+        modificar = findViewById(R.id.Modificar);
     }
     private void addEvents(){
         retornar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, MiembroActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
+        modificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, FichaMiembroActivity.class);
+                miembro.setNombre(nombre.getText().toString());
+                miembro.setEdad(Integer.parseInt(edad.getText().toString()));
+                String json = new Gson().toJson(miembro);
+                intent.putExtra(Constants.KEY_MIEMBRO_SELECCIONADO, json);
+                setResult(RESULT_OK, intent);
 
+                DatabaseHelper dbHelper = new DatabaseHelper(mContext);
+                dbHelper.modifyMiembro(id, nombre.getText().toString(), Integer.parseInt(edad.getText().toString()));
+                finish();
             }
+        });
+    }
 
     private void receiveData(){
         Intent intent = getIntent();
         String json = intent.getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO);
-        Miembro miembro = new Gson().fromJson(json, Miembro.class);
+        miembro = new Gson().fromJson(json, Miembro.class);
         nombre.setText(miembro.getNombre());
         edad.setText(""+miembro.getEdad());
+        id = miembro.getId();
 
     }
 }
