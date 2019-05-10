@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EvaluacionActivity"></activity>
+        <activity android:name=".EvaluacionDeMiembroActivity"></activity>
         <activity android:name=".TareasActivity"></activity>
         <activity android:name=".TareasDetailsActivity" />
         <activity android:name=".NuevaTarea" />

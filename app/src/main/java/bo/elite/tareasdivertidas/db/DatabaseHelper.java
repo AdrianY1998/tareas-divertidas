@@ -31,9 +31,9 @@ public class DatabaseHelper {
         contentValues.put("nombre", miembro.getNombre());
         contentValues.put("edad", miembro.getEdad());
         contentValues.put("email", miembro.getCorreoElectronico());
+        contentValues.put ("icono", miembro.getIcono());
         this.mDatabase.insert("miembros", null, contentValues);
         this.mDatabase.close();
-        //miembros.add(miembro);
     }
 
     public void modifyMiembro(int id, String nombre, int edad) {
