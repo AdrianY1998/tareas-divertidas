@@ -155,21 +155,26 @@ public class FichaMiembroActivity extends AppCompatActivity {
             puntaje = miembro.getPuntaje();
             Log.e("Database", "" + puntaje);
             puntajeMostrado.setText("" + miembro.getPuntaje());
-            nombrePremio.setText(miembro.getPremio().getNombrePremio());
-            puntajePremio.setText(String.valueOf(miembro.getPremio().getPuntaje()));
-
+            if(!miembro.getPremio().toString().equals(null)) {
+                nombrePremio.setText(miembro.getPremio().getNombrePremio());
+                puntajePremio.setText(String.valueOf(miembro.getPremio().getPuntaje()));
+            } else {
+                nombrePremio.setText("_");
+                puntajePremio.setText("0");
+            }
         }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
-        Premio premio = new Gson().fromJson(data.getStringExtra(Constants.KEY_PREMIO_SELECTED), Premio.class);
-        nombrePremio.setText(premio.getNombrePremio());
-        puntajePremio.setText(""+premio.getPuntaje());
-        miembro.setPremio(premio);
-        DatabaseHelper dbHelper = new DatabaseHelper(mContext);
-        dbHelper.añadirTareaMiembro(miembro.getId(), miembro.getPremio().getId());
+            Premio premio = new Gson().fromJson(data.getStringExtra(Constants.KEY_PREMIO_SELECTED), Premio.class);
+            nombrePremio.setText(premio.getNombrePremio());
+            puntajePremio.setText(""+premio.getPuntaje());
+            miembro.setPremio(premio);
+            DatabaseHelper dbHelper = new DatabaseHelper(mContext);
+            //dbHelper.añadirTareaMiembro(miembro.getId(), miembro.getPremio().getId());
+            dbHelper.añadirTareaMiembro(miembro.getId(), premio.getId());
         }
     }
 }

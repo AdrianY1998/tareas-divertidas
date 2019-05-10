@@ -23,7 +23,6 @@ public class Miembro {
     private int puntaje = 0;
     @Expose
     private Premio premio = new Premio();
-
     public Premio getPremio(){ return premio;}
     public void setPremio(Premio premio){
         this.premio = premio;
