@@ -35,7 +35,7 @@ public class CrearPremioActivity extends AppCompatActivity{
     }
     private void initViews() {
         mImage = findViewById(R.id.imagenPremio);
-        mNombre = findViewById(R.id.nombreMiembro);
+        mNombre = findViewById(R.id.nombrePremio);
         mPuntaje = findViewById(R.id.Puntaje);
         mAtras = findViewById(R.id.botonAtras);
         mAtras.setOnClickListener(new View.OnClickListener() {
