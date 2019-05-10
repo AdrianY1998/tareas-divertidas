@@ -53,7 +53,7 @@ public class fichaPremioActivity extends AppCompatActivity {
             startActivity(intent);
         }
         });
-        mNombre = findViewById(R.id.nombreMiembro);
+        mNombre = findViewById(R.id.nombrePremio);
         mPuntaje = findViewById(R.id.puntaje);
         mImage = findViewById(R.id.imagenPremio);
         mEditar = findViewById(R.id.editar);
