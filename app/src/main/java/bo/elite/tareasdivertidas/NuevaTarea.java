@@ -62,7 +62,7 @@ public class NuevaTarea extends AppCompatActivity {
         mBotonAtras = findViewById(R.id.botonAtras);
         mCrear = findViewById(R.id.crear);
         mLimpiar = findViewById(R.id.limpiar);
-        mTarea = findViewById(R.id.nombreTarea);
+        mTarea = findViewById(R.id.nombreTareaN);
         mPuntaje = findViewById(R.id.Puntaje);
         //mImagen = findViewById(R.id.imagen);
         //mCamara = findViewById(R.id.);

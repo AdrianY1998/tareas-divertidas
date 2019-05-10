@@ -35,7 +35,8 @@ public class TareasDetailsActivity extends AppCompatActivity {
     private TextView nombreTarea;
     private TextView puntajeTarea;
 
-    private ListView mMiembrosLista;
+    private ListView mMiembrosListaView;
+    private List<Miembro> mMiembrosLista = new ArrayList<>();
     private DatabaseHelper dbHelper;
     private MiembrosAdapter miembrosAdapter;
 
@@ -53,8 +54,13 @@ public class TareasDetailsActivity extends AppCompatActivity {
         addEvents();
 
         tarea = this.gson.fromJson(getIntent().getStringExtra(Constants.TAREA_SELECTED), Tarea.class);
+        dbHelper = new DatabaseHelper(mContext);
 
-        //dbHelper = new DatabaseHelper(mContext);
+        mMiembrosLista = dbHelper.getMiembrosAsignados(tarea.getId());
+        this.miembrosAdapter = new MiembrosAdapter(mContext, this.mMiembrosLista);
+        mMiembrosListaView.setAdapter(this.miembrosAdapter);
+
+
         //this.miembros = dbHelper.getMiembrosTareas(tarea.getId());
 
 
@@ -62,7 +68,20 @@ public class TareasDetailsActivity extends AppCompatActivity {
         deleteTarea(tarea);
         editTarea(tarea);
         nuevoMiebro();
+        //fillListMiembros();
     }
+
+    /*@Override
+    protected void onRestart() {
+        super.onRestart();
+        //dbHelper = new DatabaseHelper(mContext);
+        //mMiembrosLista = dbHelper.getMiembrosAsignados(tarea.getId());
+        ///////////////
+        this.miembrosAdapter = new MiembrosAdapter(mContext, this.mMiembrosLista);
+        mMiembrosListaView.setAdapter(this.miembrosAdapter);
+
+    }*/
+
 
     private void initViews() {
         this.mBotonAtras = findViewById(R.id.botonAtras);
@@ -73,7 +92,10 @@ public class TareasDetailsActivity extends AppCompatActivity {
         this.mEditar = findViewById(R.id.editar);
         this.mNuevoMiembro = findViewById(R.id.nuevoMiembro);
 
-        mMiembrosLista = findViewById(R.id.listaMiembros);
+        mMiembrosListaView = findViewById(R.id.listaMiembros);
+
+        this.miembrosAdapter = new MiembrosAdapter(mContext, this.mMiembrosLista);
+        mMiembrosListaView.setAdapter(this.miembrosAdapter);
 
 
     }
@@ -88,12 +110,24 @@ public class TareasDetailsActivity extends AppCompatActivity {
         });
     }
 
+    /*private void fillListMiembros(){
+        mMiembrosLista = dbHelper.getMiembrosAsignados(tarea.getId());
+        ///////////////
+        this.miembrosAdapter = new MiembrosAdapter(mContext, this.mMiembrosLista);
+        mMiembrosListaView.setAdapter(this.miembrosAdapter);
+    }*/
+
     private void nuevoMiebro(){
         mNuevoMiembro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AsignarMiembrosTareas.class);
+                intent.putExtra(Constants.MIEMBRO_SELECCIONADO_TAREA, new Gson().toJson(tarea));
+                setResult(RESULT_OK, intent);
                 startActivity(intent);
+
+                //Intent intent = new Intent(mContext, AsignarMiembrosTareas.class);
+                //startActivity(intent);
             }
         });
     }
@@ -213,16 +247,17 @@ public class TareasDetailsActivity extends AppCompatActivity {
         this.puntajeTarea.setText(String.valueOf(tarea.getPointTarea()));
     }
 
-    /*protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         Miembro miembro = this.gson.fromJson(getIntent().getStringExtra(Constants.MIEMBRO_SELECCIONADO_TAREA), Miembro.class);
         dbHelper.insertTareaMiembro(tarea, miembro);
+        Log.e("MIEMBROS", ": " + new Gson().toJson(miembro));
 
         //Cada vez que retorna a la activity actualizar la lista de miembros y actualizar el adapter notifyDataSetChanged
-        this.miembros.clear();
+        /*this.miembros.clear();
         this.miembros.addAll(dbHelper.getMiembrosTareas(tarea.getId()));
         this.miembrosAdapter.notifyDataSetChanged();
-        Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembros));
-    }*/
+        Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembros));*/
+    }
 }

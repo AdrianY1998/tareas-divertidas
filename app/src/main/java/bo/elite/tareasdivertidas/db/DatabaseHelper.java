@@ -182,14 +182,44 @@ public class DatabaseHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("idTarea", tarea.getId());
         contentValues.put("idMiembro", miembro.getId());
-        contentValues.put("nombre", miembro.getNombre());
-        contentValues.put("edad", miembro.getEdad());
-        contentValues.put("email", miembro.getCorreoElectronico());
 
         this.mDatabase.insert("relaciontm",
                 null,
                 contentValues);
         this.mDatabase.close();
+    }
+
+    public List<Miembro> getMiembrosAsignados(int idtarea) {
+        String[] params = new String[1];
+        params[0] = String.valueOf(idtarea);
+
+        List<Miembro> results = new ArrayList<>();
+        Cursor cursor = this.mDatabase.rawQuery("SELECT " +
+                " nombre," +
+                " edad," +
+                " email," +
+                "id" +
+                " FROM miembros as miembro WHERE id in" +
+                "(SELECT idMiembro FROM relaciontm WHERE idTarea=?)", params);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String nombre = cursor.getString(0);
+                int edad = cursor.getInt(1);
+                String email = cursor.getString(2);
+                int id = cursor.getInt(3);
+
+                Miembro miembro = new Miembro();
+                miembro.setId(id);
+                miembro.setNombre(nombre);
+                miembro.setEdad(edad);
+                miembro.setCorreoElectronico(email);
+
+                //Adicionar a la lista
+                results.add(miembro);
+            } while (cursor.moveToNext());
+        }
+        return results;
     }
 
     public void addPremio(Premio premio) {

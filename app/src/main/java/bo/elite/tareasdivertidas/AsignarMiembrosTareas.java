@@ -19,15 +19,19 @@ import java.util.List;
 
 import bo.elite.tareasdivertidas.adapters.MiembrosAdapter;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
+import bo.elite.tareasdivertidas.models.Tarea;
 
 public class AsignarMiembrosTareas extends AppCompatActivity {
     private Context mContext;
     private List<Miembro> miembros = new ArrayList<>();
     private DatabaseHelper dbHelper;
+    private Tarea tarea;
 
     private ListView mMiembrosLista;
     private MiembrosAdapter miembrosAdapter;
     private ImageView mBotonAtras;
+
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,25 +41,34 @@ public class AsignarMiembrosTareas extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(mContext);
         this.miembros = dbHelper.getMiembros();
+        tarea = this.gson.fromJson(getIntent().getStringExtra(Constants.MIEMBRO_SELECCIONADO_TAREA), Tarea.class);
 
         initViews();
         addEvents();
     }
 
     private void initViews() {
+
         this.mBotonAtras = findViewById(R.id.botonAtras);
         mMiembrosLista = findViewById(R.id.miembrosListaA);
 
         this.miembrosAdapter = new MiembrosAdapter(mContext, this.miembros);
         mMiembrosLista.setAdapter(this.miembrosAdapter);
         mMiembrosLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            private Gson gson = new Gson();
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(mContext, TareasActivity.class);
                 Miembro miembro = miembros.get(position);
-                Intent intent = new Intent();
-                intent.putExtra(Constants.MIEMBRO_SELECCIONADO_TAREA, new Gson().toJson(miembro));
-                setResult(RESULT_OK, intent);
-                finish();
+                //Intent intent = new Intent();
+                //intent.putExtra(Constants.MIEMBRO_SELECCIONADO_TAREA, new Gson().toJson(miembro));
+
+
+                //Miembro miembro = this.gson.fromJson(getIntent().getStringExtra(Constants.MIEMBRO_SELECCIONADO_TAREA_2), Miembro.class);
+                dbHelper.insertTareaMiembro(tarea, miembro);
+                Log.e("MIEMBROS", ": " + new Gson().toJson(miembro));
+                startActivity(intent);
+                //finish();
             }
         });
     }
@@ -68,4 +81,10 @@ public class AsignarMiembrosTareas extends AppCompatActivity {
             }
         });
     }
+
+    /*protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }*/
+
 }
