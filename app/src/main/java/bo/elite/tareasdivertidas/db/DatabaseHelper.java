@@ -53,11 +53,11 @@ public class DatabaseHelper {
         mDatabase.delete("miembros", "id=?", params);
     }
 
-    public void añadirTareaMiembro(int idMiembro, int idTarea){
+    public void añadirPremioMiembro(int idMiembro, int idPremio){
         String[] params = new String[1];
         params[0] = String.valueOf(idMiembro);
         ContentValues contentValues = new ContentValues();
-        contentValues.put("premioID", idTarea);
+        contentValues.put("premioID", idPremio);
         int updated = mDatabase.update("miembros", contentValues, "id=?", params);
         Log.d("Registros actualizados",""+updated);
         mDatabase.close();
@@ -84,7 +84,7 @@ public class DatabaseHelper {
                 miembro.setNombre(nombre);
                 miembro.setEdad(edad);
                 miembro.setCorreoElectronico(email);
-                miembro.setPremio(getPremio(premioId));
+                miembro.setIDPremio(premioId);
                 //Adicionar a la lista
                 results.add(miembro);
             } while (cursor.moveToNext());
@@ -93,28 +93,22 @@ public class DatabaseHelper {
     }
 
     public Premio getPremio(int idPremio) {
-        if (String.valueOf(idPremio).equals(null)) {
-            String[] params2 = new String[1];
-            params2[0] = String.valueOf(idPremio);
+            String[] params = new String[1];
+            params[0] = String.valueOf(idPremio);
             Cursor cursor = this.mDatabase.rawQuery("SELECT " +
-                    " id," +
                     " nombre," +
                     " puntaje," +
                     " image" +
-                    " FROM premios", params2);
-            int id = cursor.getInt(0);
-            String nombre = cursor.getString(1);
-            int puntaje = cursor.getInt(2);
-            int image = cursor.getInt(3);
+                    " FROM premios", params);
+            String nombre = cursor.getString(0);
+            int puntaje = cursor.getInt(1);
+            int image = cursor.getInt(2);
             Premio premio = new Premio();
-            premio.setId(id);
+            premio.setId(idPremio);
             premio.setNombrePremio(nombre);
             premio.setPuntaje(puntaje);
             premio.setImage(image);
             return premio;
-        } else {
-            return null;
-        }
     }
 
     public void insertTarea(Tarea tarea){

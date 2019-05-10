@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -234,6 +235,7 @@ public class CrearMiembroActivity extends AppCompatActivity {
         miembro.setNombre(mNombre.getText().toString());
         miembro.setEdad(Integer.parseInt(mEdad.getText().toString()));
         miembro.setCorreoElectronico(email.getText().toString());
+        //Drawable imagen
         miembro.setIcono(Constants.CODIGO_TRANSACCION_FOTO_2);
 
         //Adicionar a la clase singleton
