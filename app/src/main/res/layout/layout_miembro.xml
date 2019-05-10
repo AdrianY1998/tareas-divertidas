@@ -7,7 +7,7 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/icono"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="start"
@@ -21,7 +21,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/nombrePremio"
+            android:id="@+id/nombreMiembro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre"

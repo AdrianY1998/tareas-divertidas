@@ -34,7 +34,6 @@ public class DatabaseHelper {
         this.mDatabase.insert("miembros", null, contentValues);
         this.mDatabase.close();
         //miembros.add(miembro);
-
     }
 
     public void modifyMiembro(int id, String nombre, int edad){
@@ -94,6 +93,7 @@ public class DatabaseHelper {
     }
 
     public Premio getPremio(int idPremio) {
+        if (String.valueOf(idPremio).equals(null)) {
             String[] params2 = new String[1];
             params2[0] = String.valueOf(idPremio);
             Cursor cursor = this.mDatabase.rawQuery("SELECT " +
@@ -112,7 +112,10 @@ public class DatabaseHelper {
             premio.setPuntaje(puntaje);
             premio.setImage(image);
             return premio;
+        } else {
+            return null;
         }
+    }
 
     public void insertTarea(Tarea tarea){
         ContentValues contentValues = new ContentValues();
