@@ -179,12 +179,7 @@ public class TareasDetailsActivity extends AppCompatActivity {
         mEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(tarea.getId()<=9){
-                    noConfirmDelete();
-                }else if(tarea.getId()>9){
                     confirmDelete(tarea);
-                }
             }
         });
     }
@@ -217,22 +212,6 @@ public class TareasDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 confirm = 0;
-                dialogo.dismiss();
-            }
-        });
-        dialogo.setCancelable(false);
-        dialogo.show();
-    }
-
-    private void noConfirmDelete(){
-        final Dialog dialogo = new Dialog(mContext);
-        dialogo.setContentView(R.layout.layout_confirmacion_nopuede);
-
-        Button okey = dialogo.findViewById(R.id.okButton);
-
-        okey.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 dialogo.dismiss();
             }
         });

@@ -157,16 +157,13 @@ public class DatabaseHelper {
     }
 
     public void deleteT(int id) {
-        if (id > 9) {
             String[] params = new String[1];
             params[0] = String.valueOf(id);
 
             mDatabase.delete("tareas", "id=?", params);
-        }
     }
 
     public void updateT(int id, String nombreT, int puntajeT) {
-        if (id > 9) {
             String[] params = new String[1];
             params[0] = String.valueOf(id);
 
@@ -175,7 +172,6 @@ public class DatabaseHelper {
             cv.put("puntaje", puntajeT);
 
             mDatabase.update("tareas", cv, "id=?", params);
-        }
     }
 
     public void insertTareaMiembro(Tarea tarea, Miembro miembro) {
