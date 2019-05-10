@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.Miembro;
-import bo.elite.tareasdivertidas.MiembrosAEvaluar;
 import bo.elite.tareasdivertidas.R;
 
 public class EvaluacionAdapter extends BaseAdapter {
