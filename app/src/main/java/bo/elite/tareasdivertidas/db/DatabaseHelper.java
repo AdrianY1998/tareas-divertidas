@@ -36,7 +36,7 @@ public class DatabaseHelper {
         //miembros.add(miembro);
     }
 
-    public void modifyMiembro(int id, String nombre, int edad){
+    public void modifyMiembro(int id, String nombre, int edad) {
         String[] params = new String[1];
         params[0] = String.valueOf(id);
         ContentValues contentValues = new ContentValues();
@@ -46,22 +46,23 @@ public class DatabaseHelper {
         mDatabase.close();
     }
 
-    public void eliminarMiembro(int id){
+    public void eliminarMiembro(int id) {
         String[] params = new String[1];
         params[0] = String.valueOf(id);
 
         mDatabase.delete("miembros", "id=?", params);
     }
 
-    public void añadirPremioMiembro(int idMiembro, int idPremio){
+    public void añadirPremioMiembro(int idMiembro, int idPremio) {
         String[] params = new String[1];
         params[0] = String.valueOf(idMiembro);
         ContentValues contentValues = new ContentValues();
         contentValues.put("premioID", idPremio);
         int updated = mDatabase.update("miembros", contentValues, "id=?", params);
-        Log.d("Registros actualizados",""+updated);
+        Log.d("Registros actualizados", "" + updated);
         mDatabase.close();
     }
+
     public List<Miembro> getMiembros() {
         List<Miembro> results = new ArrayList<>();
         Cursor cursor = this.mDatabase.rawQuery("SELECT " +
@@ -93,25 +94,28 @@ public class DatabaseHelper {
     }
 
     public Premio getPremio(int idPremio) {
-            String[] params = new String[1];
-            params[0] = String.valueOf(idPremio);
-            Cursor cursor = this.mDatabase.rawQuery("SELECT " +
-                    " nombre," +
-                    " puntaje," +
-                    " image" +
-                    " FROM premios", params);
+        String[] params = new String[1];
+        params[0] = String.valueOf(idPremio);
+        Cursor cursor = this.mDatabase.rawQuery("SELECT " +
+                " nombre," +
+                " puntaje," +
+                " image" +
+                " FROM premios WHERE id=?", params);
+
+        Premio premio = new Premio();
+        if (cursor.moveToFirst()) {
             String nombre = cursor.getString(0);
             int puntaje = cursor.getInt(1);
             int image = cursor.getInt(2);
-            Premio premio = new Premio();
             premio.setId(idPremio);
             premio.setNombrePremio(nombre);
             premio.setPuntaje(puntaje);
             premio.setImage(image);
-            return premio;
+        }
+        return premio;
     }
 
-    public void insertTarea(Tarea tarea){
+    public void insertTarea(Tarea tarea) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("tareaN", tarea.getNameTarea());
         contentValues.put("puntaje", tarea.getPointTarea());
@@ -124,7 +128,7 @@ public class DatabaseHelper {
     }
 
 
-    public List<Tarea> getTareas(){
+    public List<Tarea> getTareas() {
         List<Tarea> results = new ArrayList<>();
         Cursor cursor = this.mDatabase.rawQuery("SELECT " +
                 " id," +
@@ -133,8 +137,8 @@ public class DatabaseHelper {
                 " imagen" +
                 " FROM tareas", null);
 
-        if (cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 int id = cursor.getInt(0);
                 String tareaN = cursor.getString(1);
                 int puntaje = cursor.getInt(2);
@@ -147,13 +151,13 @@ public class DatabaseHelper {
                 tarea.setImageTarea(imagen);
 
                 results.add(tarea);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return results;
     }
 
     public void deleteT(int id) {
-        if (id>9) {
+        if (id > 9) {
             String[] params = new String[1];
             params[0] = String.valueOf(id);
 
@@ -161,8 +165,8 @@ public class DatabaseHelper {
         }
     }
 
-    public void updateT(int id, String nombreT, int puntajeT){
-        if(id>9){
+    public void updateT(int id, String nombreT, int puntajeT) {
+        if (id > 9) {
             String[] params = new String[1];
             params[0] = String.valueOf(id);
 
@@ -174,7 +178,7 @@ public class DatabaseHelper {
         }
     }
 
-    public void insertTareaMiembro(Tarea tarea, Miembro miembro){
+    public void insertTareaMiembro(Tarea tarea, Miembro miembro) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("idTarea", tarea.getId());
         contentValues.put("idMiembro", miembro.getId());
@@ -214,7 +218,7 @@ public class DatabaseHelper {
                 int imagen = cursor.getInt(2);
                 int id = cursor.getInt(3);
 
-                Premio premio= new Premio();
+                Premio premio = new Premio();
                 premio.setId(id);
                 premio.setNombrePremio(nombre);
                 premio.setPuntaje(puntaje);
@@ -228,13 +232,13 @@ public class DatabaseHelper {
     }
 
     public void eliminarP(int id) {
-            String[] params = new String[1];
-            params[0] = String.valueOf(id);
+        String[] params = new String[1];
+        params[0] = String.valueOf(id);
 
-            mDatabase.delete("premios", "id=?", params);
+        mDatabase.delete("premios", "id=?", params);
     }
 
-    public void editarP (int id, String nuevoN , int nuevoP){
+    public void editarP(int id, String nuevoN, int nuevoP) {
         String[] params = new String[1];
         params[0] = String.valueOf(id);
 
@@ -242,9 +246,8 @@ public class DatabaseHelper {
         cv.put("nombre", nuevoN);
         cv.put("puntaje", nuevoP);
 
-        mDatabase.update("premios", cv , "id=?", params);
+        mDatabase.update("premios", cv, "id=?", params);
     }
-
 
 
     //public static DatabaseHelper getInstance(){
