@@ -234,7 +234,7 @@ public class CrearMiembroActivity extends AppCompatActivity {
         miembro.setNombre(mNombre.getText().toString());
         miembro.setEdad(Integer.parseInt(mEdad.getText().toString()));
         miembro.setCorreoElectronico(email.getText().toString());
-        miembro.setIcono(Constants.CODIGO_TRANSACCION_FOTO_2);
+        miembro.setIcono(R.drawable.user);
 
         //Adicionar a la clase singleton
         DatabaseHelper dbHelper = new DatabaseHelper(mContext);

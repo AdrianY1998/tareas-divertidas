@@ -30,6 +30,7 @@ public class Database extends SQLiteOpenHelper {
                 " nombre VARCHAR NOT NULL," +
                 " edad INTEGER," +
                 " email VARCHAR NOT NULL,"+
+                "icono INTEGER," +
                 "premioID INTEGER)");
         Log.d("Database", "Created");
 
@@ -115,19 +116,19 @@ public class Database extends SQLiteOpenHelper {
         values.clear();
 
         values.put("nombre", "Nuevo libro");
-        values.put("puntaje", 1000);
+        values.put("puntaje", 2500);
         values.put("image", R.drawable.nuevo_libro);
         db.insert("premios", null, values);
         values.clear();
 
         values.put("nombre", "Regalo");
-        values.put("puntaje", 1000);
+        values.put("puntaje", 2000);
         values.put("image", R.drawable.regalo);
         db.insert("premios", null, values);
         values.clear();
 
         values.put("nombre", "Nuevo videojuegos");
-        values.put("puntaje", 1000);
+        values.put("puntaje", 1500);
         values.put("image", R.drawable.videojuegos);
         db.insert("premios", null, values);
         values.clear();
