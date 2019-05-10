@@ -11,6 +11,7 @@ public class Constants {
     public static final String TAREA_NUEVA = "tareaNueva";
     public static final String TAREA_ELIMINADA = "tareaNo";
     public static final String MIEMBRO_SELECCIONADO_TAREA = "miembroTarea";
+    public static final String MIEMBRO_SELECCIONADO_TAREA_2 = "miembroTarea2";
 
     public static final String DATABASE_NAME = "tadi1.db";//db, sqlite
     public static final int DATABASE_VERSION = 1;

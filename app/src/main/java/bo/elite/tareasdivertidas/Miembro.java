@@ -22,10 +22,11 @@ public class Miembro {
     @Expose
     private int puntaje = 0;
     @Expose
-    private Premio premio = new Premio();
-    public Premio getPremio(){ return premio;}
-    public void setPremio(Premio premio){
-        this.premio = premio;
+    private int IDpremio = 1;
+
+    public int getIDPremio(){ return IDpremio;}
+    public void setIDPremio(int IDpremio){
+        this.IDpremio = IDpremio;
     }
     public int getPuntaje(){
         return puntaje;

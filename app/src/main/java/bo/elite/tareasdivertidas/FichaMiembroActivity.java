@@ -50,7 +50,7 @@ public class FichaMiembroActivity extends AppCompatActivity {
         edad = findViewById(R.id.edad);
         puntajeMostrado = findViewById(R.id.puntaje);
         imagenPremio = findViewById(R.id.imagenPremio);
-        nombrePremio = findViewById(R.id.nombreMiembro);
+        nombrePremio = findViewById(R.id.nombrePremio);
         puntajePremio = findViewById(R.id.puntajePremio);
         editarMiembro = findViewById(R.id.editarMiembro);
         cambiarObjetivo = findViewById(R.id.cambiarObjetivo);
@@ -155,13 +155,10 @@ public class FichaMiembroActivity extends AppCompatActivity {
             puntaje = miembro.getPuntaje();
             Log.e("Database", "" + puntaje);
             puntajeMostrado.setText("" + miembro.getPuntaje());
-            if(!miembro.getPremio().toString().equals(null)) {
-                nombrePremio.setText(miembro.getPremio().getNombrePremio());
-                puntajePremio.setText(String.valueOf(miembro.getPremio().getPuntaje()));
-            } else {
-                nombrePremio.setText("_");
-                puntajePremio.setText("0");
-            }
+            DatabaseHelper dbHelper = new DatabaseHelper(mContext);
+            Premio premio = dbHelper.getPremio(miembro.getIDPremio());
+            nombrePremio.setText(premio.getNombrePremio());
+            puntajePremio.setText(String.valueOf(premio.getPuntaje()));
         }
     }
     @Override
@@ -171,10 +168,10 @@ public class FichaMiembroActivity extends AppCompatActivity {
             Premio premio = new Gson().fromJson(data.getStringExtra(Constants.KEY_PREMIO_SELECTED), Premio.class);
             nombrePremio.setText(premio.getNombrePremio());
             puntajePremio.setText(""+premio.getPuntaje());
-            miembro.setPremio(premio);
+            miembro.setIDPremio(premio.getId());
             DatabaseHelper dbHelper = new DatabaseHelper(mContext);
             //dbHelper.añadirTareaMiembro(miembro.getId(), miembro.getPremio().getId());
-            dbHelper.añadirTareaMiembro(miembro.getId(), premio.getId());
+            dbHelper.añadirPremioMiembro(miembro.getId(), premio.getId());
         }
     }
 }
