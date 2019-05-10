@@ -17,7 +17,7 @@
         android:background="@color/colorPrimaryDark">
 
         <TextView
-            android:id="@+id/nombrePremio"
+            android:id="@+id/nombreTarea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
