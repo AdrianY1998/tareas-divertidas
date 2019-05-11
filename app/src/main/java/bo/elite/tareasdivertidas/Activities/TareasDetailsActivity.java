@@ -89,7 +89,7 @@ public class TareasDetailsActivity extends AppCompatActivity {
     private void initViews() {
         this.mBotonAtras = findViewById(R.id.botonAtras);
         this.imagenTarea= findViewById(R.id.imagenTarea);
-        this.nombreTarea = findViewById(R.id.nombreTarea);
+        this.nombreTarea = findViewById(R.id.nombreT);
         this.puntajeTarea = findViewById(R.id.puntajeTarea);
         this.mEliminar = findViewById(R.id.eliminar);
         this.mEditar = findViewById(R.id.editar);
