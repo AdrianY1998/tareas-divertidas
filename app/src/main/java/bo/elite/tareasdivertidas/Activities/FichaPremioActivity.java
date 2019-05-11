@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas.Activitys;
+package bo.elite.tareasdivertidas.Activities;
 
 import android.app.Dialog;
 import android.content.Context;

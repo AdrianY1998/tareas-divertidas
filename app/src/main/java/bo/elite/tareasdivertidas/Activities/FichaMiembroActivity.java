@@ -1,8 +1,9 @@
-package bo.elite.tareasdivertidas.Activitys;
+package bo.elite.tareasdivertidas.Activities;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -157,12 +158,16 @@ public class FichaMiembroActivity extends AppCompatActivity {
             nombre.setText(miembro.getNombre());
             edad.setText("" + miembro.getEdad());
             puntaje = miembro.getPuntaje();
+            Drawable image = getResources().getDrawable(miembro.getIcono());
+            fotoPerfil.setImageDrawable(image);
             Log.e("Database", "" + puntaje);
             puntajeMostrado.setText("" + miembro.getPuntaje());
             DatabaseHelper dbHelper = new DatabaseHelper(mContext);
             Premio premio = dbHelper.getPremio(miembro.getIDPremio());
             nombrePremio.setText(premio.getNombrePremio());
             puntajePremio.setText(String.valueOf(premio.getPuntaje()));
+            Drawable imagen = getResources().getDrawable(premio.getImage());
+            imagenPremio.setImageDrawable(imagen);
         }
     }
     @Override

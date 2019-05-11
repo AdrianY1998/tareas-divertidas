@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas.Activitys;
+package bo.elite.tareasdivertidas.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,17 +22,15 @@ import bo.elite.tareasdivertidas.R;
 import bo.elite.tareasdivertidas.adapters.premiosAdapter;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
 
-public class PremiosActivity extends AppCompatActivity {
+public class PremiosModificarActivity extends AppCompatActivity {
 
-    private static final String LOG = PremiosActivity.class.getName();
     private Context mContext;
 
-    private ImageView mNuevo;
-    private ImageView mBotonInicio;
+    private ImageView mBotonAtras;
     private List<Premio> premios = new ArrayList<>();
     private Premio premio;
     private ListView premiosLista;
-    private premiosAdapter premiosAdapter;
+    private bo.elite.tareasdivertidas.adapters.premiosAdapter premiosAdapter;
 
     private DatabaseHelper dbHelper;
 
@@ -42,7 +40,7 @@ public class PremiosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_premios);
+        setContentView(R.layout.layout_premios_seleccionar);
         mContext = this;
 
         dbHelper = new DatabaseHelper(mContext);
@@ -53,20 +51,15 @@ public class PremiosActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        mNuevo = findViewById(R.id.crear);
-        mBotonInicio = findViewById(R.id.inicio);
-        mNuevo.setOnClickListener(new View.OnClickListener() {
+        mBotonAtras = findViewById(R.id.inicio);
+        mBotonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onCrearPremioClick(v);
-            }
-        });
-
-        mBotonInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, MenuActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(mContext, FichaMiembroActivity.class);
+                //startActivity(intent);
+                Intent intent = getIntent();
+                setResult(RESULT_CANCELED, intent);
+                finish();
             }
         });
         premiosLista = findViewById(R.id.premiosVista);
@@ -78,16 +71,12 @@ public class PremiosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Premio premio = premios.get(position);
-                Intent intent = new Intent(mContext, FichaPremioActivity.class);
+                Intent intent = getIntent();
                 intent.putExtra(Constants.KEY_PREMIO_SELECTED, new Gson().toJson(premio));
-                startActivity(intent);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
-    }
-
-    public void onCrearPremioClick(View view) {
-        Intent intent = new Intent(mContext, CrearPremioActivity.class);
-        startActivityForResult(intent, Constants.KEY_PREMIO);
     }
 
     @Override

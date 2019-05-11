@@ -1,10 +1,10 @@
-package bo.elite.tareasdivertidas.Activitys;
+package bo.elite.tareasdivertidas.Activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,45 +19,29 @@ import java.util.List;
 import bo.elite.tareasdivertidas.Constants;
 import bo.elite.tareasdivertidas.models.Miembro;
 import bo.elite.tareasdivertidas.R;
-import bo.elite.tareasdivertidas.adapters.MiembrosAdapter;
-
+import bo.elite.tareasdivertidas.adapters.EvaluacionAdapter;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
 
-public class MiembroActivity extends AppCompatActivity {
-    private static final String LOG = MiembroActivity.class.getName();
-    private Context mContext;
-    //private List<Miembro> miembros = MiembrosSingleton.getInstance().getMiembros();
-
+public class EvaluacionActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     private List<Miembro> miembros = new ArrayList<>();
-
-    private ImageView mNuevoMiembro;
+    private Context mContext;
     private ImageView mBotonAtras;
-    private Miembro miembro;
     private ListView miembrosLista;
-    private MiembrosAdapter miembrosAdapter;
-
+    private EvaluacionAdapter evaluacionAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.miembro_layout);
+        setContentView(R.layout.activity_evaluacion);
         mContext = this;
         dbHelper = new DatabaseHelper(mContext);
-        this.miembros = dbHelper.getMiembros();
+        miembros = dbHelper.getMiembros();
         initViews();
     }
 
     private void initViews() {
-        mNuevoMiembro = findViewById(R.id.nuevoMiembro);
-        mBotonAtras = findViewById(R.id.botonHome);
-        //mEliminarMiembro = findViewById(R.id.eliminar);
-        mNuevoMiembro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nuevoMiembroClick(v);
-            }
-        });
+        mBotonAtras=findViewById(R.id.botonHome);
         mBotonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,31 +49,20 @@ public class MiembroActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        miembrosLista =findViewById(R.id.miembrosAEvaluarLista);
 
-        // item demo
-
-        miembrosLista = findViewById(R.id.miembrosLista);
-
-        this.miembrosAdapter = new MiembrosAdapter(mContext, this.miembros);
-        miembrosLista.setAdapter(this.miembrosAdapter);
+        this.evaluacionAdapter= new EvaluacionAdapter(mContext, this.miembros);
+        miembrosLista.setAdapter(this.evaluacionAdapter);
         miembrosLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Miembro miembro = miembros.get(position);
-                Intent intent = new Intent(mContext, FichaMiembroActivity.class);
-                intent.putExtra(Constants.KEY_MIEMBRO_SELECCIONADO, new Gson().toJson(miembro));
+                Intent intent = new Intent(mContext, EvaluacionDeMiembroActivity.class);
+                intent.putExtra(Constants.KEY_MIEMBRO_A_EVALUAR_SELECCIONADO, new Gson().toJson(miembro));
                 startActivity(intent);
             }
         });
-
     }
-
-
-    public void nuevoMiembroClick(View view) {
-        Intent intent = new Intent(mContext, CrearMiembroActivity.class);
-        startActivityForResult(intent, Constants.KEY_MIEMBRO);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -97,7 +70,7 @@ public class MiembroActivity extends AppCompatActivity {
         //Cada vez que retorna a la activity actualizar la lista de miembros y actualizar el adapter notifyDataSetChanged
         this.miembros.clear();
         this.miembros.addAll(dbHelper.getMiembros());
-        this.miembrosAdapter.notifyDataSetChanged();
+        this.evaluacionAdapter.notifyDataSetChanged();
         Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembros));
     }
 }
