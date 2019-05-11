@@ -88,6 +88,8 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
                         dialogo.dismiss();
                     }
                 });
+                dialogo.setCancelable(false);
+                dialogo.show();
             }
         });
 

@@ -254,6 +254,14 @@ public class DatabaseHelper {
         return results;
     }
 
+    public void deleteTareaAsignada(int idtarea, int idmiembro) {
+        String[] params = new String[2];
+        params[0] = String.valueOf(idtarea);
+        params[1] = String.valueOf(idmiembro);
+
+        mDatabase.delete("tareas", "id=?", params);
+    }
+
     public void addPremio(Premio premio) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nombre", premio.getNombrePremio());
