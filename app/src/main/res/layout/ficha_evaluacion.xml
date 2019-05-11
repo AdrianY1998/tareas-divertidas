@@ -74,8 +74,8 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/tareas"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/TareasM"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_above="@+id/evaluar"

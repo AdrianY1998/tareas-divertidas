@@ -5,30 +5,49 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import bo.elite.tareasdivertidas.Callback.TareaCallback;
 import bo.elite.tareasdivertidas.Constants;
+import bo.elite.tareasdivertidas.adapters.tareaRecyclerViewAdapter2;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
 import bo.elite.tareasdivertidas.models.Miembro;
 import bo.elite.tareasdivertidas.R;
+import bo.elite.tareasdivertidas.models.Tarea;
 
 public class EvaluacionDeMiembroActivity extends AppCompatActivity {
     private Context mContext;
+
+    private List<Tarea> tarea = new ArrayList<>();
+    private DatabaseHelper dbHelper;
+
     private ImageView mAtras;
     private TextView mNombre;
     private ImageView mImage;
     private ImageView mEvaluar;
     private Miembro miembro;
+    private RecyclerView recyclerView;
+    private tareaRecyclerViewAdapter2 tareaAdapter;
+
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ficha_evaluacion);
         mContext = this;
+
+        dbHelper = new DatabaseHelper(mContext);
+
         initViews();
 
         Intent intent = getIntent();
@@ -39,7 +58,21 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
             mNombre.setText(miembro.getNombre());
             Drawable image = getResources().getDrawable(miembro.getIcono());
             mImage.setImageDrawable(image);
+
+            this.tarea = dbHelper.getTareaAsignadas(miembro.getId());
         }
+
+        tareaAdapter = new tareaRecyclerViewAdapter2(this, tarea);
+        tareaAdapter.setTareaCallback(new TareaCallback() {
+            @Override
+            public void onTareaClick(Tarea tarea) {
+
+            }
+        });
+
+        recyclerView.setAdapter(tareaAdapter);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
         //Miembro miembro = this.gson.fromJson(getIntent().getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO), Miembro.class);
         //Tarea tarea = this.gson.fromJson(getIntent().getStringExtra(Constants.KEY_MIEMBRO_A_EVALUAR_SELECCIONADO), Tarea.class);
 
@@ -58,6 +91,7 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
         mEvaluar = findViewById(R.id.evaluar);
         mNombre = findViewById(R.id.nombreUser);
         mImage = findViewById(R.id.imagen);
+        recyclerView = findViewById(R.id.TareasM);
 
     }
     private void datosMiembro(Miembro miembro){
