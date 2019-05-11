@@ -221,6 +221,39 @@ public class DatabaseHelper {
         return results;
     }
 
+    public List<Tarea> getTareaAsignadas(int idmiembro){
+        String[] params = new String[1];
+        params[0] = String.valueOf(idmiembro);
+
+        List<Tarea> results = new ArrayList<>();
+        Cursor cursor = this.mDatabase.rawQuery("SELECT " +
+                " id," +
+                " tareaN," +
+                " puntaje," +
+                "imagen" +
+                " FROM tareas as tarea WHERE id in" +
+                "(SELECT idTarea FROM relaciontm WHERE idMiembro=?)", params);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String tareaN = cursor.getString(1);
+                int puntaje = cursor.getInt(2);
+                int imagen = cursor.getInt(3);
+
+                Tarea tarea = new Tarea();
+                tarea.setId(id);
+                tarea.setNameTarea(tareaN);
+                tarea.setPointTarea(puntaje);
+                tarea.setImageTarea(imagen);
+
+                //Adicionar a la lista
+                results.add(tarea);
+            } while (cursor.moveToNext());
+        }
+        return results;
+    }
+
     public void addPremio(Premio premio) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nombre", premio.getNombrePremio());
