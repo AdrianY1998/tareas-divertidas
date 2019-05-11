@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas.Avctivitys;
+package bo.elite.tareasdivertidas.Activitys;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +19,6 @@ import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import bo.elite.tareasdivertidas.Avctivitys.TareasActivity;
 import bo.elite.tareasdivertidas.Constants;
 import bo.elite.tareasdivertidas.R;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;

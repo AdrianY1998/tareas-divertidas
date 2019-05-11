@@ -12,28 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Avctivitys.EvaluacionActivity"></activity>
-        <activity android:name=".Avctivitys.EvaluacionDeMiembroActivity"></activity>
-        <activity android:name=".Avctivitys.TareasActivity"></activity>
-        <activity android:name=".Avctivitys.TareasDetailsActivity" />
-        <activity android:name=".Avctivitys.NuevaTarea" />
-        <activity android:name=".Avctivitys.AsignarMiembrosTareas"/>
-        <activity android:name=".Avctivitys.MiembroActivity" />
-        <activity android:name=".Avctivitys.FichaEditarActivity"/>
-        <activity android:name=".Avctivitys.CrearMiembroActivity" />
-        <activity android:name=".Avctivitys.MenuActivity" />
-        <activity android:name=".Avctivitys.PremiosModificarActivity"/>
-        <activity android:name=".Avctivitys.InicioActivity">
+        <activity android:name=".Activitys.EvaluacionActivity"></activity>
+        <activity android:name=".Activitys.EvaluacionDeMiembroActivity"></activity>
+        <activity android:name=".Activitys.TareasActivity"></activity>
+        <activity android:name=".Activitys.TareasDetailsActivity" />
+        <activity android:name=".Activitys.NuevaTarea" />
+        <activity android:name=".Activitys.AsignarMiembrosTareas"/>
+        <activity android:name=".Activitys.MiembroActivity" />
+        <activity android:name=".Activitys.FichaEditarActivity"/>
+        <activity android:name=".Activitys.CrearMiembroActivity" />
+        <activity android:name=".Activitys.MenuActivity" />
+        <activity android:name=".Activitys.PremiosModificarActivity"/>
+        <activity android:name=".Activitys.InicioActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Avctivitys.PremiosActivity"/>
-        <activity android:name=".Avctivitys.fichaPremioActivity"/>
-        <activity android:name=".Avctivitys.CrearPremioActivity"/>
-        <activity android:name=".Avctivitys.FichaMiembroActivity"/>
+        <activity android:name=".Activitys.PremiosActivity"/>
+        <activity android:name=".Activitys.FichaPremioActivity"/>
+        <activity android:name=".Activitys.CrearPremioActivity"/>
+        <activity android:name=".Activitys.FichaMiembroActivity"/>
     </application>
 
 </manifest>
