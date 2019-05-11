@@ -24,7 +24,7 @@ import bo.elite.tareasdivertidas.db.DatabaseHelper;
 
 public class EvaluacionActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
-    private List<Miembro> miembro = new ArrayList<>();
+    private List<Miembro> miembros = new ArrayList<>();
     private Context mContext;
     private ImageView mBotonAtras;
     private ListView miembrosLista;
@@ -35,9 +35,8 @@ public class EvaluacionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluacion);
         mContext = this;
-
         dbHelper = new DatabaseHelper(mContext);
-        this.miembro = dbHelper.getMiembros();
+        miembros = dbHelper.getMiembros();
         initViews();
     }
 
@@ -52,15 +51,14 @@ public class EvaluacionActivity extends AppCompatActivity {
         });
         miembrosLista =findViewById(R.id.miembrosAEvaluarLista);
 
-        this.evaluacionAdapter= new EvaluacionAdapter(mContext,this.miembro);
+        this.evaluacionAdapter= new EvaluacionAdapter(mContext, this.miembros);
         miembrosLista.setAdapter(this.evaluacionAdapter);
         miembrosLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Miembro miembro = EvaluacionActivity.this.miembro.get(position);
-                miembro.setId(position);
+                Miembro miembro = miembros.get(position);
                 Intent intent = new Intent(mContext, EvaluacionDeMiembroActivity.class);
-                intent.putExtra(Constants.KEY_MIEMBRO_SELECCIONADO, new Gson().toJson(miembro));
+                intent.putExtra(Constants.KEY_MIEMBRO_A_EVALUAR_SELECCIONADO, new Gson().toJson(miembro));
                 startActivity(intent);
             }
         });
@@ -70,9 +68,9 @@ public class EvaluacionActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         //Cada vez que retorna a la activity actualizar la lista de miembros y actualizar el adapter notifyDataSetChanged
-        this.miembro.clear();
-        this.miembro.addAll(dbHelper.getMiembros());
+        this.miembros.clear();
+        this.miembros.addAll(dbHelper.getMiembros());
         this.evaluacionAdapter.notifyDataSetChanged();
-        Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembro));
+        Log.e("MIEMBROS", ": " + new Gson().toJson(this.miembros));
     }
 }

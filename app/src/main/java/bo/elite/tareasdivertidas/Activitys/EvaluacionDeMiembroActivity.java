@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import bo.elite.tareasdivertidas.Constants;
+import bo.elite.tareasdivertidas.db.DatabaseHelper;
 import bo.elite.tareasdivertidas.models.Miembro;
 import bo.elite.tareasdivertidas.R;
 
@@ -21,23 +22,30 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
     private TextView mNombre;
     private ImageView mImage;
     private ImageView mEvaluar;
+    private Miembro miembro;
 
-    private Gson gson = new Gson();
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ficha_premio);
+        setContentView(R.layout.ficha_evaluacion);
         mContext = this;
-
         initViews();
 
-
-        Miembro miembro = this.gson.fromJson(getIntent().getStringExtra(Constants.KEY_MIEMBRO_A_EVALUAR_SELECCIONADO), Miembro.class);
+        Intent intent = getIntent();
+        if (intent.hasExtra(Constants.KEY_MIEMBRO_A_EVALUAR_SELECCIONADO)) {
+            String json = intent.getStringExtra(Constants.KEY_MIEMBRO_A_EVALUAR_SELECCIONADO);
+            miembro = new Gson().fromJson(json, Miembro.class);
+            //datosMiembro(miembro);
+            mNombre.setText(miembro.getNombre());
+            Drawable image = getResources().getDrawable(miembro.getIcono());
+            mImage.setImageDrawable(image);
+        }
+        //Miembro miembro = this.gson.fromJson(getIntent().getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO), Miembro.class);
         //Tarea tarea = this.gson.fromJson(getIntent().getStringExtra(Constants.KEY_MIEMBRO_A_EVALUAR_SELECCIONADO), Tarea.class);
 
-        datosMiembro(miembro);
         //datosTarea(tarea); (?
     }
+
     private void initViews() {
         mAtras = findViewById(R.id.botonAtras);
         mAtras.setOnClickListener(new View.OnClickListener() {
