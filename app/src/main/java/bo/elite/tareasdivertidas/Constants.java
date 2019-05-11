@@ -17,6 +17,7 @@ public class Constants {
     public static final int DATABASE_VERSION = 1;
 
     public static final String KEY_MIEMBRO_SELECCIONADO = "miembroSeleccionado";
+    public static final String KEY_TAREA_SELECTED = "tareaSeleccionada";
 
     public static final String KEY_CREAR_PREMIO = "crear premio";
     public static final int KEY_PREMIO = 220;

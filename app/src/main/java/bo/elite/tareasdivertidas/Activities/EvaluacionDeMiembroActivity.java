@@ -1,5 +1,6 @@
 package bo.elite.tareasdivertidas.Activities;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,11 +64,30 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
             this.tarea = dbHelper.getTareaAsignadas(miembro.getId());
         }
 
-        tareaAdapter = new tareaRecyclerViewAdapter2(this, tarea);
+        tareaAdapter = new tareaRecyclerViewAdapter2(mContext, tarea);
         tareaAdapter.setTareaCallback(new TareaCallback() {
             @Override
             public void onTareaClick(Tarea tarea) {
-
+                final Tarea tarea2 = tarea;
+                final Dialog dialogo = new Dialog(mContext);
+                dialogo.setContentView(R.layout.confirmacion_tarea_cumplida);
+                final Button aceptar = dialogo.findViewById(R.id.si);
+                final Button cancelar = dialogo.findViewById(R.id.no);
+                aceptar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent2 = new Intent(mContext, FichaMiembroActivity.class);
+                        miembro.setPuntaje(tarea2.getPointTarea());
+                        startActivity(intent2);
+                        //TODO llamar a la base de datos y eliminar la tarea
+                    }
+                });
+                cancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogo.dismiss();
+                    }
+                });
             }
         });
 
@@ -88,7 +109,6 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mEvaluar = findViewById(R.id.evaluar);
         mNombre = findViewById(R.id.nombreUser);
         mImage = findViewById(R.id.imagen);
         recyclerView = findViewById(R.id.TareasM);
