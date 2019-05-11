@@ -308,6 +308,24 @@ public class DatabaseHelper {
         mDatabase.delete("premios", "id=?", params);
     }
 
+    public void eliminarTyM(int idMiembro, int idTarea) {
+        String[] params = new String[1];
+        params[0] = String.valueOf(idMiembro);
+        params[1] = String.valueOf(idTarea);
+
+        mDatabase.delete("relaciontm", "id=?", params);
+    }
+
+    public void updatePuntaje(int id, int puntajeNuevo) {
+        String[] params = new String[1];
+        params[0] = String.valueOf(id);
+
+        ContentValues cv = new ContentValues();
+        cv.put("puntaje", puntajeNuevo);
+
+        mDatabase.update("miembro", cv, "id=?", params);
+    }
+
     public void editarP(int id, String nuevoN, int nuevoP) {
         String[] params = new String[1];
         params[0] = String.valueOf(id);

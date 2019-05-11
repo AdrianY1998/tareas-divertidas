@@ -30,6 +30,7 @@ public class Database extends SQLiteOpenHelper {
                 " edad INTEGER," +
                 " email VARCHAR NOT NULL,"+
                 "icono INTEGER," +
+                "puntaje INTEGER," +
                 "premioID INTEGER)");
         Log.d("Database", "Created");
 

@@ -78,8 +78,9 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent2 = new Intent(mContext, FichaMiembroActivity.class);
                         miembro.setPuntaje(tarea2.getPointTarea());
+                        dbHelper.updatePuntaje(miembro.getId(),miembro.getPuntaje());
+                        dbHelper.eliminarTyM(miembro.getId(), tarea2.getId());
                         startActivity(intent2);
-                        //TODO llamar a la base de datos y eliminar la tarea
                     }
                 });
                 cancelar.setOnClickListener(new View.OnClickListener() {
