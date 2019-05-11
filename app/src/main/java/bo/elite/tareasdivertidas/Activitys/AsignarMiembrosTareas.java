@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas.Avctivitys;
+package bo.elite.tareasdivertidas.Activitys;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +16,6 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-import bo.elite.tareasdivertidas.Avctivitys.TareasActivity;
 import bo.elite.tareasdivertidas.Constants;
 import bo.elite.tareasdivertidas.R;
 import bo.elite.tareasdivertidas.adapters.MiembrosAdapter;

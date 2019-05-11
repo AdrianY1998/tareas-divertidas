@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas.Avctivitys;
+package bo.elite.tareasdivertidas.Activitys;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -20,7 +20,7 @@ import bo.elite.tareasdivertidas.models.Premio;
 import bo.elite.tareasdivertidas.R;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
 
-public class fichaPremioActivity extends AppCompatActivity {
+public class FichaPremioActivity extends AppCompatActivity {
     private Context mContext;
     private ImageView mAtras;
     private TextView mNombre;
