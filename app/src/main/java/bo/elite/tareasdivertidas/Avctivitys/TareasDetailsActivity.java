@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas;
+package bo.elite.tareasdivertidas.Avctivitys;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -20,6 +20,9 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import bo.elite.tareasdivertidas.Constants;
+import bo.elite.tareasdivertidas.models.Miembro;
+import bo.elite.tareasdivertidas.R;
 import bo.elite.tareasdivertidas.adapters.MiembrosAdapter;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
 import bo.elite.tareasdivertidas.models.Tarea;

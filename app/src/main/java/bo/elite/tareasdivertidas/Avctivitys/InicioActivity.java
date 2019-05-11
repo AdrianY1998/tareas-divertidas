@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas;
+package bo.elite.tareasdivertidas.Avctivitys;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import bo.elite.tareasdivertidas.R;
 
 public class InicioActivity extends AppCompatActivity{
     private static final String LOG = InicioActivity.class.getName();

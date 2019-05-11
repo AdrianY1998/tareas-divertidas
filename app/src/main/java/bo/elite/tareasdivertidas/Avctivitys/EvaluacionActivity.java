@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas;
+package bo.elite.tareasdivertidas.Avctivitys;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,9 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import bo.elite.tareasdivertidas.Constants;
+import bo.elite.tareasdivertidas.models.Miembro;
+import bo.elite.tareasdivertidas.R;
 import bo.elite.tareasdivertidas.adapters.EvaluacionAdapter;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
 
@@ -56,7 +59,7 @@ public class EvaluacionActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Miembro miembro = EvaluacionActivity.this.miembro.get(position);
                 miembro.setId(position);
-                Intent intent = new Intent(mContext, FichaMiembroActivity.class);
+                Intent intent = new Intent(mContext, EvaluacionDeMiembroActivity.class);
                 intent.putExtra(Constants.KEY_MIEMBRO_SELECCIONADO, new Gson().toJson(miembro));
                 startActivity(intent);
             }

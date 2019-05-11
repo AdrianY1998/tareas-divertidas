@@ -1,6 +1,8 @@
-package bo.elite.tareasdivertidas;
+package bo.elite.tareasdivertidas.models;
 
 import com.google.gson.annotations.Expose;
+
+import bo.elite.tareasdivertidas.R;
 
 public class Premio {
 

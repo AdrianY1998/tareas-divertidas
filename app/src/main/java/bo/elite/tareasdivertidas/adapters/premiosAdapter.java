@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import bo.elite.tareasdivertidas.Premio;
+import bo.elite.tareasdivertidas.models.Premio;
 import bo.elite.tareasdivertidas.R;
 
 

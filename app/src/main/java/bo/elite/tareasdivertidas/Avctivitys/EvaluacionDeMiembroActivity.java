@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas;
+package bo.elite.tareasdivertidas.Avctivitys;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import bo.elite.tareasdivertidas.models.Tarea;
+import bo.elite.tareasdivertidas.Constants;
+import bo.elite.tareasdivertidas.models.Miembro;
+import bo.elite.tareasdivertidas.R;
 
 public class EvaluacionDeMiembroActivity extends AppCompatActivity {
     private Context mContext;

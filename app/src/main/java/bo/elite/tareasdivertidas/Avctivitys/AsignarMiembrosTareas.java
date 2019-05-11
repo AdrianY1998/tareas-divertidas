@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas;
+package bo.elite.tareasdivertidas.Avctivitys;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -17,8 +16,12 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import bo.elite.tareasdivertidas.Avctivitys.TareasActivity;
+import bo.elite.tareasdivertidas.Constants;
+import bo.elite.tareasdivertidas.R;
 import bo.elite.tareasdivertidas.adapters.MiembrosAdapter;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
+import bo.elite.tareasdivertidas.models.Miembro;
 import bo.elite.tareasdivertidas.models.Tarea;
 
 public class AsignarMiembrosTareas extends AppCompatActivity {

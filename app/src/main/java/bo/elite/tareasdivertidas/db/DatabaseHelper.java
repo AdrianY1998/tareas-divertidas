@@ -9,8 +9,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import bo.elite.tareasdivertidas.Miembro;
-import bo.elite.tareasdivertidas.Premio;
+import bo.elite.tareasdivertidas.models.Miembro;
+import bo.elite.tareasdivertidas.models.Premio;
 import bo.elite.tareasdivertidas.models.Tarea;
 
 public class DatabaseHelper {

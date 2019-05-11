@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import bo.elite.tareasdivertidas.Constants;
-import bo.elite.tareasdivertidas.Miembro;
 import bo.elite.tareasdivertidas.R;
 
 public class Database extends SQLiteOpenHelper {

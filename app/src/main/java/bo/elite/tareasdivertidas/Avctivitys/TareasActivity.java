@@ -1,4 +1,4 @@
-package bo.elite.tareasdivertidas;
+package bo.elite.tareasdivertidas.Avctivitys;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bo.elite.tareasdivertidas.Callback.TareaCallback;
+import bo.elite.tareasdivertidas.Constants;
+import bo.elite.tareasdivertidas.R;
 import bo.elite.tareasdivertidas.adapters.tareaRecyclerViewAdapter;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
 import bo.elite.tareasdivertidas.models.Tarea;
-import bo.elite.tareasdivertidas.utils.TareaU;
 
 public class TareasActivity extends AppCompatActivity {
 

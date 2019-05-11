@@ -1,10 +1,9 @@
-package bo.elite.tareasdivertidas;
+package bo.elite.tareasdivertidas.Avctivitys;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,9 +25,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-
+import bo.elite.tareasdivertidas.Constants;
+import bo.elite.tareasdivertidas.models.Miembro;
+import bo.elite.tareasdivertidas.R;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
 
 public class CrearMiembroActivity extends AppCompatActivity {
