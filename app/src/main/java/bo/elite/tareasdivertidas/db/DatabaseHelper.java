@@ -71,7 +71,8 @@ public class DatabaseHelper {
                 " edad," +
                 " email," +
                 " premioID," +
-                " icono"+
+                " icono,"+
+                " puntaje"+
                 " FROM miembros", null);
 
         if (cursor.moveToFirst()) {
@@ -82,6 +83,7 @@ public class DatabaseHelper {
                 String email = cursor.getString(3);
                 int premioId = cursor.getInt(4);
                 int icono = cursor.getInt(5);
+                int puntaje = cursor.getInt(6);
                 Miembro miembro = new Miembro();
                 miembro.setId(id);
                 miembro.setNombre(nombre);
@@ -89,6 +91,7 @@ public class DatabaseHelper {
                 miembro.setCorreoElectronico(email);
                 miembro.setIDPremio(premioId);
                 miembro.setIcono(icono);
+                miembro.setPuntaje(puntaje);
                 //Adicionar a la lista
                 results.add(miembro);
             } while (cursor.moveToNext());
@@ -309,11 +312,11 @@ public class DatabaseHelper {
     }
 
     public void eliminarTyM(int idMiembro, int idTarea) {
-        String[] params = new String[1];
+        String[] params = new String[2];
         params[0] = String.valueOf(idMiembro);
         params[1] = String.valueOf(idTarea);
 
-        mDatabase.delete("relaciontm", "id=?", params);
+        mDatabase.delete("relaciontm", "idMiembro=? AND idTarea=?", params);
     }
 
     public void updatePuntaje(int id, int puntajeNuevo) {
@@ -323,7 +326,7 @@ public class DatabaseHelper {
         ContentValues cv = new ContentValues();
         cv.put("puntaje", puntajeNuevo);
 
-        mDatabase.update("miembro", cv, "id=?", params);
+        mDatabase.update("miembros", cv, "id=?", params);
     }
 
     public void editarP(int id, String nuevoN, int nuevoP) {

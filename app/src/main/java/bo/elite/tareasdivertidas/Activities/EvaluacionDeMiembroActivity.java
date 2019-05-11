@@ -76,7 +76,7 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
                 aceptar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent2 = new Intent(mContext, FichaMiembroActivity.class);
+                        Intent intent2 = new Intent(mContext, MiembroActivity.class);
                         miembro.setPuntaje(tarea2.getPointTarea());
                         dbHelper.updatePuntaje(miembro.getId(),miembro.getPuntaje());
                         dbHelper.eliminarTyM(miembro.getId(), tarea2.getId());
