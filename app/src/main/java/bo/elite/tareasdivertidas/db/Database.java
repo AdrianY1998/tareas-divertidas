@@ -104,7 +104,8 @@ public class Database extends SQLiteOpenHelper {
         values.put("tareaN", "Sacar basura");
         values.put("puntaje", 380);
         values.put("imagen", R.drawable.sacar_basura);
-        db.insert("tareas", null, values);
+        db.insert("tareas",
+                null, values);
         values.clear();
 
         values.put("nombre", "Ir al cine");

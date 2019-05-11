@@ -18,7 +18,6 @@ import java.util.List;
 
 import bo.elite.tareasdivertidas.adapters.premiosAdapter;
 import bo.elite.tareasdivertidas.db.DatabaseHelper;
-import bo.elite.tareasdivertidas.singleton.PremioSingleton;
 
 public class PremiosActivity extends AppCompatActivity {
 

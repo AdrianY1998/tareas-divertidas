@@ -70,7 +70,8 @@ public class DatabaseHelper {
                 " nombre," +
                 " edad," +
                 " email," +
-                " premioID" +
+                " premioID," +
+                " icono"+
                 " FROM miembros", null);
 
         if (cursor.moveToFirst()) {
@@ -80,12 +81,14 @@ public class DatabaseHelper {
                 int edad = cursor.getInt(2);
                 String email = cursor.getString(3);
                 int premioId = cursor.getInt(4);
+                int icono = cursor.getInt(5);
                 Miembro miembro = new Miembro();
                 miembro.setId(id);
                 miembro.setNombre(nombre);
                 miembro.setEdad(edad);
                 miembro.setCorreoElectronico(email);
                 miembro.setIDPremio(premioId);
+                miembro.setIcono(icono);
                 //Adicionar a la lista
                 results.add(miembro);
             } while (cursor.moveToNext());

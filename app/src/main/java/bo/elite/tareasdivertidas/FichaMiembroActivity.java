@@ -170,7 +170,6 @@ public class FichaMiembroActivity extends AppCompatActivity {
             puntajePremio.setText(""+premio.getPuntaje());
             miembro.setIDPremio(premio.getId());
             DatabaseHelper dbHelper = new DatabaseHelper(mContext);
-            //dbHelper.añadirTareaMiembro(miembro.getId(), miembro.getPremio().getId());
             dbHelper.añadirPremioMiembro(miembro.getId(), premio.getId());
         }
     }

@@ -1,6 +1,7 @@
 package bo.elite.tareasdivertidas.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -63,8 +64,9 @@ public class MiembrosAdapter extends BaseAdapter {
         Miembro miembro = items.get(position);
         viewHolder.nombre.setText(miembro.getNombre());
         viewHolder.edad.setText(toString().valueOf(miembro.getEdad()));
-        //viewHolder.icono.setImageResource(miembro.getIcono());
-        viewHolder.icono.setImageResource(R.drawable.perfil_mujer_predeterminado);
+        //Drawable image = mContext.getResources().getDrawable(miembro.getIcono());
+        //viewHolder.icono.setImageDrawable(getResources().getDrawable(miembro.getIcono()));
+        viewHolder.icono.setImageResource(miembro.getIcono());
         viewHolder.puntaje.setText(miembro.getPuntaje() + " punto(s)");
         //viewHolder.email.setText(miembro.getCorreoElectronico());
         return vista;
