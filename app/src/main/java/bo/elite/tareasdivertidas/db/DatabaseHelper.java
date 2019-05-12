@@ -11,6 +11,7 @@ import java.util.List;
 
 import bo.elite.tareasdivertidas.Miembro;
 import bo.elite.tareasdivertidas.Premio;
+import bo.elite.tareasdivertidas.TareaAEvaluar;
 import bo.elite.tareasdivertidas.models.Tarea;
 
 public class DatabaseHelper {
@@ -277,6 +278,8 @@ public class DatabaseHelper {
 
         mDatabase.update("premios", cv, "id=?", params);
     }
+
+
 
 
     //public static DatabaseHelper getInstance(){
