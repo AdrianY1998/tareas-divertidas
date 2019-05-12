@@ -56,7 +56,7 @@ public class EvaluacionActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Miembro miembro = EvaluacionActivity.this.miembro.get(position);
                 miembro.setId(position);
-                Intent intent = new Intent(mContext, FichaMiembroActivity.class);
+                Intent intent = new Intent(mContext, EvaluacionDeMiembroActivity.class);
                 intent.putExtra(Constants.KEY_MIEMBRO_SELECCIONADO, new Gson().toJson(miembro));
                 startActivity(intent);
             }

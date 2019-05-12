@@ -24,17 +24,14 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ficha_premio);
+        setContentView(R.layout.ficha_evaluacion);
         mContext = this;
 
         initViews();
+        Miembro miembro = this.gson.fromJson(getIntent().getStringExtra(Constants.KEY_MIEMBRO_SELECCIONADO), Miembro.class);
 
-
-        Miembro miembro = this.gson.fromJson(getIntent().getStringExtra(Constants.KEY_MIEMBRO_A_EVALUAR_SELECCIONADO), Miembro.class);
-        //Tarea tarea = this.gson.fromJson(getIntent().getStringExtra(Constants.KEY_MIEMBRO_A_EVALUAR_SELECCIONADO), Tarea.class);
 
         datosMiembro(miembro);
-        //datosTarea(tarea); (?
     }
     private void initViews() {
         mAtras = findViewById(R.id.botonAtras);
@@ -56,6 +53,8 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
         mImage.setImageDrawable(image);
 
     }
+
+
 
 
 }
