@@ -18,7 +18,6 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
     private ImageView mAtras;
     private TextView mNombre;
     private ImageView mImage;
-    private ImageView mEvaluar;
 
     private Gson gson = new Gson();
 
@@ -42,7 +41,6 @@ public class EvaluacionDeMiembroActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mEvaluar = findViewById(R.id.evaluar);
         mNombre = findViewById(R.id.nombreUser);
         mImage = findViewById(R.id.imagen);
 
